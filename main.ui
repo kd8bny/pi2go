@@ -44,26 +44,13 @@
       <property name="geometry">
        <rect>
         <x>440</x>
-        <y>220</y>
+        <y>260</y>
         <width>91</width>
         <height>20</height>
        </rect>
       </property>
       <property name="text">
-       <string>pi2go V0 R0</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_2">
-      <property name="geometry">
-       <rect>
-        <x>320</x>
-        <y>240</y>
-        <width>211</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Basic UI NO FUNCTIONALITLY</string>
+       <string>pi2go V1 R0</string>
       </property>
      </widget>
     </widget>

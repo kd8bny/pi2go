@@ -15,8 +15,14 @@ class pi2go(QtGui.QMainWindow):
 		self.ui = Ui_MainWindow()
 		self.ui.setupUi(self)
 		
+		#Set buttons
 		QtCore.QObject.connect(self.ui.F_lights, QtCore.SIGNAL("clicked()"), self.fogL)	#browse button
 		QtCore.QObject.connect(self.ui.A_lights, QtCore.SIGNAL("clicked()"), self.fancy)	#browse button
+		
+		#Set logo
+		self.scene = QtGui.QGraphicsScene(self)
+		self.scene.addPixmap(QtGui.QPixmap('graphics/pi_logo.jpeg'))
+		self.ui.graphicsView.setScene(self.scene)
 		
 	def fogL(self):	#Will turn fog ligths on and off
 		pass	
