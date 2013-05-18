@@ -7,12 +7,10 @@ import sys
 import os
 
 from PyQt4 import *
-#TODO whe GUI is in place ~from main import *
-class fotoShoot(): #TODO GUI ~QtGui.QMainWindow
-	def__init__(self, parent=None):
-        QtGui.QWidget.__init__(self, parent)
-        self.ui = Ui_Form()
-        self.ui.setupUi(self)
-        
-        self.mainDir = 0
-        self.pause = self.ui.spinBox.value()
+from main import *
+
+class fotoShoot(QtGui.QMainWindow):
+	def __init__(self, parent=None):
+		QtGui.QWidget.__init__(self, parent)
+		self.ui = Ui_Form()
+		self.ui.setupUi(self)
