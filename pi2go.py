@@ -9,7 +9,8 @@ import os
 
 from PyQt4 import *
 from main import *
-from obd_recorder import *
+from obd import *
+import obd.message.request
 #import RPi.GPIO as GPIO
 
 class pi2go(QtGui.QMainWindow):
@@ -32,6 +33,14 @@ class pi2go(QtGui.QMainWindow):
 		self.scene.addPixmap(QtGui.QPixmap('graphics/pi_logo.jpeg'))
 		self.ui.graphicsView.setScene(self.scene)
 		
+		#SetOBD #Find the scan tools attached to the computer and pick one
+		self.interfaces = obd.interface.enumerate()
+		self.interface = self.interfaces[0]
+		# Open the connection with the vehicle
+		interface.open()
+		interface.set_protocol(None)
+		interface.connect_to_vehicle()
+		
 		#Set Hardware TODO Make class is enough features are introduced
 		#GPIO.setup(self.F_lights, GPIO.OUT)
 		#GPIO.setup(self.A_lights, GPIO.OUT)
@@ -53,10 +62,11 @@ class pi2go(QtGui.QMainWindow):
 	
 	def obdStart(self):
 		#Super basic function....just grabing a singal value for now
-		#rpmValue = obd_sensors.rpm(code)	#TODO grab code I think from IO YEP!!! TODO Now how??? #NOTE this may be obd_recorder instead parsing through logs
-		obd_recorder()
+		#rpmValue = obd_sensors.rpm(code)e
 		self.ui.lcdNumber.display(000)
-		
+		# Communicate with the vehicle
+		request = obd.message.OBDRequest(sid=0x01, pid=0x00)
+		responses = interface.send_request(request)
 
 if __name__ == "__main__":
     app = QtGui.QApplication(sys.argv)
