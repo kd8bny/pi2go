@@ -9,8 +9,7 @@ import os
 
 from PyQt4 import *
 from main import *
-from obd import *
-import obd.message.request
+from pi2OBD import *
 #import RPi.GPIO as GPIO
 
 class pi2go(QtGui.QMainWindow):
@@ -33,40 +32,30 @@ class pi2go(QtGui.QMainWindow):
 		self.scene.addPixmap(QtGui.QPixmap('graphics/pi_logo.jpeg'))
 		self.ui.graphicsView.setScene(self.scene)
 		
-		#SetOBD #Find the scan tools attached to the computer and pick one
-		self.interfaces = obd.interface.enumerate()
-		self.interface = self.interfaces[0]
-		# Open the connection with the vehicle
-		interface.open()
-		interface.set_protocol(None)
-		interface.connect_to_vehicle()
-		
 		#Set Hardware TODO Make class is enough features are introduced
-		#GPIO.setup(self.F_lights, GPIO.OUT)
-		#GPIO.setup(self.A_lights, GPIO.OUT)
-		#GPIO.output(self.F_lights, False)
-		#GPIO.output(self.A_lights, False)
+		"""GPIO.setup(self.F_lights, GPIO.OUT)
+		GPIO.setup(self.A_lights, GPIO.OUT)
+		GPIO.output(self.F_lights, GPIO.LOW)
+		GPIO.output(self.A_lights, GPIO.LOW)"""
 		
 	def fogL(self):	#Will turn fog ligths on and off
-		#if(self.F_lights==False):
-		#	GPIO.output(self.F_lights, True)
-		#else:
-		#	GPIO.output(self.F_lights, False)
+		"""if(self.F_lights==GPIO.LOW):
+			GPIO.output(self.F_lights, GPIO.HIGH)
+		else:
+			GPIO.output(self.F_lights, GPIO.LOW)"""
 		pass
 	def fancy(self):	#Will turn fog ligths on and off
-		"""if(self.A_lights==False):
-			GPIO.output(self.A_lights, True)
+		"""if(self.A_lights==GPIO.LOW):
+			GPIO.output(self.A_lights, GPIO.HIGH)
 		else:
-			GPIO.output(self.A_lights, False)"""
+			GPIO.output(self.A_lights, GPIO.LOW)"""
 		pass
 	
 	def obdStart(self):
-		#Super basic function....just grabing a singal value for now
-		#rpmValue = obd_sensors.rpm(code)e
-		self.ui.lcdNumber.display(000)
-		# Communicate with the vehicle
-		request = obd.message.OBDRequest(sid=0x01, pid=0x00)
-		responses = interface.send_request(request)
+		self.OBD = pi2OBD.pi2OBD()
+		self.OBDValue = self.OBD.OBDread()
+		self.ui.lcdNumber.display(self.OBDValue)
+		
 
 if __name__ == "__main__":
     app = QtGui.QApplication(sys.argv)
