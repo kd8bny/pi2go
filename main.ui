@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="welcomeTab">
      <attribute name="title">
@@ -35,8 +35,8 @@
        <rect>
         <x>20</x>
         <y>30</y>
-        <width>256</width>
-        <height>192</height>
+        <width>238</width>
+        <height>212</height>
        </rect>
       </property>
      </widget>
@@ -50,14 +50,68 @@
        </rect>
       </property>
       <property name="text">
-       <string>pi2go V1 R0</string>
+       <string>pi2go V1 R1</string>
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="musicTab">
+    <widget class="QWidget" name="obdTab">
      <attribute name="title">
-      <string>Music</string>
+      <string>OBDII</string>
      </attribute>
+     <widget class="QToolButton" name="obdStart">
+      <property name="geometry">
+       <rect>
+        <x>480</x>
+        <y>240</y>
+        <width>51</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Start OBDII</string>
+      </property>
+      <property name="icon">
+       <iconset>
+        <normalon>graphics/pyobd.gif</normalon>
+       </iconset>
+      </property>
+     </widget>
+     <widget class="QLabel" name="startOBD">
+      <property name="geometry">
+       <rect>
+        <x>385</x>
+        <y>250</y>
+        <width>81</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Start OBDII</string>
+      </property>
+     </widget>
+     <widget class="QLCDNumber" name="lcdNumber">
+      <property name="geometry">
+       <rect>
+        <x>60</x>
+        <y>70</y>
+        <width>81</width>
+        <height>23</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_2">
+      <property name="geometry">
+       <rect>
+        <x>160</x>
+        <y>70</y>
+        <width>66</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>RPM</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="carTab">
      <attribute name="title">
@@ -110,5 +164,22 @@
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>obdStart</sender>
+   <signal>clicked()</signal>
+   <receiver>lcdNumber</receiver>
+   <slot>setDecMode()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>517</x>
+     <y>326</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>112</x>
+     <y>147</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>
