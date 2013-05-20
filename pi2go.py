@@ -52,8 +52,8 @@ class pi2go(QtGui.QMainWindow):
 		pass
 	
 	def obdStart(self):
-		self.OBD = pi2OBD.pi2OBD()
-		self.OBDValue = self.OBD.OBDread()
+		self.OBD = pi2OBD()
+		self.OBDValue = self.OBD.OBDread(self)
 		self.ui.lcdNumber.display(self.OBDValue)
 		
 
