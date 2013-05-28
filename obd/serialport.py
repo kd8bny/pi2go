@@ -23,6 +23,11 @@
 # along with pyOBD-II.  If not, see <http://www.gnu.org/licenses/>.
 ########################################################################
 
+########################################################################
+'''EDITED'''
+#Daryl W. Bennett --kd8bny@gmail.com
+#For use with "linux2" for project "pi2go"
+
 """High-level serial port support for Interfaces.  Provides enumeration
 of serial ports and port recording/playback for regression testing.
 """
@@ -53,15 +58,15 @@ class SerialPort(object):
         if (len(ports) > 0):
             return ports
 
-        if (sys.platform.startswith("darwin")):
-            ports = SerialPort._find_mac_serial_ports()
+        if (sys.platform.startswith("linux2")):
+            ports = SerialPort._find_mac_serial_ports() #TODO new def using linux ports
         else:
             raise exception.OBDException("Automatic interface detection not implemented for " + sys.platform)
         SerialPort.ports = ports
         return SerialPort.ports
     enumerate = staticmethod(enumerate)
 
-    def _find_mac_serial_ports():
+    def _find_mac_serial_ports(): #TODO new def here
         """Return the list of Mac serial (not USB) ports"""
         ports = []
         for name in glob.glob("/dev/cu.*"):
