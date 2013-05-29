@@ -1,12 +1,23 @@
-pi2go
-=====
-
+####   #  ####  #####    ####
+#   #        #  #       #    #
+####   #  ####  #  ###  #    #
+#      #  #     #   ##  #    #
+#      #  ####  #####    ####
+==============================================
 In car computer utilizing RPi
 
+
+Requirments
+==============================================
+- pyserial
+- Python 2.x
+
+
 Changlog
-=======
-V1 R*all
--------
+==============================================
+V1 R*
+---------------
+*ODB R1 - Serial IO now working. Soon to be integrated into GUI 
 
 
 
@@ -14,7 +25,7 @@ V1 R*all
 Instructions
 ============
 1.) cd pi2go dir
-2.)run 'make run'
+2.) run 'make run'
 
 dev
 -----
