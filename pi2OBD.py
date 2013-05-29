@@ -8,11 +8,12 @@
 
 import serial
 import string
+import time
 
 class pi2OBD:
 
 	def __init__(self):
-		self.serialIO = serial.Serial('/dev/tty0', 38400, timeout=1)
+		self.serialIO = serial.Serial('/dev/rfcomm0', 38400, timeout=1)
 
 	def speed(self):
 		"""Grabs speed of vehicle"""
@@ -29,8 +30,8 @@ class pi2OBD:
 		self.serialIO.write("01 0C \r")
 		rpm_list = self.serialIO.readline().split(' ')
 		rpm_value = []
-		rpm_value.append(rpm_list[0][4:7])	#TODO test this value (Max 16)
-		rpm_value.append(rpm_list[1][4:7])	#TODO test this value (Max 383.75)
+		rpm_value.append(rpm_list[0][4:6])	#TODO test this value (Max 16)
+		rpm_value.append(rpm_list[0][6:8])	#TODO test this value (Max 383.75)
 		
 		rpm_value[0] = float(int("0x"+rpm_value[0], 0))
 		rpm_value[1] = float(int("0x"+rpm_value[1], 0))
