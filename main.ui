@@ -72,7 +72,7 @@
       </property>
       <property name="icon">
        <iconset>
-        <normalon>graphics/pyobd.gif</normalon>
+        <normalon>../../.designer/backup/graphics/pyobd.gif</normalon>
        </iconset>
       </property>
      </widget>
@@ -89,28 +89,49 @@
        <string>Start OBDII</string>
       </property>
      </widget>
-     <widget class="QLCDNumber" name="lcdNumber">
+     <widget class="QWidget" name="">
       <property name="geometry">
        <rect>
-        <x>60</x>
-        <y>70</y>
-        <width>81</width>
-        <height>23</height>
+        <x>34</x>
+        <y>31</y>
+        <width>103</width>
+        <height>25</height>
        </rect>
       </property>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QLCDNumber" name="lcdNumber_speed"/>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_3">
+         <property name="text">
+          <string>Mph</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
-     <widget class="QLabel" name="label_2">
+     <widget class="QWidget" name="">
       <property name="geometry">
        <rect>
-        <x>160</x>
-        <y>70</y>
-        <width>66</width>
-        <height>17</height>
+        <x>31</x>
+        <y>71</y>
+        <width>103</width>
+        <height>25</height>
        </rect>
       </property>
-      <property name="text">
-       <string>RPM</string>
-      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <item>
+        <widget class="QLCDNumber" name="lcdNumber_rpm"/>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_2">
+         <property name="text">
+          <string>RPM</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
     </widget>
     <widget class="QWidget" name="carTab">
@@ -168,7 +189,7 @@
   <connection>
    <sender>obdStart</sender>
    <signal>clicked()</signal>
-   <receiver>lcdNumber</receiver>
+   <receiver>lcdNumber_rpm</receiver>
    <slot>setDecMode()</slot>
    <hints>
     <hint type="sourcelabel">

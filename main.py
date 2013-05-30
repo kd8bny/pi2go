@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'main.ui'
 #
-# Created: Mon May 20 18:01:45 2013
+# Created: Wed May 29 19:43:27 2013
 #      by: PyQt4 UI code generator 4.10
 #
 # WARNING! All changes made in this file will be lost!
@@ -46,18 +46,36 @@ class Ui_MainWindow(object):
         self.obdStart = QtGui.QToolButton(self.obdTab)
         self.obdStart.setGeometry(QtCore.QRect(480, 240, 51, 41))
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap(_fromUtf8("graphics/pyobd.gif")), QtGui.QIcon.Normal, QtGui.QIcon.On)
+        icon.addPixmap(QtGui.QPixmap(_fromUtf8("../../.designer/backup/graphics/pyobd.gif")), QtGui.QIcon.Normal, QtGui.QIcon.On)
         self.obdStart.setIcon(icon)
         self.obdStart.setObjectName(_fromUtf8("obdStart"))
         self.startOBD = QtGui.QLabel(self.obdTab)
         self.startOBD.setGeometry(QtCore.QRect(385, 250, 81, 20))
         self.startOBD.setObjectName(_fromUtf8("startOBD"))
-        self.lcdNumber = QtGui.QLCDNumber(self.obdTab)
-        self.lcdNumber.setGeometry(QtCore.QRect(60, 70, 81, 23))
-        self.lcdNumber.setObjectName(_fromUtf8("lcdNumber"))
-        self.label_2 = QtGui.QLabel(self.obdTab)
-        self.label_2.setGeometry(QtCore.QRect(160, 70, 66, 17))
+        self.widget = QtGui.QWidget(self.obdTab)
+        self.widget.setGeometry(QtCore.QRect(34, 31, 103, 25))
+        self.widget.setObjectName(_fromUtf8("widget"))
+        self.horizontalLayout = QtGui.QHBoxLayout(self.widget)
+        self.horizontalLayout.setMargin(0)
+        self.horizontalLayout.setObjectName(_fromUtf8("horizontalLayout"))
+        self.lcdNumber_speed = QtGui.QLCDNumber(self.widget)
+        self.lcdNumber_speed.setObjectName(_fromUtf8("lcdNumber_speed"))
+        self.horizontalLayout.addWidget(self.lcdNumber_speed)
+        self.label_3 = QtGui.QLabel(self.widget)
+        self.label_3.setObjectName(_fromUtf8("label_3"))
+        self.horizontalLayout.addWidget(self.label_3)
+        self.widget1 = QtGui.QWidget(self.obdTab)
+        self.widget1.setGeometry(QtCore.QRect(31, 71, 103, 25))
+        self.widget1.setObjectName(_fromUtf8("widget1"))
+        self.horizontalLayout_2 = QtGui.QHBoxLayout(self.widget1)
+        self.horizontalLayout_2.setMargin(0)
+        self.horizontalLayout_2.setObjectName(_fromUtf8("horizontalLayout_2"))
+        self.lcdNumber_rpm = QtGui.QLCDNumber(self.widget1)
+        self.lcdNumber_rpm.setObjectName(_fromUtf8("lcdNumber_rpm"))
+        self.horizontalLayout_2.addWidget(self.lcdNumber_rpm)
+        self.label_2 = QtGui.QLabel(self.widget1)
         self.label_2.setObjectName(_fromUtf8("label_2"))
+        self.horizontalLayout_2.addWidget(self.label_2)
         self.tabWidget.addTab(self.obdTab, _fromUtf8(""))
         self.carTab = QtGui.QWidget()
         self.carTab.setObjectName(_fromUtf8("carTab"))
@@ -82,7 +100,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
         self.tabWidget.setCurrentIndex(1)
-        QtCore.QObject.connect(self.obdStart, QtCore.SIGNAL(_fromUtf8("clicked()")), self.lcdNumber.setDecMode)
+        QtCore.QObject.connect(self.obdStart, QtCore.SIGNAL(_fromUtf8("clicked()")), self.lcdNumber_rpm.setDecMode)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -91,6 +109,7 @@ class Ui_MainWindow(object):
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.welcomeTab), _translate("MainWindow", "Welcome", None))
         self.obdStart.setText(_translate("MainWindow", "Start OBDII", None))
         self.startOBD.setText(_translate("MainWindow", "Start OBDII", None))
+        self.label_3.setText(_translate("MainWindow", "Mph", None))
         self.label_2.setText(_translate("MainWindow", "RPM", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.obdTab), _translate("MainWindow", "OBDII", None))
         self.F_lights.setText(_translate("MainWindow", "Fog Lights", None))
