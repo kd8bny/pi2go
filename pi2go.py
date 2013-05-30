@@ -9,7 +9,7 @@
 #Prupose is to have a DIY in car computer using RPi
 #TODO port back to RPi disabled now in order for serial testing
 
-#V1 R0
+#V1 R1
 import sys
 import os
 
@@ -22,11 +22,14 @@ class pi2go(QtGui.QMainWindow):
 
 	F_lights = 17
 	A_Lights = 22 
+	
     
 	def __init__(self, parent=None):
 		QtGui.QWidget.__init__(self, parent)
 		self.ui = Ui_MainWindow()
 		self.ui.setupUi(self)
+		
+		self.OBD = pi2OBD()
 		
 		#Set buttons
 		QtCore.QObject.connect(self.ui.F_lights, QtCore.SIGNAL("clicked()"), self.fogL)	#fog lights
@@ -44,13 +47,15 @@ class pi2go(QtGui.QMainWindow):
 		GPIO.output(self.F_lights, GPIO.LOW)
 		GPIO.output(self.A_lights, GPIO.LOW)"""
 		
-	def fogL(self):	#Will turn fog ligths on and off
+	def fogL(self):	
+		"""Will turn fog ligths on and off"""
 		"""if(self.F_lights==GPIO.LOW):
 			GPIO.output(self.F_lights, GPIO.HIGH)
 		else:
 			GPIO.output(self.F_lights, GPIO.LOW)"""
 		pass
-	def fancy(self):	#Will turn fog ligths on and off
+	def fancy(self):
+		"""Will turn fog ligths on and off"""
 		"""if(self.A_lights==GPIO.LOW):
 			GPIO.output(self.A_lights, GPIO.HIGH)
 		else:
@@ -58,10 +63,12 @@ class pi2go(QtGui.QMainWindow):
 		pass
 	
 	def obdStart(self):
-		self.OBD = pi2OBD()
-		self.OBDValue = self.OBD.OBDread()
-		print "made it here"
-		self.ui.lcdNumber.display(self.OBDValue)
+		"""Starts to read the ODB sensor"""
+		while(1):
+			# receive [speed, rpm]
+			obdValue = self.OBD.OBDread()
+			self.ui.lcdNumber_speed.display(obdValue[0])
+			self.ui.lcdNumber_rpm.display(obdValue[1])
 		
 
 if __name__ == "__main__":
