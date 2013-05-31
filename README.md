@@ -24,7 +24,7 @@ dev
 - make build        ~ Rebuilds all dependencies 
 - make initbuild    ~ Build UI for first time !!! USE MAKE BUILD after!!!
 
-Changlog
+Changelog
 ==============================================
 V1 R*
 ---------------
