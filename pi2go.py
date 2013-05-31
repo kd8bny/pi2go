@@ -35,6 +35,7 @@ class pi2go(QtGui.QMainWindow):
 		QtCore.QObject.connect(self.ui.F_lights, QtCore.SIGNAL("clicked()"), self.fogL)	#fog lights
 		QtCore.QObject.connect(self.ui.A_lights, QtCore.SIGNAL("clicked()"), self.fancy)	#Accent lights
 		QtCore.QObject.connect(self.ui.obdStart, QtCore.SIGNAL("clicked()"), self.obdStart)	#Start OBD
+		#QtCore.QObject.connect(self.ui.clearCodes, QtCore.SIGNAL("clicked()"), self.clearCodes)#clear codes
 		
 		#Set logo
 		self.scene = QtGui.QGraphicsScene(self)
@@ -65,10 +66,15 @@ class pi2go(QtGui.QMainWindow):
 	def obdStart(self):
 		"""Starts to read the ODB sensor"""
 		while(1):
-			# receive [speed, rpm]
+			# receive [speed, rpm, intake, coolant, load]
 			obdValue = self.OBD.OBDread()
 			self.ui.lcdNumber_speed.display(obdValue[0])
 			self.ui.lcdNumber_rpm.display(obdValue[1])
+			self.ui.lineEdit.setText(str(obdValue[0])) #trying to see if updates (possible bug fix)
+			
+	def clearCodes(self):
+		"""Clear all trouble codes"""
+		self.OBD.clear_codes()
 		
 
 if __name__ == "__main__":

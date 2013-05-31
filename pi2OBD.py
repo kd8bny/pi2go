@@ -13,15 +13,19 @@ import time
 class pi2OBD:
 
 	def __init__(self):
+		try:
 			self.serialIO = serial.Serial('/dev/rfcomm0', 38400, timeout=1)
-
+		except:
+			pass
+		
 	def speed(self):
 		"""Grabs speed of vehicle"""
 		self.serialIO.write("01 0D \r")
 		speed_list = self.serialIO.readline().split(' ')
 		speed_hex = speed_list[0][4:6]
-		print speed_hex
 		speed_float = float(int("0x"+speed_hex, 0))
+		
+		speed_float = 1
 		
 		speed_float = speed_float*0.621371	#Comment out if you would rather have Kph
 		return speed_float
@@ -34,6 +38,7 @@ class pi2OBD:
 		rpm_value.append(rpm_list[0][4:6])
 		rpm_value.append(rpm_list[0][6:8])
 		
+		rpm_value = ['01','23']
 		rpm_value[0] = float(int("0x"+rpm_value[0], 0))
 		rpm_value[1] = float(int("0x"+rpm_value[1], 0))
 		
@@ -41,12 +46,57 @@ class pi2OBD:
 		rpm_final = ((rpm_value[0]*256)+rpm_value[1])*.25
 		return rpm_final
 		
+	def intake_temp(self):
+		"""Grabs Intake Air temp (Temp outside)"""
+		self.serialIO.write("01 0F \r")
+		temp_list = self.serialIO.readline().split(' ')
+		temp_hex = temp_list[0][4:6]
+		temp_float = float(int("0x"+temp_hex, 0))
+		
+		temp_final = temp_float-40
+		temp_final = temp_final*33.8	#Comment out if you would rather have deg C
+		return temp_final
+		
+	def coolant_temp(self):
+		"""Grabs Intake Air temp (Temp outside)"""
+		self.serialIO.write("01 0F \r")
+		temp_list = self.serialIO.readline().split(' ')
+		temp_hex = temp_list[0][4:6]
+		temp_float = float(int("0x"+temp_hex, 0))
+		
+		temp_final = temp_float-40
+		temp_final = temp_final*33.8	#Comment out if you would rather have deg C
+		return temp_final
+		
+	def load(self):
+		"""Grabs Coolant temp"""
+		self.serialIO.write("01 04 \r")
+		load_list = self.serialIO.readline().split(' ')
+		load_hex = temp_list[0][4:6]
+		load_float = float(int("0x"+load_hex, 0))
+		
+		load_final = (load_float*100)/255	#TODO chack order of ops
+		return load_final
+		
+	def run_time(self):	#TODO
+		"""Will grab amount of time engine has been running"""
+		self.serialIO.write("01 7F \r")
+		temp_list = self.serialIO.readline().split(' ')
+		pass
+		
+		
 	def OBDread(self):
-		finalValues = [0,0] # [speed, rpm] #TODO maybe dictionary
-		while(1):
-			finalValues[0] = self.speed()
-			finalValues[1] = self.rpm()
-			return finalValues
+		finalValues = [0,0,0,0,0] # [speed, rpm, intake, coolant, load] #TODO maybe dictionary
+		finalValues[0] = self.speed()
+		finalValues[1] = self.rpm()
+		finalValues[1] = self.intake_temp()
+		finalValues[1] = self.coolant_temp()
+		finalValues[1] = self.load()
+		return finalValues
+		
+	def clear_codes(self):	#Will add to own class when working with codes
+		"""Clear all trouble codes"""
+		self.serialIO.write("04")
 		
 		
 if __name__ == "__main__":
