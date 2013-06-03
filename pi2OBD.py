@@ -72,7 +72,7 @@ class pi2OBD:
 		"""Grabs Coolant temp"""
 		self.serialIO.write("01 04 \r")
 		load_list = self.serialIO.readline().split(' ')
-		load_hex = temp_list[0][4:6]
+		load_hex = load_list[0][4:6]
 		load_float = float(int("0x"+load_hex, 0))
 		
 		load_final = (load_float*100)/255	#TODO chack order of ops
