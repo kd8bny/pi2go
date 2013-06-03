@@ -16,6 +16,7 @@ import os
 from PyQt4 import *
 from main import *
 from pi2OBD import *
+from threading import Thread, Lock
 #import RPi.GPIO as GPIO
 
 class pi2go(QtGui.QMainWindow):
@@ -48,6 +49,15 @@ class pi2go(QtGui.QMainWindow):
 		GPIO.output(self.F_lights, GPIO.LOW)
 		GPIO.output(self.A_lights, GPIO.LOW)"""
 		
+		#Start OBD thread
+		self.obdThread = Thread(target=self.write_to_UI)
+		try:
+			self.obdThread.start()
+		except (KeyboardInterrupt, SystemExit):
+			sys.exit()
+		return
+		
+		
 	def fogL(self):	
 		"""Will turn fog ligths on and off"""
 		"""if(self.F_lights==GPIO.LOW):
@@ -65,13 +75,17 @@ class pi2go(QtGui.QMainWindow):
 	
 	def obdStart(self):
 		"""Starts to read the ODB sensor"""
-		while(1):
-			# receive [speed, rpm, intake, coolant, load]
-			obdValue = self.OBD.OBDread()
-			self.ui.lcdNumber_speed.display(obdValue[0])
-			self.ui.lcdNumber_rpm.display(obdValue[1])
-			self.ui.lineEdit.setText(str(obdValue[0])) #trying to see if updates (possible bug fix)
-			
+		# receive [speed, rpm, intake, coolant, load]
+		obdValue = self.OBD.OBDread()
+		self.write_to_UI(obdValue)
+		
+		
+	def write_to_UI(self,values):
+		"""Working on threads"""
+		self.ui.lcdNumber_speed.display(obdValue[0])
+		self.ui.lcdNumber_rpm.display(obdValue[1])
+		
+		
 	def clearCodes(self):
 		"""Clear all trouble codes"""
 		self.OBD.clear_codes()
