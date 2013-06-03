@@ -16,13 +16,13 @@ import os
 from PyQt4 import *
 from main import *
 from pi2OBD import *
-from threading import Thread, Lock
+from threading import *
 #import RPi.GPIO as GPIO
 
 class pi2go(QtGui.QMainWindow):
 
 	F_lights = 17
-	A_Lights = 22 
+	A_Lights = 22
 	
     
 	def __init__(self, parent=None):
@@ -31,6 +31,9 @@ class pi2go(QtGui.QMainWindow):
 		self.ui.setupUi(self)
 		
 		self.OBD = pi2OBD()
+		#self.obdValue = [0,0,0,0,0]
+		
+
 		
 		#Set buttons
 		QtCore.QObject.connect(self.ui.F_lights, QtCore.SIGNAL("clicked()"), self.fogL)	#fog lights
@@ -49,13 +52,7 @@ class pi2go(QtGui.QMainWindow):
 		GPIO.output(self.F_lights, GPIO.LOW)
 		GPIO.output(self.A_lights, GPIO.LOW)"""
 		
-		#Start OBD thread
-		self.obdThread = Thread(target=self.write_to_UI)
-		try:
-			self.obdThread.start()
-		except (KeyboardInterrupt, SystemExit):
-			sys.exit()
-		return
+
 		
 		
 	def fogL(self):	
@@ -75,15 +72,25 @@ class pi2go(QtGui.QMainWindow):
 	
 	def obdStart(self):
 		"""Starts to read the ODB sensor"""
-		# receive [speed, rpm, intake, coolant, load]
-		obdValue = self.OBD.OBDread()
-		self.write_to_UI(obdValue)
+		obdValue = [0,0,0,0,0]
+		obdThread = Thread(target=self.write_to_UI(obdValue), args = (self))	#Not sure on args
+		obdEvent = Event()
+		obdThread.start()
 		
+		# receive [speed, rpm, intake, coolant, load]
+		while(1):
+			obdValue = self.OBD.OBDread()
+			obdThread.obdValue = obdValue
+			print obdValue
+			obdEvent.wait(5)
+			
 		
 	def write_to_UI(self,values):
 		"""Working on threads"""
-		self.ui.lcdNumber_speed.display(obdValue[0])
-		self.ui.lcdNumber_rpm.display(obdValue[1])
+		self.ui.lcdNumber_speed.display(values[0])
+		self.ui.lcdNumber_rpm.display(values[1])
+		print values
+		return
 		
 		
 	def clearCodes(self):
