@@ -31,15 +31,14 @@ class pi2go(QtGui.QMainWindow):
 		self.ui.setupUi(self)
 		
 		self.OBD = pi2OBD()
+		self.run = True
 
 		#QT 4
 		QtCore.QObject.connect(self.ui.F_lights, QtCore.SIGNAL("clicked()"), self.fogL)	#fog lights
 		QtCore.QObject.connect(self.ui.A_lights, QtCore.SIGNAL("clicked()"), self.fancy)	#Accent lights
 		QtCore.QObject.connect(self.ui.obdStart, QtCore.SIGNAL("clicked()"), self.obdStart)	#Start OBD
-		#QtCore.QObject.connect(self.ui.clearCodes, QtCore.SIGNAL("clicked()"), self.clearCodes)#clear codes
-		
-		self.updateTimer = QtCore.QTimer()
-		self.updateTimer.connect(self.updateTimer, QtCore.SIGNAL("timeout()"), self.update)
+		QtCore.QObject.connect(self.ui.obdKill, QtCore.SIGNAL("clicked()"), self.obdKill)	#Kill OBD
+		QtCore.QObject.connect(self.ui.obdClear, QtCore.SIGNAL("clicked()"), self.clearCodes) #clear codes
 		
 		#Set logo
 		self.scene = QtGui.QGraphicsScene(self)
@@ -66,6 +65,11 @@ class pi2go(QtGui.QMainWindow):
 		else:
 			GPIO.output(self.A_lights, GPIO.LOW)"""
 		pass
+		
+	def obdKill(self):
+		self.run == False
+		obdThread.stop()
+		return
 	
 	def obdStart(self):
 		"""Starts to read the ODB sensor"""
@@ -74,19 +78,21 @@ class pi2go(QtGui.QMainWindow):
 		obdEvent = Event()
 		obdThread.start()
 		
-		# receive [speed, rpm, intake, coolant, load]
-		while(1):	
+		while(self.run == True):	
 			obdValue = self.OBD.OBDread()
 			self.write_to_UI(obdValue)
 			obdEvent.wait(1)
-			
+		return
 		
 	def write_to_UI(self,values):
-		"""Working on threads"""
-		self.updateTimer.start(1000)
+		"""Updates the UI with new values"""
+		# receive [speed, rpm, intake, coolant, load]
 		self.ui.lcdNumber_speed.display(values[0])
 		self.ui.lcdNumber_rpm.display(values[1])
-		QtGui.QApplication.processEvents()
+		self.ui.lcdNumber_inTemp.display(values[2])
+		self.ui.lcdNumber_coolTemp.display(values[3])
+		self.ui.lcdNumber_load.display(values[4])
+		QtGui.QApplication.processEvents() #Writes all pending changes to QT
 		return
 		
 		
