@@ -31,15 +31,15 @@ class pi2go(QtGui.QMainWindow):
 		self.ui.setupUi(self)
 		
 		self.OBD = pi2OBD()
-		#self.obdValue = [0,0,0,0,0]
-		
 
-		
-		#Set buttons
+		#QT 4
 		QtCore.QObject.connect(self.ui.F_lights, QtCore.SIGNAL("clicked()"), self.fogL)	#fog lights
 		QtCore.QObject.connect(self.ui.A_lights, QtCore.SIGNAL("clicked()"), self.fancy)	#Accent lights
 		QtCore.QObject.connect(self.ui.obdStart, QtCore.SIGNAL("clicked()"), self.obdStart)	#Start OBD
 		#QtCore.QObject.connect(self.ui.clearCodes, QtCore.SIGNAL("clicked()"), self.clearCodes)#clear codes
+		
+		self.updateTimer = QtCore.QTimer()
+		self.updateTimer.connect(self.updateTimer, QtCore.SIGNAL("timeout()"), self.update)
 		
 		#Set logo
 		self.scene = QtGui.QGraphicsScene(self)
@@ -51,9 +51,6 @@ class pi2go(QtGui.QMainWindow):
 		GPIO.setup(self.A_lights, GPIO.OUT)
 		GPIO.output(self.F_lights, GPIO.LOW)
 		GPIO.output(self.A_lights, GPIO.LOW)"""
-		
-
-		
 		
 	def fogL(self):	
 		"""Will turn fog ligths on and off"""
@@ -73,23 +70,23 @@ class pi2go(QtGui.QMainWindow):
 	def obdStart(self):
 		"""Starts to read the ODB sensor"""
 		obdValue = [0,0,0,0,0]
-		obdThread = Thread(target=self.write_to_UI(obdValue), args = (self))	#Not sure on args
+		obdThread = Thread(target=self.write_to_UI(obdValue), args = (self,obdValue))	#Not sure on args
 		obdEvent = Event()
 		obdThread.start()
 		
 		# receive [speed, rpm, intake, coolant, load]
-		while(1):
+		while(1):	
 			obdValue = self.OBD.OBDread()
-			obdThread.obdValue = obdValue
-			print obdValue
-			obdEvent.wait(5)
+			self.write_to_UI(obdValue)
+			obdEvent.wait(1)
 			
 		
 	def write_to_UI(self,values):
 		"""Working on threads"""
+		self.updateTimer.start(1000)
 		self.ui.lcdNumber_speed.display(values[0])
 		self.ui.lcdNumber_rpm.display(values[1])
-		print values
+		QtGui.QApplication.processEvents()
 		return
 		
 		
