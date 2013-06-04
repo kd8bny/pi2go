@@ -25,8 +25,6 @@ class pi2OBD:
 		speed_hex = speed_list[0][4:6]
 		speed_float = float(int("0x"+speed_hex, 0))
 		
-		speed_float = 1
-		
 		speed_float = speed_float*0.621371	#Comment out if you would rather have Kph
 		return speed_float
 	
@@ -38,7 +36,6 @@ class pi2OBD:
 		rpm_value.append(rpm_list[0][4:6])
 		rpm_value.append(rpm_list[0][6:8])
 		
-		rpm_value = ['01','23']
 		rpm_value[0] = float(int("0x"+rpm_value[0], 0))
 		rpm_value[1] = float(int("0x"+rpm_value[1], 0))
 		
@@ -53,19 +50,19 @@ class pi2OBD:
 		temp_hex = temp_list[0][4:6]
 		temp_float = float(int("0x"+temp_hex, 0))
 		
-		temp_final = temp_float-40
-		temp_final = temp_final*33.8	#Comment out if you would rather have deg C
+		temp_final = temp_float-40	
+		temp_final = temp_final*(9/5)+32	#Comment out if you would rather have deg C 
 		return temp_final
 		
 	def coolant_temp(self):
 		"""Grabs Intake Air temp (Temp outside)"""
-		self.serialIO.write("01 0F \r")
+		self.serialIO.write("01 05 \r")
 		temp_list = self.serialIO.readline().split(' ')
 		temp_hex = temp_list[0][4:6]
 		temp_float = float(int("0x"+temp_hex, 0))
 		
 		temp_final = temp_float-40
-		temp_final = temp_final*33.8	#Comment out if you would rather have deg C
+		temp_final = temp_final*(9/5)+32	#Comment out if you would rather have deg C
 		return temp_final
 		
 	def load(self):
@@ -84,14 +81,13 @@ class pi2OBD:
 		temp_list = self.serialIO.readline().split(' ')
 		pass
 		
-		
 	def OBDread(self):
 		finalValues = [0,0,0,0,0] # [speed, rpm, intake, coolant, load] #TODO maybe dictionary
 		finalValues[0] = self.speed()
 		finalValues[1] = self.rpm()
-		finalValues[1] = self.intake_temp()
-		finalValues[1] = self.coolant_temp()
-		finalValues[1] = self.load()
+		finalValues[2] = self.intake_temp()
+		finalValues[3] = self.coolant_temp()
+		finalValues[4] = self.load()
 		return finalValues
 		
 	def clear_codes(self):	#Will add to own class when working with codes
