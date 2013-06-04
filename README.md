@@ -30,6 +30,8 @@ V1 R*
 ---------------
 6/4/13
 *go R1 - Multithreading is now working. Also UI freeze bug is fixed.
+*OBD R1 - Small bug fixes
+main.ui R1 - Reorganized added missing features (Clear codes, new obd stats)
 
 5/30/13
 *ODB R1 - Added Air intake temp, Engine load, Engine coolant temp, clear codes, time on (in progress)
