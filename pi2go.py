@@ -14,11 +14,15 @@ import sys
 import os
 from PyQt4 import *
 from main import *
-from threading import *
-import RPi.GPIO as GPIO
-
-import pi2OBD 
+import threading
+from pi2OBD import pi2OBD
 import sOff
+
+try:
+	import RPi.GPIO as GPIO
+except:
+	pass
+
 
 class pi2go(QtGui.QMainWindow):
     
@@ -27,21 +31,19 @@ class pi2go(QtGui.QMainWindow):
 		self.ui = Ui_MainWindow()
 		self.ui.setupUi(self)
 		
-		#Used by pi2go	
-		self.OBD = pi2OBD()
-		self.sOff = sOff()
-		self.run = True
-		self.obdThread = Thread(target=self.obdStart())
-		self.obdEvent = Event()
-
-		#Set Hardware TODO Make class is enough features are introduced
-		GPIO.setmode(GPIO.BCM)
-		self.F_lights = 17
-		self.A_lights = 22
-		GPIO.setup(self.F_lights, GPIO.OUT)
-		GPIO.setup(self.A_lights, GPIO.OUT)
-		GPIO.output(self.F_lights, GPIO.LOW)	; self.F_state = False
-		GPIO.output(self.A_lights, GPIO.LOW)	; self.A_state = False
+		
+		
+		try:
+			#Set Hardware TODO Make class is enough features are introduced
+			GPIO.setmode(GPIO.BCM)
+			self.F_lights = 17
+			self.A_lights = 22
+			GPIO.setup(self.F_lights, GPIO.OUT)
+			GPIO.setup(self.A_lights, GPIO.OUT)
+			GPIO.output(self.F_lights, GPIO.LOW)	; self.F_state = False
+			GPIO.output(self.A_lights, GPIO.LOW)	; self.A_state = False
+		except:
+			pass
 
 
 		#QT 4
@@ -55,6 +57,11 @@ class pi2go(QtGui.QMainWindow):
 		self.scene = QtGui.QGraphicsScene(self)
 		self.scene.addPixmap(QtGui.QPixmap('graphics/pi_logo.jpeg'))
 		self.ui.graphicsView.setScene(self.scene)
+		
+		#Used by pi2go	
+		self.OBD = pi2OBD()
+		#self.sOff = sOff()
+		self.obdEvent = threading.Event()
 		
 		
 		
@@ -84,12 +91,13 @@ class pi2go(QtGui.QMainWindow):
 	
 	def obdStart(self):
 		"""Starts to read the ODB sensor"""
-		#obdValue = [0,0,0,0,0]
+		obdValue = [0,0,0,0,0]		
+		self.obdThread = threading.Thread(target=self.write_to_UI(obdValue))
 		self.obdThread.start()
 		while not (self.obdEvent.is_set()):	
 			obdValue = self.OBD.OBDread()
 			self.write_to_UI(obdValue)
-			obdEvent.wait(1)
+			self.obdEvent.wait(1)
 		return
 		
 	def write_to_UI(self,values):
