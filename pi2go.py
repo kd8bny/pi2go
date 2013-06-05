@@ -16,7 +16,7 @@ from PyQt4 import *
 from main import *
 import threading
 from pi2OBD import pi2OBD
-import sOff
+from sOff import sOff
 
 try:
 	import RPi.GPIO as GPIO
@@ -32,6 +32,10 @@ class pi2go(QtGui.QMainWindow):
 		self.ui.setupUi(self)
 		
 		
+		#Used by pi2go	
+		self.OBD = pi2OBD()
+		self.sOff = sOff()
+		self.obdEvent = threading.Event()
 		
 		try:
 			#Set Hardware TODO Make class is enough features are introduced
@@ -57,13 +61,6 @@ class pi2go(QtGui.QMainWindow):
 		self.scene = QtGui.QGraphicsScene(self)
 		self.scene.addPixmap(QtGui.QPixmap('graphics/pi_logo.jpeg'))
 		self.ui.graphicsView.setScene(self.scene)
-		
-		#Used by pi2go	
-		self.OBD = pi2OBD()
-		#self.sOff = sOff()
-		self.obdEvent = threading.Event()
-		
-		
 		
 	def fogL(self):	
 		"""Will turn fog ligths on and off"""
@@ -96,7 +93,7 @@ class pi2go(QtGui.QMainWindow):
 		self.obdThread.start()
 		while not (self.obdEvent.is_set()):	
 			obdValue = self.OBD.OBDread()
-			self.write_to_UI(obdValue)
+			self.write_to_UI(obdValue)		
 			self.obdEvent.wait(1)
 		return
 		
