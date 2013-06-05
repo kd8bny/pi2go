@@ -29,6 +29,7 @@ Changelog
 V1 R*
 ---------------
 6/4/13
+sOff R0 - New thread that allows the RPi to shutdown when vehicle losses key_on power. With this the RPi will not come to and abrubt halt losing integrity (Not in pi2go yet)
 *go R1 - Multithreading is now working. Also UI freeze bug is fixed. GPIO issues are fixed
 *OBD R1 - Small bug fixes
 main.ui R1 - Reorganized added missing features (Clear codes, new obd stats)
