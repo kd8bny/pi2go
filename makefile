@@ -11,7 +11,7 @@ clean:
 
 # Runs the code
 run:
-	python2.7 pi2go.py
+	sudo python2.7 pi2go.py
 
 # Build UI for first time !!! USE MAKE BUILD after!!!
 initbuild:
