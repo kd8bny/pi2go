@@ -17,13 +17,9 @@ from PyQt4 import *
 from main import *
 from pi2OBD import *
 from threading import *
-#import RPi.GPIO as GPIO
+import RPi.GPIO as GPIO
 
 class pi2go(QtGui.QMainWindow):
-
-	F_lights = 17
-	A_Lights = 22
-	
     
 	def __init__(self, parent=None):
 		QtGui.QWidget.__init__(self, parent)
@@ -32,6 +28,15 @@ class pi2go(QtGui.QMainWindow):
 		
 		self.OBD = pi2OBD()
 		self.run = True
+
+		#Set Hardware TODO Make class is enough features are introduced
+		GPIO.setmode(GPIO.BCM)
+		self.F_lights = 17
+		self.A_lights = 22
+		GPIO.setup(self.F_lights, GPIO.OUT)
+		GPIO.setup(self.A_lights, GPIO.OUT)
+		GPIO.output(self.F_lights, GPIO.LOW)	; self.F_state = False
+		GPIO.output(self.A_lights, GPIO.LOW)	; self.A_state = False
 
 		#QT 4
 		QtCore.QObject.connect(self.ui.F_lights, QtCore.SIGNAL("clicked()"), self.fogL)	#fog lights
@@ -45,26 +50,28 @@ class pi2go(QtGui.QMainWindow):
 		self.scene.addPixmap(QtGui.QPixmap('graphics/pi_logo.jpeg'))
 		self.ui.graphicsView.setScene(self.scene)
 		
-		#Set Hardware TODO Make class is enough features are introduced
-		"""GPIO.setup(self.F_lights, GPIO.OUT)
-		GPIO.setup(self.A_lights, GPIO.OUT)
-		GPIO.output(self.F_lights, GPIO.LOW)
-		GPIO.output(self.A_lights, GPIO.LOW)"""
+		
 		
 	def fogL(self):	
 		"""Will turn fog ligths on and off"""
-		"""if(self.F_lights==GPIO.LOW):
+		print "made it"
+		if(self.F_state is False ):
 			GPIO.output(self.F_lights, GPIO.HIGH)
+			self.F_state = True
 		else:
-			GPIO.output(self.F_lights, GPIO.LOW)"""
-		pass
+			GPIO.output(self.F_lights, GPIO.LOW)
+			self.F_state = False
+		return 
+
 	def fancy(self):
 		"""Will turn fog ligths on and off"""
-		"""if(self.A_lights==GPIO.LOW):
+		if(self.A_state is False):
 			GPIO.output(self.A_lights, GPIO.HIGH)
+			self.A_state = True
 		else:
-			GPIO.output(self.A_lights, GPIO.LOW)"""
-		pass
+			GPIO.output(self.A_lights, GPIO.LOW)
+			self.A_state = False
+		return
 		
 	def obdKill(self):
 		self.run == False
