@@ -7,7 +7,11 @@
 #V1 R0
 import os
 import threading
-import RPi.GPIO as GPIO
+try:
+	import RPi.GPIO as GPIO
+except:
+	pass
+	
 class sOff:
 
 	def __init__(self):
@@ -21,7 +25,7 @@ class sOff:
 		self.sOff_thread.start()
 
 		
-	def shutdown(self):	#TODO kill thread
+	def shutdown(self):
 		"""Shutdown RPi safely"""
 		os.system( "shutdown now -h -k" )
 		
@@ -35,6 +39,7 @@ class sOff:
 				self.shutdown()
 			else:
 				self.sOff_thread.wait(120)
+		return
 		
 if __name__ == "__main__":
-	getState()
+	sOff()
