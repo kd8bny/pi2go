@@ -12,12 +12,13 @@
 #V1 R1
 import sys
 import os
-
 from PyQt4 import *
 from main import *
-from pi2OBD import *
 from threading import *
 import RPi.GPIO as GPIO
+
+import pi2OBD 
+import sOff
 
 class pi2go(QtGui.QMainWindow):
     
@@ -26,8 +27,12 @@ class pi2go(QtGui.QMainWindow):
 		self.ui = Ui_MainWindow()
 		self.ui.setupUi(self)
 		
+		#Used by pi2go	
 		self.OBD = pi2OBD()
+		self.sOff = sOff()
 		self.run = True
+		self.obdThread = Thread(target=self.obdStart())
+		self.obdEvent = Event()
 
 		#Set Hardware TODO Make class is enough features are introduced
 		GPIO.setmode(GPIO.BCM)
@@ -37,6 +42,7 @@ class pi2go(QtGui.QMainWindow):
 		GPIO.setup(self.A_lights, GPIO.OUT)
 		GPIO.output(self.F_lights, GPIO.LOW)	; self.F_state = False
 		GPIO.output(self.A_lights, GPIO.LOW)	; self.A_state = False
+
 
 		#QT 4
 		QtCore.QObject.connect(self.ui.F_lights, QtCore.SIGNAL("clicked()"), self.fogL)	#fog lights
@@ -54,7 +60,6 @@ class pi2go(QtGui.QMainWindow):
 		
 	def fogL(self):	
 		"""Will turn fog ligths on and off"""
-		print "made it"
 		if(self.F_state is False ):
 			GPIO.output(self.F_lights, GPIO.HIGH)
 			self.F_state = True
@@ -74,18 +79,14 @@ class pi2go(QtGui.QMainWindow):
 		return
 		
 	def obdKill(self):
-		self.run == False
-		obdThread.stop()
+		self.obdEvent.set()
 		return
 	
 	def obdStart(self):
 		"""Starts to read the ODB sensor"""
-		obdValue = [0,0,0,0,0]
-		obdThread = Thread(target=self.write_to_UI(obdValue), args = (self,obdValue))	#Not sure on args
-		obdEvent = Event()
-		obdThread.start()
-		
-		while(self.run == True):	
+		#obdValue = [0,0,0,0,0]
+		self.obdThread.start()
+		while not (self.obdEvent.is_set()):	
 			obdValue = self.OBD.OBDread()
 			self.write_to_UI(obdValue)
 			obdEvent.wait(1)
