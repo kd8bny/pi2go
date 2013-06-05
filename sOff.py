@@ -17,8 +17,9 @@ class sOff:
  		
  		#Create Thread
  		self.sOff_thread = Thread(target=self.turnOff()) #TODO try: exception: 
-		self.sOff_thread.start()
 		self.sOff_event = Event()
+		self.sOff_thread.start()
+
 		
 	def shutdown(self):	#TODO kill thread
 		"""Shutdown RPi safely"""
@@ -27,8 +28,10 @@ class sOff:
 	
 	def getState(self, sOff_state = True):
 		"""Grabs the key_on state"""
-		while(sOff is True):
+		while(sOff_state):
 			if(GPIO.input(self.smartOff) is False):
+				for aThread in threading.enumerate():	#All alive threads
+					self.sOff_event.set()
 				self.shutdown()
 			else:
 				self.sOff_thread.wait(120)
