@@ -29,7 +29,7 @@ Changelog
 V1 R*
 ---------------
 6/4/13
-*go R1 - Multithreading is now working. Also UI freeze bug is fixed.
+*go R1 - Multithreading is now working. Also UI freeze bug is fixed. GPIO issues are fixed
 *OBD R1 - Small bug fixes
 main.ui R1 - Reorganized added missing features (Clear codes, new obd stats)
 
