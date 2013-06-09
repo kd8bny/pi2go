@@ -6,6 +6,9 @@
 ==============================================
 In car computer utilizing RPi
 
+Daryl W. Bennett ~kd8bny@gmail.com
+http://kd8bny.blogspot.com/
+
 
 Requirments
 ==============================================
