@@ -9,7 +9,7 @@
 #Prupose is to have a DIY in car computer using RPi
 #TODO port back to RPi disabled now in order for serial testing
 
-#V1 R1
+#V1 R2
 import sys
 import os
 from PyQt4 import *
