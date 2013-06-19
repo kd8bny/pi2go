@@ -31,6 +31,10 @@ Changelog
 ==============================================
 V1 R*
 ---------------
+6/18/13
+*go R2 - Now utilizes the new Qthread. ~Qthread read below
+guiThread R1 - Added ~Should fix the GUI freezing while waiting for QT to process events
+
 6/4/13
 sOff R0 - New thread that allows the RPi to shutdown when vehicle losses key_on power. With this the RPi will not come to and abrubt halt losing integrity (Not in pi2go yet)
 *go R1 - Multithreading is now working. Also UI freeze bug is fixed. GPIO issues are fixed
