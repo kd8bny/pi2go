@@ -1,9 +1,14 @@
+#guiThreading ~Seperate thread to process OBD events
+###################################################
+#In car use of the raspberry pi OBD functions
+#Daryl W. Bennett --kd8bny@gmail.com
+#Prupose is to have a DIY in car computer using RPi
+
+#V1 R0
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 from pi2OBD import pi2OBD
 import time
-
-from pi2OBD import pi2OBD
 
 class Worker(QThread):
 
