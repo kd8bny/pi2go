@@ -31,6 +31,14 @@ Changelog
 ==============================================
 V1 R*
 ---------------
+7/9/13
+MAJOR UPDATE!!!!!
+*all - Upped revision numbers. Cleaned code!!
+*2go - Updated Qthread handle. Now updates UI again. 
+*2OBD - Added exceptions for invalid int. This will now let the program continue when serial has not yet  connected
+guiThread - R2 Fixed major issues in how UI updates and threads are handled. Changed update time from 5s to 1s 
+main.ui R3A - Added BT features NOT INCLUDED IN CODE (yet)
+
 6/18/13
 *go R2 - Now utilizes the new Qthread. ~Qthread read below
 guiThread R1 - Added ~Should fix the GUI freezing while waiting for QT to process events
