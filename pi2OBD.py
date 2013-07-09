@@ -4,7 +4,7 @@
 #Daryl W. Bennett --kd8bny@gmail.com
 #Prupose is to have a DIY in car computer using RPi
 
-#V1 R1
+#V1 R2
 
 import serial
 import string
@@ -23,7 +23,10 @@ class pi2OBD:
 		self.serialIO.write("01 0D \r")
 		speed_list = self.serialIO.readline().split(' ')
 		speed_hex = speed_list[0][4:6]
-		speed_float = float(int("0x"+speed_hex, 0))
+		try:
+			speed_float = float(int("0x"+speed_hex, 0))
+		except:
+			return 0
 		
 		speed_float = speed_float*0.621371	#Comment out if you would rather have Kph
 		return speed_float
@@ -35,10 +38,12 @@ class pi2OBD:
 		rpm_value = []
 		rpm_value.append(rpm_list[0][4:6])
 		rpm_value.append(rpm_list[0][6:8])
-		
-		rpm_value[0] = float(int("0x"+rpm_value[0], 0))
-		rpm_value[1] = float(int("0x"+rpm_value[1], 0))
-		
+		try:
+			rpm_value[0] = float(int("0x"+rpm_value[0], 0))
+			rpm_value[1] = float(int("0x"+rpm_value[1], 0))
+		except:
+			return 0
+			
 		#Calulate RPM
 		rpm_final = ((rpm_value[0]*256)+rpm_value[1])*.25
 		return rpm_final
@@ -48,8 +53,11 @@ class pi2OBD:
 		self.serialIO.write("01 0F \r")
 		temp_list = self.serialIO.readline().split(' ')
 		temp_hex = temp_list[0][4:6]
-		temp_float = float(int("0x"+temp_hex, 0))
-		
+		try:
+			temp_float = float(int("0x"+temp_hex, 0))
+		except:
+			return 0
+			
 		temp_final = temp_float-40	
 		temp_final = temp_final*(9/5)+32	#Comment out if you would rather have deg C 
 		return temp_final
@@ -59,8 +67,11 @@ class pi2OBD:
 		self.serialIO.write("01 05 \r")
 		temp_list = self.serialIO.readline().split(' ')
 		temp_hex = temp_list[0][4:6]
-		temp_float = float(int("0x"+temp_hex, 0))
-		
+		try:
+			temp_float = float(int("0x"+temp_hex, 0))
+		except:
+			return 0
+			
 		temp_final = temp_float-40
 		temp_final = temp_final*(9/5)+32	#Comment out if you would rather have deg C
 		return temp_final
@@ -70,8 +81,11 @@ class pi2OBD:
 		self.serialIO.write("01 04 \r")
 		load_list = self.serialIO.readline().split(' ')
 		load_hex = load_list[0][4:6]
-		load_float = float(int("0x"+load_hex, 0))
-		
+		try:
+			load_float = float(int("0x"+load_hex, 0))
+		except:
+			return 0
+			
 		load_final = (load_float*100)/255	#TODO chack order of ops
 		return load_final
 		

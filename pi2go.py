@@ -9,15 +9,13 @@
 #Prupose is to have a DIY in car computer using RPi
 #TODO port back to RPi disabled now in order for serial testing
 
-#V1 R2
+#V1 R3
 import sys
 import os
 from PyQt4 import *
 from main import *
-import threading
-#from sOff import sOff
-
 from guiThreading import *
+#from sOff import sOff
 
 try:
 	import RPi.GPIO as GPIO
@@ -45,15 +43,16 @@ class pi2go(QtGui.QMainWindow):
 			GPIO.output(self.F_lights, GPIO.LOW)	; self.F_state = False
 			GPIO.output(self.A_lights, GPIO.LOW)	; self.A_state = False
 		except:
-			pass
+			print 'Heads up: No GPIO Connection'
 
 		#QT 4
+		self.guiThread = Worker()	#This is a Qthread
+		QtCore.QObject.connect(self.guiThread, QtCore.SIGNAL('obdValue[int,int,int,int,int]'), self.write_to_UI) #Connects threa to UI
 		QtCore.QObject.connect(self.ui.F_lights, QtCore.SIGNAL("clicked()"), self.fogL)	#fog lights
 		QtCore.QObject.connect(self.ui.A_lights, QtCore.SIGNAL("clicked()"), self.fancy)	#Accent lights
 		QtCore.QObject.connect(self.ui.obdStart, QtCore.SIGNAL("clicked()"), self.obdStart)	#Start OBD
 		QtCore.QObject.connect(self.ui.obdKill, QtCore.SIGNAL("clicked()"), self.obdKill)	#Kill OBD
 		QtCore.QObject.connect(self.ui.obdClear, QtCore.SIGNAL("clicked()"), self.clearCodes) #clear codes
-		self.guiThread = Worker()	#This is a Qthread
 		
 		#Set logo
 		self.scene = QtGui.QGraphicsScene(self)
@@ -82,7 +81,7 @@ class pi2go(QtGui.QMainWindow):
 		
 	def obdKill(self):
 		#self.obdStart.setEnabled(True)
-		self.guiThread.update(True)
+		self.guiThread.kill(True)
 		return
 	
 	def obdStart(self):
@@ -99,9 +98,7 @@ class pi2go(QtGui.QMainWindow):
 		self.ui.lcdNumber_inTemp.display(values[2])
 		self.ui.lcdNumber_coolTemp.display(values[3])
 		self.ui.lcdNumber_load.display(values[4])
-		QtGui.QApplication.processEvents() #Writes all pending changes to QT
 		return
-		
 		
 	def clearCodes(self):
 		"""Clear all trouble codes"""
