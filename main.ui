@@ -6,12 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>564</width>
-    <height>376</height>
+    <width>671</width>
+    <height>442</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>pi2go V1 R2</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QTabWidget" name="tabWidget">
@@ -19,12 +19,12 @@
      <rect>
       <x>10</x>
       <y>10</y>
-      <width>551</width>
-      <height>311</height>
+      <width>651</width>
+      <height>391</height>
      </rect>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="welcomeTab">
      <attribute name="title">
@@ -33,8 +33,8 @@
      <widget class="QGraphicsView" name="graphicsView">
       <property name="geometry">
        <rect>
-        <x>20</x>
-        <y>10</y>
+        <x>30</x>
+        <y>40</y>
         <width>261</width>
         <height>251</height>
        </rect>
@@ -43,14 +43,14 @@
      <widget class="QLabel" name="label">
       <property name="geometry">
        <rect>
-        <x>440</x>
+        <x>430</x>
         <y>260</y>
-        <width>91</width>
+        <width>101</width>
         <height>20</height>
        </rect>
       </property>
       <property name="text">
-       <string>pi2go V1 R2</string>
+       <string>pi2go V1 R3A</string>
       </property>
      </widget>
     </widget>
@@ -58,7 +58,7 @@
      <attribute name="title">
       <string>OBDII</string>
      </attribute>
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
         <x>170</x>
@@ -170,31 +170,95 @@
      <attribute name="title">
       <string>Settings</string>
      </attribute>
-     <widget class="QPushButton" name="obdClear">
+     <widget class="QGroupBox" name="groupBox">
       <property name="geometry">
        <rect>
-        <x>40</x>
-        <y>40</y>
-        <width>131</width>
-        <height>27</height>
+        <x>10</x>
+        <y>10</y>
+        <width>301</width>
+        <height>301</height>
        </rect>
       </property>
-      <property name="text">
-       <string>Clear Error Codes</string>
+      <property name="title">
+       <string>Bluetooth Settings</string>
       </property>
+      <widget class="QLineEdit" name="lineEdit">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>40</y>
+         <width>181</width>
+         <height>27</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="findButton">
+       <property name="geometry">
+        <rect>
+         <x>200</x>
+         <y>40</y>
+         <width>98</width>
+         <height>27</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Find Sensor</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton">
+       <property name="geometry">
+        <rect>
+         <x>200</x>
+         <y>90</y>
+         <width>98</width>
+         <height>27</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Pair</string>
+       </property>
+      </widget>
+      <widget class="QGraphicsView" name="graphicsView_2">
+       <property name="geometry">
+        <rect>
+         <x>160</x>
+         <y>90</y>
+         <width>31</width>
+         <height>31</height>
+        </rect>
+       </property>
+      </widget>
      </widget>
+     <widget class="QGroupBox" name="groupBox_2">
+      <property name="geometry">
+       <rect>
+        <x>349</x>
+        <y>19</y>
+        <width>281</width>
+        <height>321</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>Other Options</string>
+      </property>
+      <widget class="QPushButton" name="obdClear">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>30</y>
+         <width>131</width>
+         <height>27</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Clear Error Codes</string>
+       </property>
+      </widget>
+     </widget>
+     <zorder>groupBox_2</zorder>
+     <zorder>groupBox</zorder>
     </widget>
    </widget>
-  </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>564</width>
-     <height>25</height>
-    </rect>
-   </property>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
