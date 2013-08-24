@@ -17,12 +17,18 @@ class Worker(qtcore.QThread):
 		
 		self.OBD = pi2OBD()
 		self.toKill = False
+		self.isFirst = True	
 		         
 	def update(self,kill):
 		"""Updates GUI"""
 		self.toKill = kill
 		self.start()
+
+		if self.isFirst:
+			obdValue = self.OBD.setup()
+
 		while not (self.toKill):
+			self.isFirst = False
 			obdValue = self.OBD.OBDread()
 			self.emit(qtcore.SIGNAL('obdValue[int,int,int,int,int]'), obdValue)
 			qtgui.QApplication.processEvents() #Writes all pending changes to QT

@@ -45,15 +45,21 @@ class pi2go(QtGui.QMainWindow):
 		except:
 			print 'Heads up: No GPIO Connection'
 
+
 		#QT 4
 		self.guiThread = Worker()	#This is a Qthread
+		#Car Tab
 		QtCore.QObject.connect(self.guiThread, QtCore.SIGNAL('obdValue[int,int,int,int,int]'), self.write_to_UI) #Connects threa to UI
 		QtCore.QObject.connect(self.ui.F_lights, QtCore.SIGNAL("clicked()"), self.fogL)	#fog lights
 		QtCore.QObject.connect(self.ui.A_lights, QtCore.SIGNAL("clicked()"), self.fancy)	#Accent lights
+		#OBD Tab
 		QtCore.QObject.connect(self.ui.obdStart, QtCore.SIGNAL("clicked()"), self.obdStart)	#Start OBD
 		QtCore.QObject.connect(self.ui.obdKill, QtCore.SIGNAL("clicked()"), self.obdKill)	#Kill OBD
+		#Settings tab
+		QtCore.QObject.connect(self.ui.pushButton_bt, QtCore.SIGNAL("clicked()"), self.blueman)	#Start Blueman
 		QtCore.QObject.connect(self.ui.obdClear, QtCore.SIGNAL("clicked()"), self.clearCodes) #clear codes
-		
+		QtCore.QObject.connect(self.ui.spinBox_ATSP, QtCore.SIGNAL("valueChanged(int)"), self.settings)	#ATSP Value
+
 		#Set logo
 		self.scene = QtGui.QGraphicsScene(self)
 		self.scene.addPixmap(QtGui.QPixmap('graphics/pi_logo.jpeg'))
@@ -103,7 +109,18 @@ class pi2go(QtGui.QMainWindow):
 	def clearCodes(self):
 		"""Clear all trouble codes"""
 		self.OBD.clear_codes()
+
+	def settings(self):
+		"""Function of the settings tab"""
+		self.ATSP = self.ui.spinBox_ATSP.value()
 		
+	def blueman(self):
+		"""Starts blueman-manager"""
+		try:
+			os.system("blueman-manager")
+		except:
+			print "Please install 'blueman' package"
+
 
 if __name__ == "__main__":
     app = QtGui.QApplication(sys.argv)

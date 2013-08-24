@@ -9,6 +9,7 @@
 import serial
 import string
 import time
+import pi2go
 
 class pi2OBD:
 
@@ -16,7 +17,7 @@ class pi2OBD:
 		try:
 			self.serialIO = serial.Serial('/dev/rfcomm0', 38400, timeout=1)
 		except:
-			pass
+			print "Serial Issue"
 		
 	def speed(self):
 		"""Grabs speed of vehicle"""
@@ -86,7 +87,7 @@ class pi2OBD:
 		except:
 			return 0
 			
-		load_final = (load_float*100)/255	#TODO chack order of ops
+		load_final = (load_float*100)/255
 		return load_final
 		
 	def run_time(self):	#TODO
@@ -103,13 +104,27 @@ class pi2OBD:
 		finalValues[3] = self.coolant_temp()
 		finalValues[4] = self.load()
 		return finalValues
+
+##################################################################################################
 		
-	def clear_codes(self):	#Will add to own class when working with codes
+	def clear_codes(self):	#TODO Will add to own class when working with codes
 		"""Clear all trouble codes"""
 		self.serialIO.write("04")
-		
+
+	def setup(self):
+		"""Set up OBD Comm"""
+		self.serialIO.write("ATZ \r")
+		time.sleep(2)
+		self.serialIO.write("ATSP %d \r" %pi2go.ATSP)
+		time.sleep(.5)
+		self.serialIO.readline().split(' ')
+		self.serialIO.write("01 00 \r")
+		time.sleep(.5)
+		return
 		
 if __name__ == "__main__":
 	test = pi2OBD()
 	test.OBDread()
+	test.setup()
+	
 	

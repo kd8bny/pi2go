@@ -23,6 +23,9 @@
       <height>391</height>
      </rect>
     </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
     <property name="currentIndex">
      <number>3</number>
     </property>
@@ -182,50 +185,17 @@
       <property name="title">
        <string>Bluetooth Settings</string>
       </property>
-      <widget class="QLineEdit" name="lineEdit">
+      <widget class="QPushButton" name="pushButton_bt">
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>40</y>
-         <width>181</width>
-         <height>27</height>
-        </rect>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="findButton">
-       <property name="geometry">
-        <rect>
-         <x>200</x>
-         <y>40</y>
-         <width>98</width>
+         <y>30</y>
+         <width>111</width>
          <height>27</height>
         </rect>
        </property>
        <property name="text">
-        <string>Find Sensor</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="pushButton">
-       <property name="geometry">
-        <rect>
-         <x>200</x>
-         <y>90</y>
-         <width>98</width>
-         <height>27</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Pair</string>
-       </property>
-      </widget>
-      <widget class="QGraphicsView" name="graphicsView_2">
-       <property name="geometry">
-        <rect>
-         <x>160</x>
-         <y>90</y>
-         <width>31</width>
-         <height>31</height>
-        </rect>
+        <string>Connect Device</string>
        </property>
       </widget>
      </widget>
@@ -235,7 +205,7 @@
         <x>349</x>
         <y>19</y>
         <width>281</width>
-        <height>321</height>
+        <height>331</height>
        </rect>
       </property>
       <property name="title">
@@ -253,6 +223,50 @@
        <property name="text">
         <string>Clear Error Codes</string>
        </property>
+      </widget>
+      <widget class="QWidget" name="">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>60</y>
+         <width>145</width>
+         <height>29</height>
+        </rect>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <item>
+         <widget class="QLabel" name="label_7">
+          <property name="text">
+           <string>ATSP Mode</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QSpinBox" name="spinBox_ATSP">
+          <property name="toolTip">
+           <string extracomment="Value between 1 and 5"/>
+          </property>
+          <property name="wrapping">
+           <bool>true</bool>
+          </property>
+          <property name="readOnly">
+           <bool>false</bool>
+          </property>
+          <property name="correctionMode">
+           <enum>QAbstractSpinBox::CorrectToNearestValue</enum>
+          </property>
+          <property name="minimum">
+           <number>1</number>
+          </property>
+          <property name="maximum">
+           <number>5</number>
+          </property>
+          <property name="value">
+           <number>1</number>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </widget>
      </widget>
      <zorder>groupBox_2</zorder>
