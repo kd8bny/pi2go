@@ -15,6 +15,7 @@ Requirments
 - pyserial
 - Python 2.x
 - QT4
+- blueman (Only to use BT features)
 
 Instructions
 ==============================================
@@ -31,6 +32,12 @@ Changelog
 ==============================================
 V1 R*
 ---------------
+8/23/13
+*2go - Added ATSP function. Add settings function. Add blueman function
+*2OBD - Added ATSP function. Add setup function
+guiThread - Added first run setup call to *2OBD
+main.ui - Added ATSP spinbox. Changed BT setup (See Requirments and )
+
 7/9/13
 MAJOR UPDATE!!!!!
 *all - Upped revision numbers. Cleaned code!!
