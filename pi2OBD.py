@@ -4,20 +4,25 @@
 #Daryl W. Bennett --kd8bny@gmail.com
 #Prupose is to have a DIY in car computer using RPi
 
-#V1 R2
+#V1 R3
+#TODO process events in seperate thread
 
-import serial
-import string
-import time
-import pi2go
+import serial,string,time, threading
+import PyQt4.QtCore as qtcore
 
-class pi2OBD:
+
+class pi2OBD():
 
 	def __init__(self):
 		try:
 			self.serialIO = serial.Serial('/dev/rfcomm0', 38400, timeout=1)
 		except:
 			print "Serial Issue"
+
+		#Thread Info
+		self.signal = qtcore.SIGNAL("signal")
+		self.toKill = False
+		self.isFirst = True
 		
 	def speed(self):
 		"""Grabs speed of vehicle"""
@@ -104,8 +109,6 @@ class pi2OBD:
 		finalValues[3] = self.coolant_temp()
 		finalValues[4] = self.load()
 		return finalValues
-
-##################################################################################################
 		
 	def clear_codes(self):	#TODO Will add to own class when working with codes
 		"""Clear all trouble codes"""
@@ -121,10 +124,27 @@ class pi2OBD:
 		self.serialIO.write("01 00 \r")
 		time.sleep(.5)
 		return
+
+	def main(self,kill):
+		"""Updates GUI"""
+
+		if self.isFirst:
+			obdValue = self.setup()
+			self.isFirst = False
+
+		#Start thread
+		obdThread = threading.Thread(target = self.main)
+		obdThread.start()
+
+		while not (kill):
+			obdValue = OBDread()
+			self.emit(qtcore.SIGNAL('obdValue[int,int,int,int,int]'), obdValue)
+			qtgui.QApplication.processEvents() #Writes all pending changes to QT
+			self.wait(1)
+		self.quit()
 		
 if __name__ == "__main__":
 	test = pi2OBD()
-	test.OBDread()
-	test.setup()
+	test.main(False)
 	
 	

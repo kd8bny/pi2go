@@ -9,12 +9,13 @@
 #Prupose is to have a DIY in car computer using RPi
 #TODO port back to RPi disabled now in order for serial testing
 
-#V1 R3
-import sys
-import os
+#V1 R4
+import sys, os, threading
+import pi2OBD
 from PyQt4 import *
 from main import *
-from guiThreading import *
+
+#from guiThreading import *
 #from sOff import sOff
 
 try:
@@ -29,7 +30,7 @@ class pi2go(QtGui.QMainWindow):
 		QtGui.QWidget.__init__(self, parent)
 		self.ui = Ui_MainWindow()
 		self.ui.setupUi(self)
-		
+
 		#Used by pi2go	
 		#self.sOff = sOff()
 		
@@ -47,9 +48,8 @@ class pi2go(QtGui.QMainWindow):
 
 
 		#QT 4
-		self.guiThread = Worker()	#This is a Qthread
 		#Car Tab
-		QtCore.QObject.connect(self.guiThread, QtCore.SIGNAL('obdValue[int,int,int,int,int]'), self.write_to_UI) #Connects threa to UI
+		QtCore.QObject.connect(pi2OBD.pi2OBD().main(False), QtCore.SIGNAL('obdValue[int,int,int,int,int]'), self.write_to_UI)
 		QtCore.QObject.connect(self.ui.F_lights, QtCore.SIGNAL("clicked()"), self.fogL)	#fog lights
 		QtCore.QObject.connect(self.ui.A_lights, QtCore.SIGNAL("clicked()"), self.fancy)	#Accent lights
 		#OBD Tab
@@ -87,13 +87,13 @@ class pi2go(QtGui.QMainWindow):
 		
 	def obdKill(self):
 		#self.obdStart.setEnabled(True)
-		self.guiThread.kill(True)
+		pi2OBD.pi2OBD().main(True)
 		return
 	
 	def obdStart(self):
 		"""Starts to read the ODB sensor"""
 		#self.obdStart.setEnabled(False)
-		self.guiThread.update(False)
+		pi2OBD.pi2OBD().main(False)
 		return
 		
 	def write_to_UI(self,values):
@@ -119,7 +119,7 @@ class pi2go(QtGui.QMainWindow):
 		try:
 			os.system("blueman-manager")
 		except:
-			print "Please install 'blueman' package"
+			print "Please install 'blueman' package"		
 
 
 if __name__ == "__main__":
