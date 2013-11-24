@@ -10,12 +10,19 @@ Daryl W. Bennett ~kd8bny@gmail.com
 http://kd8bny.blogspot.com/
 
 
-Requirments
+Requirements
 ==============================================
-- pyserial
-- Python 2.x
-- QT4
+Software
+- Python 2.7
+- python-serial
+- python-qt4
 - blueman (Only to use BT features)
+- pyqt4-dev-tools ~Optional for devs
+
+Hardware
+- RPi :P
+- OBD2 Sensor (BT or USB)
+- GPS ~Optional
 
 Instructions
 ==============================================
@@ -32,6 +39,12 @@ Changelog
 ==============================================
 V1 R*
 ---------------
+11/23/13
+Wow its been awhile.......
+*all - Started GPS functions
+*2GPS - added
+*2go - Upped revision. Trying to depreciate guithread class
+
 8/23/13
 *2go - Added ATSP function. Add settings function. Add blueman function
 *2OBD - Added ATSP function. Add setup function
