@@ -8,19 +8,21 @@
 #TODO process events in seperate thread
 
 import serial,string,time, threading
-import PyQt4.QtCore as qtcore
+from PyQt4.QtCore import *
 
 
-class pi2OBD():
+class pi2OBD(QObject):
 
 	def __init__(self):
+		QObject.__init__(self)
+
 		try:
 			self.serialIO = serial.Serial('/dev/rfcomm0', 38400, timeout=1)
 		except:
 			print "Serial Issue"
 
 		#Thread Info
-		self.signal = qtcore.SIGNAL("signal")
+		self.signal = SIGNAL("signal")
 		self.toKill = False
 		self.isFirst = True
 		
