@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>671</width>
-    <height>442</height>
+    <width>640</width>
+    <height>410</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,7 +19,7 @@
      <rect>
       <x>10</x>
       <y>10</y>
-      <width>651</width>
+      <width>620</width>
       <height>391</height>
      </rect>
     </property>
@@ -53,7 +53,38 @@
        </rect>
       </property>
       <property name="text">
-       <string>pi2go V1 R3A</string>
+       <string>pi2go V1 R4A</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="carTab">
+     <attribute name="title">
+      <string>Car</string>
+     </attribute>
+     <widget class="QToolButton" name="F_lights">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>30</y>
+        <width>111</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Fog Lights</string>
+      </property>
+     </widget>
+     <widget class="QToolButton" name="A_lights">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>110</y>
+        <width>111</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Accent Lights</string>
       </property>
      </widget>
     </widget>
@@ -138,35 +169,126 @@
       </layout>
      </widget>
     </widget>
-    <widget class="QWidget" name="carTab">
+    <widget class="QWidget" name="GPStab">
      <attribute name="title">
-      <string>Car</string>
+      <string>GPS</string>
      </attribute>
-     <widget class="QToolButton" name="F_lights">
+     <widget class="QLabel" name="label_12">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>30</y>
-        <width>111</width>
-        <height>71</height>
+        <x>340</x>
+        <y>70</y>
+        <width>66</width>
+        <height>17</height>
        </rect>
       </property>
       <property name="text">
-       <string>Fog Lights</string>
+       <string>Latitude</string>
       </property>
      </widget>
-     <widget class="QToolButton" name="A_lights">
+     <widget class="QLabel" name="label_13">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>110</y>
-        <width>111</width>
-        <height>71</height>
+        <x>340</x>
+        <y>100</y>
+        <width>71</width>
+        <height>17</height>
        </rect>
       </property>
       <property name="text">
-       <string>Accent Lights</string>
+       <string>Longitude</string>
       </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton">
+      <property name="geometry">
+       <rect>
+        <x>330</x>
+        <y>280</y>
+        <width>98</width>
+        <height>27</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Start GPS</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_2">
+      <property name="geometry">
+       <rect>
+        <x>330</x>
+        <y>320</y>
+        <width>98</width>
+        <height>27</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Start Log</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_3">
+      <property name="geometry">
+       <rect>
+        <x>490</x>
+        <y>320</y>
+        <width>98</width>
+        <height>27</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Stop</string>
+      </property>
+     </widget>
+     <widget class="QWidget" name="">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>20</y>
+        <width>291</width>
+        <height>311</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_2">
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_11">
+         <property name="text">
+          <string>West</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="3">
+        <widget class="QLabel" name="label_10">
+         <property name="layoutDirection">
+          <enum>Qt::LeftToRight</enum>
+         </property>
+         <property name="text">
+          <string>East</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="2">
+        <widget class="QLabel" name="label_9">
+         <property name="text">
+          <string>South</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="QLabel" name="label_8">
+         <property name="text">
+          <string>North</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <widget class="QGraphicsView" name="graphicsView_2"/>
+       </item>
+      </layout>
      </widget>
     </widget>
     <widget class="QWidget" name="settingTab">
@@ -179,7 +301,7 @@
         <x>10</x>
         <y>10</y>
         <width>301</width>
-        <height>301</height>
+        <height>61</height>
        </rect>
       </property>
       <property name="title">
@@ -202,14 +324,14 @@
      <widget class="QGroupBox" name="groupBox_2">
       <property name="geometry">
        <rect>
-        <x>349</x>
-        <y>19</y>
-        <width>281</width>
-        <height>331</height>
+        <x>10</x>
+        <y>70</y>
+        <width>201</width>
+        <height>101</height>
        </rect>
       </property>
       <property name="title">
-       <string>Other Options</string>
+       <string>ODB2 Options</string>
       </property>
       <widget class="QPushButton" name="obdClear">
        <property name="geometry">
@@ -224,7 +346,7 @@
         <string>Clear Error Codes</string>
        </property>
       </widget>
-      <widget class="QWidget" name="">
+      <widget class="QWidget" name="layoutWidget">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -269,12 +391,25 @@
        </layout>
       </widget>
      </widget>
+     <widget class="QGroupBox" name="groupBox_3">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>180</y>
+        <width>120</width>
+        <height>80</height>
+       </rect>
+      </property>
+      <property name="title">
+       <string>GPS Options</string>
+      </property>
+     </widget>
      <zorder>groupBox_2</zorder>
      <zorder>groupBox</zorder>
+     <zorder>groupBox_3</zorder>
     </widget>
    </widget>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
  <connections/>
