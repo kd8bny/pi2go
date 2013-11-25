@@ -33,7 +33,7 @@
      <attribute name="title">
       <string>Welcome</string>
      </attribute>
-     <widget class="QGraphicsView" name="graphicsView">
+     <widget class="QGraphicsView" name="welcome">
       <property name="geometry">
        <rect>
         <x>30</x>
@@ -199,7 +199,7 @@
        <string>Longitude</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton">
+     <widget class="QPushButton" name="startGPS">
       <property name="geometry">
        <rect>
         <x>330</x>
@@ -212,7 +212,7 @@
        <string>Start GPS</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_2">
+     <widget class="QPushButton" name="logGPS">
       <property name="geometry">
        <rect>
         <x>330</x>
@@ -225,7 +225,7 @@
        <string>Start Log</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_3">
+     <widget class="QPushButton" name="stopGPS">
       <property name="geometry">
        <rect>
         <x>490</x>
@@ -242,9 +242,9 @@
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>20</y>
+        <y>40</y>
         <width>291</width>
-        <height>311</height>
+        <height>271</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_2">
@@ -286,7 +286,7 @@
         </widget>
        </item>
        <item row="1" column="2">
-        <widget class="QGraphicsView" name="graphicsView_2"/>
+        <widget class="QGraphicsView" name="direction"/>
        </item>
       </layout>
      </widget>
