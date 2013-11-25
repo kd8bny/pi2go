@@ -39,11 +39,18 @@ Changelog
 ==============================================
 V1 R*
 ---------------
+11/24/13
+main.* - Added GPS tabs
+*2go - QT Fixes. Added GPS tab/functions. 
+*2OBD - QT Fixes
+
 11/23/13
 Wow its been awhile.......
 *all - Started GPS functions
 *2GPS - added
 *2go - Upped revision. Trying to depreciate guithread class
+*2OBD - Upped revision. Handles own thread
+*guiThread - Depreciated classes handle threads
 
 8/23/13
 *2go - Added ATSP function. Add settings function. Add blueman function
