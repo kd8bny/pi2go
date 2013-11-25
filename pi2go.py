@@ -48,22 +48,33 @@ class pi2go(QtGui.QMainWindow):
 
 
 		#QT 4
+		#Welcome tab
+		#Set logo
+		self.scene = QtGui.QGraphicsScene(self)
+		self.scene.addPixmap(QtGui.QPixmap('graphics/pi_logo.jpeg'))
+		self.ui.welcome.setScene(self.scene)
 		#Car Tab
-		QtCore.QObject.connect(pi2OBD.pi2OBD().main(False), QtCore.SIGNAL('obdValue[int,int,int,int,int]'), self.write_to_UI)
+		QtCore.QObject.connect(pi2OBD.pi2OBD(), QtCore.SIGNAL('obdValue[int,int,int,int,int]'), self.write_to_UI)
 		QtCore.QObject.connect(self.ui.F_lights, QtCore.SIGNAL("clicked()"), self.fogL)	#fog lights
 		QtCore.QObject.connect(self.ui.A_lights, QtCore.SIGNAL("clicked()"), self.fancy)	#Accent lights
 		#OBD Tab
 		QtCore.QObject.connect(self.ui.obdStart, QtCore.SIGNAL("clicked()"), self.obdStart)	#Start OBD
 		QtCore.QObject.connect(self.ui.obdKill, QtCore.SIGNAL("clicked()"), self.obdKill)	#Kill OBD
+		#GPS tab
+		self.scene = QtGui.QGraphicsScene(self)
+		self.scene.addPixmap(QtGui.QPixmap('graphics/north.jpg'))
+		self.ui.direction.setScene(self.scene)
+
+		QtCore.QObject.connect(self.ui.logGPS, QtCore.SIGNAL("clicked()"), self.logGPS)
+		QtCore.QObject.connect(self.ui.startGPS, QtCore.SIGNAL("clicked()"), self.startGPS)
+		QtCore.QObject.connect(self.ui.stopGPS, QtCore.SIGNAL("valueChanged(int)"), self.stopGPS)
 		#Settings tab
 		QtCore.QObject.connect(self.ui.pushButton_bt, QtCore.SIGNAL("clicked()"), self.blueman)	#Start Blueman
 		QtCore.QObject.connect(self.ui.obdClear, QtCore.SIGNAL("clicked()"), self.clearCodes) #clear codes
 		QtCore.QObject.connect(self.ui.spinBox_ATSP, QtCore.SIGNAL("valueChanged(int)"), self.settings)	#ATSP Value
+		
 
-		#Set logo
-		self.scene = QtGui.QGraphicsScene(self)
-		self.scene.addPixmap(QtGui.QPixmap('graphics/pi_logo.jpeg'))
-		self.ui.graphicsView.setScene(self.scene)
+#################################################################################################################		
 		
 	def fogL(self):	
 		"""Will turn fog ligths on and off"""
@@ -84,6 +95,8 @@ class pi2go(QtGui.QMainWindow):
 			GPIO.output(self.A_lights, GPIO.LOW)
 			self.A_state = False
 		return
+
+#################################################################################################################
 		
 	def obdKill(self):
 		#self.obdStart.setEnabled(True)
@@ -109,6 +122,17 @@ class pi2go(QtGui.QMainWindow):
 	def clearCodes(self):
 		"""Clear all trouble codes"""
 		self.OBD.clear_codes()
+
+####################################################################################################
+	def startGPS(self):
+		pass
+
+	def stopGPS(self):
+		pass
+
+	def logGPS(self):
+		pass
+####################################################################################################
 
 	def settings(self):
 		"""Function of the settings tab"""
