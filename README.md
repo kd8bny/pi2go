@@ -24,6 +24,13 @@ Hardware
 - OBD2 Sensor (BT or USB)
 - GPS ~Optional
 
+Ideas/TODO
+==============================================
+- Better signals/sockets
+- Thread handler
+- Better version tracking
+- Data tracking/server
+
 Instructions
 ==============================================
 1.) cd pi2go dir
@@ -39,6 +46,10 @@ Changelog
 ==============================================
 V1 R*
 ---------------
+12/30/13
+*OBD - Typos, Better signal/slot handling, process events handling(through thread)
+*go - Better signal/slot handling.
+
 11/24/13
 main.* - Added GPS tabs
 *2go - QT Fixes. Added GPS tab/functions. 
