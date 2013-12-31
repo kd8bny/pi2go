@@ -46,6 +46,11 @@ Changelog
 ==============================================
 V1 R*
 ---------------
+12/31/13
+*GPS - [WIP] Need to have device now. Fixed my plenty of object errors
+*OBD - Needs testing before cleanup
+main - Layout cleanup
+
 12/30/13
 *OBD - Typos, Better signal/slot handling, process events handling(through thread)
 *go - Better signal/slot handling.
