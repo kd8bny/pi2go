@@ -1,12 +1,19 @@
 #kd8bny Makefile
 #Project: pi2go
-#V1 R2
+#V1 R3
      
 # Cleans your directory
 clean:
 	@ echo "*** Removing all temp files ***"
 	@ rm -f *.pyc
 	@ rm -f *~
+	@ echo "*** Complete ***"
+
+# Update 
+update:
+	@ make clean
+	@ echo "*** Updating ***"
+	@ git checkout *
 	@ echo "*** Complete ***"
 
 # Runs the code
