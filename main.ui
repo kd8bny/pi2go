@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
+ <author>Daryl Bennett ~kd8bny@gmail.com</author>
  <class>MainWindow</class>
  <widget class="QMainWindow" name="MainWindow">
   <property name="geometry">
@@ -11,7 +12,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>pi2go V1 R2</string>
+   <string>pi2go V1 R4</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QTabWidget" name="tabWidget">
@@ -27,7 +28,7 @@
      <bool>false</bool>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="welcomeTab">
      <attribute name="title">
@@ -103,7 +104,14 @@
       </property>
       <layout class="QGridLayout" name="gridLayout">
        <item row="0" column="0">
-        <widget class="QLCDNumber" name="lcdNumber_speed"/>
+        <widget class="QLCDNumber" name="lcdNumber_speed">
+         <property name="frameShape">
+          <enum>QFrame::Box</enum>
+         </property>
+         <property name="segmentStyle">
+          <enum>QLCDNumber::Flat</enum>
+         </property>
+        </widget>
        </item>
        <item row="0" column="1" colspan="2">
         <widget class="QLabel" name="label_3">
@@ -113,7 +121,14 @@
         </widget>
        </item>
        <item row="1" column="0">
-        <widget class="QLCDNumber" name="lcdNumber_rpm"/>
+        <widget class="QLCDNumber" name="lcdNumber_rpm">
+         <property name="frameShape">
+          <enum>QFrame::Box</enum>
+         </property>
+         <property name="segmentStyle">
+          <enum>QLCDNumber::Flat</enum>
+         </property>
+        </widget>
        </item>
        <item row="1" column="1" colspan="2">
         <widget class="QLabel" name="label_2">
@@ -123,7 +138,14 @@
         </widget>
        </item>
        <item row="2" column="0">
-        <widget class="QLCDNumber" name="lcdNumber_inTemp"/>
+        <widget class="QLCDNumber" name="lcdNumber_inTemp">
+         <property name="frameShape">
+          <enum>QFrame::Box</enum>
+         </property>
+         <property name="segmentStyle">
+          <enum>QLCDNumber::Flat</enum>
+         </property>
+        </widget>
        </item>
        <item row="2" column="1" colspan="2">
         <widget class="QLabel" name="label_4">
@@ -133,7 +155,14 @@
         </widget>
        </item>
        <item row="3" column="0">
-        <widget class="QLCDNumber" name="lcdNumber_coolTemp"/>
+        <widget class="QLCDNumber" name="lcdNumber_coolTemp">
+         <property name="frameShape">
+          <enum>QFrame::Box</enum>
+         </property>
+         <property name="segmentStyle">
+          <enum>QLCDNumber::Flat</enum>
+         </property>
+        </widget>
        </item>
        <item row="3" column="1" colspan="2">
         <widget class="QLabel" name="label_5">
@@ -143,7 +172,14 @@
         </widget>
        </item>
        <item row="4" column="0">
-        <widget class="QLCDNumber" name="lcdNumber_load"/>
+        <widget class="QLCDNumber" name="lcdNumber_load">
+         <property name="frameShape">
+          <enum>QFrame::Box</enum>
+         </property>
+         <property name="segmentStyle">
+          <enum>QLCDNumber::Flat</enum>
+         </property>
+        </widget>
        </item>
        <item row="4" column="1" colspan="2">
         <widget class="QLabel" name="label_6">
@@ -156,6 +192,21 @@
         <widget class="QPushButton" name="obdStart">
          <property name="text">
           <string>Start</string>
+         </property>
+         <property name="checkable">
+          <bool>false</bool>
+         </property>
+         <property name="autoRepeat">
+          <bool>false</bool>
+         </property>
+         <property name="autoDefault">
+          <bool>false</bool>
+         </property>
+         <property name="default">
+          <bool>false</bool>
+         </property>
+         <property name="flat">
+          <bool>false</bool>
          </property>
         </widget>
        </item>
@@ -238,7 +289,7 @@
        <string>Stop</string>
       </property>
      </widget>
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -396,8 +447,8 @@
        <rect>
         <x>20</x>
         <y>180</y>
-        <width>120</width>
-        <height>80</height>
+        <width>181</width>
+        <height>111</height>
        </rect>
       </property>
       <property name="title">
