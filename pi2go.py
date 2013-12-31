@@ -10,13 +10,10 @@
 #TODO port back to RPi disabled now in order for serial testing
 
 #V1 R4
-import sys, os, threading
-import pi2OBD
-from PyQt4 import *
-from main import *
 
-#from guiThreading import *
-#from sOff import sOff
+import sys, os, threading, PyQt4
+import pi2OBD #,sOff
+from main import *
 
 try:
 	import RPi.GPIO as GPIO
