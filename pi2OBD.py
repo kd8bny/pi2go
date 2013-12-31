@@ -4,14 +4,15 @@
 #Daryl W. Bennett --kd8bny@gmail.com
 #Prupose is to have a DIY in car computer using RPi
 
-#V1 R3
-#TODO process events in seperate thread
+#V1 R4
+#TODO process events in seperate thread ~in progress
 
 import serial,string,time, threading
 from PyQt4.QtCore import *
 
 
 class pi2OBD(QObject):
+	global obdValue
 
 	def __init__(self):
 		QObject.__init__(self)
@@ -85,7 +86,7 @@ class pi2OBD(QObject):
 		return temp_final
 		
 	def load(self):
-		"""Grabs Coolant temp"""
+		"""Grabs Total Engine Load"""
 		self.serialIO.write("01 04 \r")
 		load_list = self.serialIO.readline().split(' ')
 		load_hex = load_list[0][4:6]
@@ -104,13 +105,20 @@ class pi2OBD(QObject):
 		pass
 		
 	def OBDread(self):
-		finalValues = [0,0,0,0,0] # [speed, rpm, intake, coolant, load] #TODO maybe dictionary
+		'''finalValues = [0,0,0,0,0] # [speed, rpm, intake, coolant, load] #TODO maybe dictionary
 		finalValues[0] = self.speed()
 		finalValues[1] = self.rpm()
 		finalValues[2] = self.intake_temp()
 		finalValues[3] = self.coolant_temp()
 		finalValues[4] = self.load()
-		return finalValues
+		return finalValues'''
+		obdValue = [0,0,0,0,0]
+		obdValue[0] = self.speed()
+		obdValue[1] = self.rpm()
+		obdValue[2] = self.intake_temp()
+		obdValue[3] = self.coolant_temp()
+		obdValue[4] = self.load()
+		return
 		
 	def clear_codes(self):	#TODO Will add to own class when working with codes
 		"""Clear all trouble codes"""
@@ -127,26 +135,36 @@ class pi2OBD(QObject):
 		time.sleep(.5)
 		return
 
+	def updateThread(self):
+		#Start thread
+		qtgui.QApplication.processEvents() #Writes all pending changes to QT
+		self.wait(1)
+
 	def main(self,kill):
 		"""Updates GUI"""
 
 		if self.isFirst:
 			obdValue = self.setup()
 			self.isFirst = False
+			self.updateThread()
 
 		#Start thread
 		obdThread = threading.Thread(target = self.main)
 		obdThread.start()
 
+		updateThread = threading.Thread(target = self.updateThread)
+		updateThread.start()
+
 		while not (kill):
 			obdValue = OBDread()
-			self.emit(qtcore.SIGNAL('obdValue[int,int,int,int,int]'), obdValue)
-			qtgui.QApplication.processEvents() #Writes all pending changes to QT
+			#self.emit(qtcore.SIGNAL('obdValue[int,int,int,int,int]'), obdValue)
+			self.emit(self, qtcore.SIGNAL('obdValue'), obdValue)
+			#qtgui.QApplication.processEvents() #Writes all pending changes to QT
 			self.wait(1)
+		self.updateThread.quit()
 		self.quit()
 		
 if __name__ == "__main__":
 	test = pi2OBD()
 	test.main(False)
-	
 	

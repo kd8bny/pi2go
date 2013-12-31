@@ -54,7 +54,8 @@ class pi2go(QtGui.QMainWindow):
 		self.scene.addPixmap(QtGui.QPixmap('graphics/pi_logo.jpeg'))
 		self.ui.welcome.setScene(self.scene)
 		#Car Tab
-		QtCore.QObject.connect(pi2OBD.pi2OBD(), QtCore.SIGNAL('obdValue[int,int,int,int,int]'), self.write_to_UI)
+		#QtCore.QObject.connect(pi2OBD.pi2OBD(), QtCore.SIGNAL('obdValue[int,int,int,int,int]'), self.write_to_UI)
+		QtCore.QObject.connect(pi2OBD.pi2OBD(), QtCore.SIGNAL('obdValue'), self.write_to_UI)
 		QtCore.QObject.connect(self.ui.F_lights, QtCore.SIGNAL("clicked()"), self.fogL)	#fog lights
 		QtCore.QObject.connect(self.ui.A_lights, QtCore.SIGNAL("clicked()"), self.fancy)	#Accent lights
 		#OBD Tab
