@@ -54,15 +54,15 @@ class pi2go(QtGui.QMainWindow):
 		QtCore.QObject.connect(self.ui.A_lights, QtCore.SIGNAL("clicked()"), self.fancy)	#Accent lights
 		#OBD Tab
 		QtCore.QObject.connect(self.ui.obdButton, QtCore.SIGNAL("clicked()"), self.ODBII)	#Start/kill OBD
-		self.stop = False
+		self.stopOBD = False
 		#GPS tab
 		self.scene = QtGui.QGraphicsScene(self)
 		self.scene.addPixmap(QtGui.QPixmap('graphics/north.jpg'))
 		self.ui.direction.setScene(self.scene)
 
 		QtCore.QObject.connect(self.ui.logGPS, QtCore.SIGNAL("clicked()"), self.logGPS)
-		QtCore.QObject.connect(self.ui.startGPS, QtCore.SIGNAL("clicked()"), self.startGPS)
-		QtCore.QObject.connect(self.ui.stopGPS, QtCore.SIGNAL("valueChanged(int)"), self.stopGPS)
+		QtCore.QObject.connect(self.ui.GPSbutton, QtCore.SIGNAL("clicked()"), self.GPS)
+		self.stopGPS = False
 		#Settings tab
 		QtCore.QObject.connect(self.ui.pushButton_bt, QtCore.SIGNAL("clicked()"), self.blueman)	#Start Blueman
 		QtCore.QObject.connect(self.ui.obdClear, QtCore.SIGNAL("clicked()"), self.clearCodes) #clear codes
@@ -94,13 +94,12 @@ class pi2go(QtGui.QMainWindow):
 #################################################################################################################	
 	def ODBII(self):
 		"""Starts to read the ODB data"""
-		if not self.stop:
-			print 'stop'
+		if not self.stopOBD:
 			self.ui.obdButton.setText("Stop")
 			pi2OBD.pi2OBD().main(False)
-			while not self.stop:
+			while not self.stopOBD:
 				obdTemp = open('obdTemp.txt', 'r')
-				values = odbTemp.readline().split(',')	#TODO When readline is null
+				values = obdTemp.readline().split(',')	#TODO When readline is null Still need to know line numbers
 				# receive [speed, rpm, intake, coolant, load]
 				self.ui.lcdNumber_speed.display(values[0])
 				self.ui.lcdNumber_rpm.display(values[1])
@@ -115,7 +114,7 @@ class pi2go(QtGui.QMainWindow):
 		self.wait(1)
 		updateThread = threading.Thread(target = self.updateThread)
 		updateThread.start()'''
-		self.stop = not self.stop #toggle value
+		self.stopOBD = not self.stopOBD #toggle value
 		return
 		
 	def clearCodes(self):
@@ -123,11 +122,12 @@ class pi2go(QtGui.QMainWindow):
 		self.OBD.clear_codes()
 
 ####################################################################################################
-	def startGPS(self):
-		pass
-
-	def stopGPS(self):
-		pass
+	def GPS(self):
+		if not self.GPS:
+			self.ui.GPSbutton.setText("Stop")			
+		else:
+			self.ui.GPSbutton.setText("Start")
+		self.stopGPS = not self.stopGPS #toggle value
 
 	def logGPS(self):
 		pass
