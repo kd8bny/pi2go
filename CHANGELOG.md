@@ -4,7 +4,7 @@ V1 R*
 ---------------
 12/31/13
 MAJOR CHANGES TO UPDATES !!!!!WIP!!!! I have no way to test functions atm
-make - Added the ability update from repo. See README
+make - Added the ability update from repo. See README, Updatedfor new temp data
 *GPS - [WIP] Need to have device now. Fixed my plenty of object errors
 *OBD - Needs testing before cleanup, Adding a temp file to store data. New feature - Graph data
 		Upped revision.

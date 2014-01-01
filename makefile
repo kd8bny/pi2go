@@ -6,6 +6,7 @@
 clean:
 	@ echo "*** Removing all temp files ***"
 	@ rm -f *.pyc
+	@ rm -f *.txt
 	@ rm -f *~
 	@ echo "*** Complete ***"
 
