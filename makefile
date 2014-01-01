@@ -17,6 +17,12 @@ update:
 	@ git checkout *
 	@ echo "*** Complete ***"
 
+# Auto install required packages
+prereq:
+	@ echo "*** Installing Prerequisites... Standby ***"
+	@ sudo apt-get install git python2.7 python-serial python-qt4 python-numpy python-qwt5-qt4 blueman pyqt4-dev-tools
+	@ echo "*** Complete ***"
+
 # Runs the code
 run:
 	sudo python2.7 pi2go.py

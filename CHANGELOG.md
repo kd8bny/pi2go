@@ -9,6 +9,7 @@ Mostly to push the new year.....Didnt like my Qt socket for OBD
 *go - Changed the OBD socket handle, GPS buttons
 main - Revised and cleaned again. Made room for OBD graph. Single stop/start button now. Same with GPS
 		Added selector for BT or USB OBD2 (Not in *go atm)
+make - Added auto install for required packages
 
 12/31/13
 MAJOR CHANGES TO UPDATES !!!!!WIP!!!! I have no way to test functions atm

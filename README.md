@@ -17,6 +17,8 @@ Software
 - Python 2.7
 - python-serial
 - python-qt4
+- python-numpy
+- python-qwt5-qt4 
 
 Optional
 - blueman (Only to use BT features)
@@ -29,6 +31,9 @@ Hardware
 
 Instructions
 ==============================================
+To Setup
+	$ make prereq
+
 To Run
 	$ make run
 
