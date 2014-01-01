@@ -2,14 +2,17 @@ Changelog
 ==============================================
 V1 R*
 ---------------
+main - radio buttons
+
 1/1/14
 Mostly to push the new year.....Didnt like my Qt socket for OBD
-*go - Changed the OBD socket handle
-main - Revised and cleaned again. Made room for OBD graph. Single stop/start button now.
+*go - Changed the OBD socket handle, GPS buttons
+main - Revised and cleaned again. Made room for OBD graph. Single stop/start button now. Same with GPS
+		Added selector for BT or USB OBD2 (Not in *go atm)
 
 12/31/13
 MAJOR CHANGES TO UPDATES !!!!!WIP!!!! I have no way to test functions atm
-make - Added the ability update from repo. See README, Updatedfor new temp data
+make - Added the ability update from repo. See README, Updated for new temp data
 *GPS - [WIP] Need to have device now. Fixed my plenty of object errors
 *OBD - Needs testing before cleanup, Adding a temp file to store data. New feature - Graph data
 		Upped revision.
