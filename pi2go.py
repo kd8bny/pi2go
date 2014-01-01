@@ -9,7 +9,7 @@
 #Prupose is to have a DIY in car computer using RPi
 #TODO port back to RPi disabled now in order for serial testing
 
-#V1 R4
+#V1 R5
 
 import sys, os, threading, PyQt4
 import pi2OBD #,sOff
@@ -51,13 +51,11 @@ class pi2go(QtGui.QMainWindow):
 		self.scene.addPixmap(QtGui.QPixmap('graphics/pi_logo.jpeg'))
 		self.ui.welcome.setScene(self.scene)
 		#Car Tab
-		#QtCore.QObject.connect(pi2OBD.pi2OBD(), QtCore.SIGNAL('obdValue[int,int,int,int,int]'), self.write_to_UI)
-		QtCore.QObject.connect(pi2OBD.pi2OBD(), QtCore.SIGNAL('obdValue'), self.write_to_UI)
 		QtCore.QObject.connect(self.ui.F_lights, QtCore.SIGNAL("clicked()"), self.fogL)	#fog lights
 		QtCore.QObject.connect(self.ui.A_lights, QtCore.SIGNAL("clicked()"), self.fancy)	#Accent lights
 		#OBD Tab
-		QtCore.QObject.connect(self.ui.obdStart, QtCore.SIGNAL("clicked()"), self.obdStart)	#Start OBD
-		QtCore.QObject.connect(self.ui.obdKill, QtCore.SIGNAL("clicked()"), self.obdKill)	#Kill OBD
+		QtCore.QObject.connect(self.ui.obdStart, QtCore.SIGNAL("clicked()"), self.ODBII(False))	#Start OBD
+		QtCore.QObject.connect(self.ui.obdKill, QtCore.SIGNAL("clicked()"), self.ODBII(True))	#Kill OBD
 		#GPS tab
 		self.scene = QtGui.QGraphicsScene(self)
 		self.scene.addPixmap(QtGui.QPixmap('graphics/north.jpg'))
@@ -94,27 +92,28 @@ class pi2go(QtGui.QMainWindow):
 			self.A_state = False
 		return
 
-#################################################################################################################
-		
-	def obdKill(self):
-		#self.obdStart.setEnabled(True)
-		pi2OBD.pi2OBD().main(True)
-		return
-	
-	def obdStart(self):
-		"""Starts to read the ODB sensor"""
+#################################################################################################################	
+	def ODBII(self, kill):
+		"""Starts to read the ODB data"""
 		#self.obdStart.setEnabled(False)
+		'''#Start thread
+		qtgui.QApplication.processEvents() #Writes all pending changes to QT
+		self.wait(1)
+		updateThread = threading.Thread(target = self.updateThread)
+		updateThread.start()'''
 		pi2OBD.pi2OBD().main(False)
-		return
-		
-	def write_to_UI(self,values):
-		"""Updates the UI with new values"""
-		# receive [speed, rpm, intake, coolant, load]
-		self.ui.lcdNumber_speed.display(values[0])
-		self.ui.lcdNumber_rpm.display(values[1])
-		self.ui.lcdNumber_inTemp.display(values[2])
-		self.ui.lcdNumber_coolTemp.display(values[3])
-		self.ui.lcdNumber_load.display(values[4])
+		while not kill:
+			obdTemp = open('obdTemp.txt', 'r')
+			values = odbTemp.readline().split(',')	#TODO When readline is null
+			# receive [speed, rpm, intake, coolant, load]
+			self.ui.lcdNumber_speed.display(values[0])
+			self.ui.lcdNumber_rpm.display(values[1])
+			self.ui.lcdNumber_inTemp.display(values[2])
+			self.ui.lcdNumber_coolTemp.display(values[3])
+			self.ui.lcdNumber_load.display(values[4])
+
+		#self.obdStart.setEnabled(True)
+		pi2OBD.pi2OBD().main(True)		
 		return
 		
 	def clearCodes(self):

@@ -4,15 +4,12 @@
 #Daryl W. Bennett --kd8bny@gmail.com
 #Prupose is to have a DIY in car computer using RPi
 
-#V1 R4
-#TODO process events in seperate thread ~in progress
+#V2 R0a
 
-import serial,string,time, threading
+import serial, string, time, threading
 from PyQt4.QtCore import *
 
-
 class pi2OBD(QObject):
-	global obdValue
 
 	def __init__(self):
 		QObject.__init__(self)
@@ -21,6 +18,9 @@ class pi2OBD(QObject):
 			self.serialIO = serial.Serial('/dev/rfcomm0', 38400, timeout=1)
 		except:
 			print "Serial Issue"
+
+		#Datafile setup
+		self.obdTemp = open('obdTemp.txt', 'w')
 
 		#Thread Info
 		self.signal = SIGNAL("signal")
@@ -105,20 +105,16 @@ class pi2OBD(QObject):
 		pass
 		
 	def OBDread(self):
-		'''finalValues = [0,0,0,0,0] # [speed, rpm, intake, coolant, load] #TODO maybe dictionary
-		finalValues[0] = self.speed()
-		finalValues[1] = self.rpm()
-		finalValues[2] = self.intake_temp()
-		finalValues[3] = self.coolant_temp()
-		finalValues[4] = self.load()
-		return finalValues'''
-		obdValue = [0,0,0,0,0]
-		obdValue[0] = self.speed()
-		obdValue[1] = self.rpm()
-		obdValue[2] = self.intake_temp()
-		obdValue[3] = self.coolant_temp()
-		obdValue[4] = self.load()
-		return
+		"""Function to read and write data"""
+		try:
+			self.obdTemp.write(str(self.speed())+',')
+			self.obdTemp.write(str(self.rpm())+',')
+			self.obdTemp.write(str(self.intake_temp())+',')
+			self.obdTemp.write(str(self.coolant_temp())+',')
+			self.obdTemp.write(str(self.load())+','+'\n')
+		finally:
+			self.obdTemp.close()
+		return 
 		
 	def clear_codes(self):	#TODO Will add to own class when working with codes
 		"""Clear all trouble codes"""
@@ -135,13 +131,8 @@ class pi2OBD(QObject):
 		time.sleep(.5)
 		return
 
-	def updateThread(self):
-		#Start thread
-		qtgui.QApplication.processEvents() #Writes all pending changes to QT
-		self.wait(1)
-
 	def main(self,kill):
-		"""Updates GUI"""
+		"""Formats OBDII data"""
 
 		if self.isFirst:
 			obdValue = self.setup()
@@ -152,15 +143,11 @@ class pi2OBD(QObject):
 		obdThread = threading.Thread(target = self.main)
 		obdThread.start()
 
-		updateThread = threading.Thread(target = self.updateThread)
-		updateThread.start()
-
 		while not (kill):
-			obdValue = OBDread()
-			#self.emit(qtcore.SIGNAL('obdValue[int,int,int,int,int]'), obdValue)
-			self.emit(self, qtcore.SIGNAL('obdValue'), obdValue)
-			#qtgui.QApplication.processEvents() #Writes all pending changes to QT
-			self.wait(1)
+			if(self.obdTemp.tell() > 2000):	#100 lines of data @20char
+				self.obdTemp.seek(0)
+			else:
+				self.wait(1)
 		self.updateThread.quit()
 		self.quit()
 		
