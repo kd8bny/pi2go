@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'main.ui'
 #
-# Created: Tue Dec 31 17:56:00 2013
+# Created: Tue Dec 31 23:55:40 2013
 #      by: PyQt4 UI code generator 4.10.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -54,7 +54,7 @@ class Ui_MainWindow(object):
         self.obdTab = QtGui.QWidget()
         self.obdTab.setObjectName(_fromUtf8("obdTab"))
         self.layoutWidget = QtGui.QWidget(self.obdTab)
-        self.layoutWidget.setGeometry(QtCore.QRect(170, 40, 178, 174))
+        self.layoutWidget.setGeometry(QtCore.QRect(7, 13, 181, 201))
         self.layoutWidget.setObjectName(_fromUtf8("layoutWidget"))
         self.gridLayout = QtGui.QGridLayout(self.layoutWidget)
         self.gridLayout.setMargin(0)
@@ -99,17 +99,14 @@ class Ui_MainWindow(object):
         self.label_6 = QtGui.QLabel(self.layoutWidget)
         self.label_6.setObjectName(_fromUtf8("label_6"))
         self.gridLayout.addWidget(self.label_6, 4, 1, 1, 2)
-        self.obdStart = QtGui.QPushButton(self.layoutWidget)
-        self.obdStart.setCheckable(False)
-        self.obdStart.setAutoRepeat(False)
-        self.obdStart.setAutoDefault(False)
-        self.obdStart.setDefault(False)
-        self.obdStart.setFlat(False)
-        self.obdStart.setObjectName(_fromUtf8("obdStart"))
-        self.gridLayout.addWidget(self.obdStart, 5, 0, 1, 2)
-        self.obdKill = QtGui.QPushButton(self.layoutWidget)
-        self.obdKill.setObjectName(_fromUtf8("obdKill"))
-        self.gridLayout.addWidget(self.obdKill, 5, 2, 1, 1)
+        self.obdButton = QtGui.QPushButton(self.layoutWidget)
+        self.obdButton.setCheckable(False)
+        self.obdButton.setAutoRepeat(False)
+        self.obdButton.setAutoDefault(False)
+        self.obdButton.setDefault(False)
+        self.obdButton.setFlat(False)
+        self.obdButton.setObjectName(_fromUtf8("obdButton"))
+        self.gridLayout.addWidget(self.obdButton, 5, 0, 1, 3)
         self.tabWidget.addTab(self.obdTab, _fromUtf8(""))
         self.GPStab = QtGui.QWidget()
         self.GPStab.setObjectName(_fromUtf8("GPStab"))
@@ -193,7 +190,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
-        self.tabWidget.setCurrentIndex(4)
+        self.tabWidget.setCurrentIndex(2)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -208,8 +205,7 @@ class Ui_MainWindow(object):
         self.label_4.setText(_translate("MainWindow", "deg (Intake)", None))
         self.label_5.setText(_translate("MainWindow", "deg (Coolant)", None))
         self.label_6.setText(_translate("MainWindow", "Load", None))
-        self.obdStart.setText(_translate("MainWindow", "Start", None))
-        self.obdKill.setText(_translate("MainWindow", "Stop", None))
+        self.obdButton.setText(_translate("MainWindow", "Start", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.obdTab), _translate("MainWindow", "OBDII", None))
         self.label_12.setText(_translate("MainWindow", "Latitude", None))
         self.label_13.setText(_translate("MainWindow", "Longitude", None))

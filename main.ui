@@ -28,7 +28,7 @@
      <bool>false</bool>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="welcomeTab">
      <attribute name="title">
@@ -96,10 +96,10 @@
      <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
-        <x>170</x>
-        <y>40</y>
-        <width>178</width>
-        <height>174</height>
+        <x>7</x>
+        <y>13</y>
+        <width>181</width>
+        <height>201</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout">
@@ -188,8 +188,8 @@
          </property>
         </widget>
        </item>
-       <item row="5" column="0" colspan="2">
-        <widget class="QPushButton" name="obdStart">
+       <item row="5" column="0" colspan="3">
+        <widget class="QPushButton" name="obdButton">
          <property name="text">
           <string>Start</string>
          </property>
@@ -207,13 +207,6 @@
          </property>
          <property name="flat">
           <bool>false</bool>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="2">
-        <widget class="QPushButton" name="obdKill">
-         <property name="text">
-          <string>Stop</string>
          </property>
         </widget>
        </item>

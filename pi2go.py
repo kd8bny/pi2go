@@ -46,7 +46,6 @@ class pi2go(QtGui.QMainWindow):
 
 		#QT 4
 		#Welcome tab
-		#Set logo
 		self.scene = QtGui.QGraphicsScene(self)
 		self.scene.addPixmap(QtGui.QPixmap('graphics/pi_logo.jpeg'))
 		self.ui.welcome.setScene(self.scene)
@@ -54,8 +53,8 @@ class pi2go(QtGui.QMainWindow):
 		QtCore.QObject.connect(self.ui.F_lights, QtCore.SIGNAL("clicked()"), self.fogL)	#fog lights
 		QtCore.QObject.connect(self.ui.A_lights, QtCore.SIGNAL("clicked()"), self.fancy)	#Accent lights
 		#OBD Tab
-		QtCore.QObject.connect(self.ui.obdStart, QtCore.SIGNAL("clicked()"), self.ODBII(False))	#Start OBD
-		QtCore.QObject.connect(self.ui.obdKill, QtCore.SIGNAL("clicked()"), self.ODBII(True))	#Kill OBD
+		QtCore.QObject.connect(self.ui.obdButton, QtCore.SIGNAL("clicked()"), self.ODBII)	#Start/kill OBD
+		self.stop = False
 		#GPS tab
 		self.scene = QtGui.QGraphicsScene(self)
 		self.scene.addPixmap(QtGui.QPixmap('graphics/north.jpg'))
@@ -93,27 +92,30 @@ class pi2go(QtGui.QMainWindow):
 		return
 
 #################################################################################################################	
-	def ODBII(self, kill):
+	def ODBII(self):
 		"""Starts to read the ODB data"""
-		#self.obdStart.setEnabled(False)
+		if not self.stop:
+			print 'stop'
+			self.ui.obdButton.setText("Stop")
+			pi2OBD.pi2OBD().main(False)
+			while not self.stop:
+				obdTemp = open('obdTemp.txt', 'r')
+				values = odbTemp.readline().split(',')	#TODO When readline is null
+				# receive [speed, rpm, intake, coolant, load]
+				self.ui.lcdNumber_speed.display(values[0])
+				self.ui.lcdNumber_rpm.display(values[1])
+				self.ui.lcdNumber_inTemp.display(values[2])
+				self.ui.lcdNumber_coolTemp.display(values[3])
+				self.ui.lcdNumber_load.display(values[4])
+		else:
+			self.ui.obdButton.setText("Start")
+			pi2OBD.pi2OBD().main(True)	
 		'''#Start thread
 		qtgui.QApplication.processEvents() #Writes all pending changes to QT
 		self.wait(1)
 		updateThread = threading.Thread(target = self.updateThread)
 		updateThread.start()'''
-		pi2OBD.pi2OBD().main(False)
-		while not kill:
-			obdTemp = open('obdTemp.txt', 'r')
-			values = odbTemp.readline().split(',')	#TODO When readline is null
-			# receive [speed, rpm, intake, coolant, load]
-			self.ui.lcdNumber_speed.display(values[0])
-			self.ui.lcdNumber_rpm.display(values[1])
-			self.ui.lcdNumber_inTemp.display(values[2])
-			self.ui.lcdNumber_coolTemp.display(values[3])
-			self.ui.lcdNumber_load.display(values[4])
-
-		#self.obdStart.setEnabled(True)
-		pi2OBD.pi2OBD().main(True)		
+		self.stop = not self.stop #toggle value
 		return
 		
 	def clearCodes(self):

@@ -2,6 +2,11 @@ Changelog
 ==============================================
 V1 R*
 ---------------
+1/1/14
+Mostly to push the new year.....Didnt like my Qt socket for OBD
+*go - Changed the OBD socket handle
+main - Revised and cleaned again. Made room for OBD graph. Single stop/start button now.
+
 12/31/13
 MAJOR CHANGES TO UPDATES !!!!!WIP!!!! I have no way to test functions atm
 make - Added the ability update from repo. See README, Updatedfor new temp data
