@@ -28,7 +28,7 @@
      <bool>false</bool>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="welcomeTab">
      <attribute name="title">
@@ -212,6 +212,19 @@
        </item>
       </layout>
      </widget>
+     <widget class="QPushButton" name="obdClear">
+      <property name="geometry">
+       <rect>
+        <x>480</x>
+        <y>330</y>
+        <width>131</width>
+        <height>27</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Clear Error Codes</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="GPStab">
      <attribute name="title">
@@ -243,7 +256,7 @@
        <string>Longitude</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="startGPS">
+     <widget class="QPushButton" name="GPSbutton">
       <property name="geometry">
        <rect>
         <x>330</x>
@@ -253,7 +266,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>Start GPS</string>
+       <string>Start</string>
       </property>
      </widget>
      <widget class="QPushButton" name="logGPS">
@@ -267,19 +280,6 @@
       </property>
       <property name="text">
        <string>Start Log</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="stopGPS">
-      <property name="geometry">
-       <rect>
-        <x>490</x>
-        <y>320</y>
-        <width>98</width>
-        <height>27</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Stop</string>
       </property>
      </widget>
      <widget class="QWidget" name="layoutWidget">
@@ -339,114 +339,99 @@
      <attribute name="title">
       <string>Settings</string>
      </attribute>
-     <widget class="QGroupBox" name="groupBox">
+     <widget class="QWidget" name="">
       <property name="geometry">
        <rect>
         <x>10</x>
         <y>10</y>
-        <width>301</width>
-        <height>61</height>
+        <width>171</width>
+        <height>331</height>
        </rect>
       </property>
-      <property name="title">
-       <string>Bluetooth Settings</string>
-      </property>
-      <widget class="QPushButton" name="pushButton_bt">
-       <property name="geometry">
-        <rect>
-         <x>0</x>
-         <y>30</y>
-         <width>111</width>
-         <height>27</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Connect Device</string>
-       </property>
-      </widget>
-     </widget>
-     <widget class="QGroupBox" name="groupBox_2">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>70</y>
-        <width>201</width>
-        <height>101</height>
-       </rect>
-      </property>
-      <property name="title">
-       <string>ODB2 Options</string>
-      </property>
-      <widget class="QPushButton" name="obdClear">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>30</y>
-         <width>131</width>
-         <height>27</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Clear Error Codes</string>
-       </property>
-      </widget>
-      <widget class="QWidget" name="layoutWidget">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>60</y>
-         <width>145</width>
-         <height>29</height>
-        </rect>
-       </property>
-       <layout class="QHBoxLayout" name="horizontalLayout">
-        <item>
-         <widget class="QLabel" name="label_7">
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <widget class="QGroupBox" name="groupBox">
+         <property name="title">
+          <string>Bluetooth Settings</string>
+         </property>
+         <widget class="QPushButton" name="pushButton_bt">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>30</y>
+            <width>111</width>
+            <height>27</height>
+           </rect>
+          </property>
           <property name="text">
-           <string>ATSP Mode</string>
+           <string>Connect Device</string>
           </property>
          </widget>
-        </item>
-        <item>
-         <widget class="QSpinBox" name="spinBox_ATSP">
-          <property name="toolTip">
-           <string extracomment="Value between 1 and 5"/>
-          </property>
-          <property name="wrapping">
-           <bool>true</bool>
-          </property>
-          <property name="readOnly">
-           <bool>false</bool>
-          </property>
-          <property name="correctionMode">
-           <enum>QAbstractSpinBox::CorrectToNearestValue</enum>
-          </property>
-          <property name="minimum">
-           <number>1</number>
-          </property>
-          <property name="maximum">
-           <number>5</number>
-          </property>
-          <property name="value">
-           <number>1</number>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-     </widget>
-     <widget class="QGroupBox" name="groupBox_3">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>180</y>
-        <width>181</width>
-        <height>111</height>
-       </rect>
-      </property>
-      <property name="title">
-       <string>GPS Options</string>
-      </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupBox_2">
+         <property name="title">
+          <string>ODB2 Options</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_3">
+          <item row="0" column="0">
+           <widget class="QRadioButton" name="usbRadio">
+            <property name="text">
+             <string>USB</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1" colspan="2">
+           <widget class="QRadioButton" name="btRadio">
+            <property name="text">
+             <string>BT</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0" colspan="2">
+           <widget class="QLabel" name="label_7">
+            <property name="text">
+             <string>ATSP Mode</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="2">
+           <widget class="QSpinBox" name="spinBox_ATSP">
+            <property name="toolTip">
+             <string extracomment="Value between 1 and 5"/>
+            </property>
+            <property name="wrapping">
+             <bool>true</bool>
+            </property>
+            <property name="readOnly">
+             <bool>false</bool>
+            </property>
+            <property name="correctionMode">
+             <enum>QAbstractSpinBox::CorrectToNearestValue</enum>
+            </property>
+            <property name="minimum">
+             <number>1</number>
+            </property>
+            <property name="maximum">
+             <number>5</number>
+            </property>
+            <property name="value">
+             <number>1</number>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupBox_3">
+         <property name="title">
+          <string>GPS Options</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
      <zorder>groupBox_2</zorder>
      <zorder>groupBox</zorder>
