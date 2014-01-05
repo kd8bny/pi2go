@@ -28,7 +28,7 @@
      <bool>false</bool>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="welcomeTab">
      <attribute name="title">
@@ -55,6 +55,19 @@
       </property>
       <property name="text">
        <string>pi2go V1 R4A</string>
+      </property>
+     </widget>
+     <widget class="QwtAnalogClock" name="AnalogClock">
+      <property name="geometry">
+       <rect>
+        <x>349</x>
+        <y>40</y>
+        <width>211</width>
+        <height>200</height>
+       </rect>
+      </property>
+      <property name="lineWidth">
+       <number>4</number>
       </property>
      </widget>
     </widget>
@@ -225,6 +238,16 @@
        <string>Clear Error Codes</string>
       </property>
      </widget>
+     <widget class="QwtPlot" name="qwtPlot">
+      <property name="geometry">
+       <rect>
+        <x>210</x>
+        <y>30</y>
+        <width>400</width>
+        <height>200</height>
+       </rect>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="GPStab">
      <attribute name="title">
@@ -282,69 +305,30 @@
        <string>Start Log</string>
       </property>
      </widget>
-     <widget class="QWidget" name="layoutWidget">
+     <widget class="QwtCompass" name="Compass">
       <property name="geometry">
        <rect>
-        <x>20</x>
-        <y>40</y>
-        <width>291</width>
-        <height>271</height>
+        <x>30</x>
+        <y>80</y>
+        <width>200</width>
+        <height>200</height>
        </rect>
       </property>
-      <layout class="QGridLayout" name="gridLayout_2">
-       <item row="1" column="0">
-        <widget class="QLabel" name="label_11">
-         <property name="text">
-          <string>West</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="3">
-        <widget class="QLabel" name="label_10">
-         <property name="layoutDirection">
-          <enum>Qt::LeftToRight</enum>
-         </property>
-         <property name="text">
-          <string>East</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="2">
-        <widget class="QLabel" name="label_9">
-         <property name="text">
-          <string>South</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="2">
-        <widget class="QLabel" name="label_8">
-         <property name="text">
-          <string>North</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="2">
-        <widget class="QGraphicsView" name="direction"/>
-       </item>
-      </layout>
+      <property name="lineWidth">
+       <number>4</number>
+      </property>
      </widget>
     </widget>
     <widget class="QWidget" name="settingTab">
      <attribute name="title">
       <string>Settings</string>
      </attribute>
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
         <x>10</x>
         <y>10</y>
-        <width>171</width>
+        <width>191</width>
         <height>331</height>
        </rect>
       </property>
@@ -433,13 +417,32 @@
        </item>
       </layout>
      </widget>
-     <zorder>groupBox_2</zorder>
-     <zorder>groupBox</zorder>
-     <zorder>groupBox_3</zorder>
     </widget>
    </widget>
   </widget>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QwtPlot</class>
+   <extends>QFrame</extends>
+   <header>qwt_plot.h</header>
+  </customwidget>
+  <customwidget>
+   <class>QwtAnalogClock</class>
+   <extends>QwtDial</extends>
+   <header>qwt_analog_clock.h</header>
+  </customwidget>
+  <customwidget>
+   <class>QwtCompass</class>
+   <extends>QwtDial</extends>
+   <header>qwt_compass.h</header>
+  </customwidget>
+  <customwidget>
+   <class>QwtDial</class>
+   <extends>QWidget</extends>
+   <header>qwt_dial.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

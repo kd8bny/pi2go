@@ -12,6 +12,7 @@
 #V1 R5
 
 import sys, os, threading, PyQt4
+import PyQt4.Qwt5 as Qwt
 import pi2OBD #,sOff
 from main import *
 
@@ -56,10 +57,6 @@ class pi2go(QtGui.QMainWindow):
 		QtCore.QObject.connect(self.ui.obdButton, QtCore.SIGNAL("clicked()"), self.ODBII)	#Start/kill OBD
 		self.stopOBD = False
 		#GPS tab
-		self.scene = QtGui.QGraphicsScene(self)
-		self.scene.addPixmap(QtGui.QPixmap('graphics/north.jpg'))
-		self.ui.direction.setScene(self.scene)
-
 		QtCore.QObject.connect(self.ui.logGPS, QtCore.SIGNAL("clicked()"), self.logGPS)
 		QtCore.QObject.connect(self.ui.GPSbutton, QtCore.SIGNAL("clicked()"), self.GPS)
 		self.stopGPS = False
