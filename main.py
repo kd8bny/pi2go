@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'main.ui'
 #
-# Created: Sat Jan  4 19:31:13 2014
+# Created: Sun Jan  5 21:26:49 2014
 #      by: PyQt4 UI code generator 4.10.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -38,13 +38,19 @@ class Ui_MainWindow(object):
         self.welcomeTab.setObjectName(_fromUtf8("welcomeTab"))
         self.welcome = QtGui.QGraphicsView(self.welcomeTab)
         self.welcome.setGeometry(QtCore.QRect(30, 40, 261, 251))
+        self.welcome.setFrameShape(QtGui.QFrame.WinPanel)
+        self.welcome.setFrameShadow(QtGui.QFrame.Sunken)
+        self.welcome.setCacheMode(QtGui.QGraphicsView.CacheBackground)
+        self.welcome.setOptimizationFlags(QtGui.QGraphicsView.DontAdjustForAntialiasing)
         self.welcome.setObjectName(_fromUtf8("welcome"))
         self.label = QtGui.QLabel(self.welcomeTab)
-        self.label.setGeometry(QtCore.QRect(430, 260, 101, 20))
+        self.label.setGeometry(QtCore.QRect(410, 280, 101, 20))
         self.label.setObjectName(_fromUtf8("label"))
         self.AnalogClock = QwtAnalogClock(self.welcomeTab)
         self.AnalogClock.setGeometry(QtCore.QRect(349, 40, 211, 200))
         self.AnalogClock.setLineWidth(4)
+        self.AnalogClock.setFrameShadow(QwtDial.Plain)
+        self.AnalogClock.setMode(QwtDial.RotateScale)
         self.AnalogClock.setObjectName(_fromUtf8("AnalogClock"))
         self.tabWidget.addTab(self.welcomeTab, _fromUtf8(""))
         self.carTab = QtGui.QWidget()
@@ -159,9 +165,6 @@ class Ui_MainWindow(object):
         self.usbRadio = QtGui.QRadioButton(self.groupBox_2)
         self.usbRadio.setObjectName(_fromUtf8("usbRadio"))
         self.gridLayout_3.addWidget(self.usbRadio, 0, 0, 1, 1)
-        self.btRadio = QtGui.QRadioButton(self.groupBox_2)
-        self.btRadio.setObjectName(_fromUtf8("btRadio"))
-        self.gridLayout_3.addWidget(self.btRadio, 0, 1, 1, 2)
         self.label_7 = QtGui.QLabel(self.groupBox_2)
         self.label_7.setObjectName(_fromUtf8("label_7"))
         self.gridLayout_3.addWidget(self.label_7, 1, 0, 1, 2)
@@ -175,6 +178,10 @@ class Ui_MainWindow(object):
         self.spinBox_ATSP.setProperty("value", 1)
         self.spinBox_ATSP.setObjectName(_fromUtf8("spinBox_ATSP"))
         self.gridLayout_3.addWidget(self.spinBox_ATSP, 1, 2, 1, 1)
+        self.btRadio = QtGui.QRadioButton(self.groupBox_2)
+        self.btRadio.setChecked(True)
+        self.btRadio.setObjectName(_fromUtf8("btRadio"))
+        self.gridLayout_3.addWidget(self.btRadio, 0, 1, 1, 2)
         self.verticalLayout.addWidget(self.groupBox_2)
         self.groupBox_3 = QtGui.QGroupBox(self.layoutWidget1)
         self.groupBox_3.setObjectName(_fromUtf8("groupBox_3"))
@@ -183,7 +190,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
-        self.tabWidget.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(4)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -206,15 +213,14 @@ class Ui_MainWindow(object):
         self.GPSbutton.setText(_translate("MainWindow", "Start", None))
         self.logGPS.setText(_translate("MainWindow", "Start Log", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.GPStab), _translate("MainWindow", "GPS", None))
-        self.groupBox.setTitle(_translate("MainWindow", "Bluetooth Settings", None))
+        self.groupBox.setTitle(_translate("MainWindow", "Bluetooth", None))
         self.pushButton_bt.setText(_translate("MainWindow", "Connect Device", None))
-        self.groupBox_2.setTitle(_translate("MainWindow", "ODB2 Options", None))
+        self.groupBox_2.setTitle(_translate("MainWindow", "ODBII", None))
         self.usbRadio.setText(_translate("MainWindow", "USB", None))
-        self.btRadio.setText(_translate("MainWindow", "BT", None))
         self.label_7.setText(_translate("MainWindow", "ATSP Mode", None))
-        self.groupBox_3.setTitle(_translate("MainWindow", "GPS Options", None))
+        self.btRadio.setText(_translate("MainWindow", "BT", None))
+        self.groupBox_3.setTitle(_translate("MainWindow", "GPS", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.settingTab), _translate("MainWindow", "Settings", None))
-
 
 if __name__ == "__main__":
     import sys

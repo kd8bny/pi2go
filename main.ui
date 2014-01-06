@@ -28,7 +28,7 @@
      <bool>false</bool>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>4</number>
     </property>
     <widget class="QWidget" name="welcomeTab">
      <attribute name="title">
@@ -43,12 +43,24 @@
         <height>251</height>
        </rect>
       </property>
+      <property name="frameShape">
+       <enum>QFrame::WinPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Sunken</enum>
+      </property>
+      <property name="cacheMode">
+       <set>QGraphicsView::CacheBackground</set>
+      </property>
+      <property name="optimizationFlags">
+       <set>QGraphicsView::DontAdjustForAntialiasing</set>
+      </property>
      </widget>
      <widget class="QLabel" name="label">
       <property name="geometry">
        <rect>
-        <x>430</x>
-        <y>260</y>
+        <x>410</x>
+        <y>280</y>
         <width>101</width>
         <height>20</height>
        </rect>
@@ -68,6 +80,12 @@
       </property>
       <property name="lineWidth">
        <number>4</number>
+      </property>
+      <property name="frameShadow">
+       <enum>QwtDial::Plain</enum>
+      </property>
+      <property name="mode">
+       <enum>QwtDial::RotateScale</enum>
       </property>
      </widget>
     </widget>
@@ -336,7 +354,7 @@
        <item>
         <widget class="QGroupBox" name="groupBox">
          <property name="title">
-          <string>Bluetooth Settings</string>
+          <string>Bluetooth</string>
          </property>
          <widget class="QPushButton" name="pushButton_bt">
           <property name="geometry">
@@ -351,25 +369,20 @@
            <string>Connect Device</string>
           </property>
          </widget>
+         <zorder>pushButton_bt</zorder>
+         <zorder>btRadio</zorder>
         </widget>
        </item>
        <item>
         <widget class="QGroupBox" name="groupBox_2">
          <property name="title">
-          <string>ODB2 Options</string>
+          <string>ODBII</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_3">
           <item row="0" column="0">
            <widget class="QRadioButton" name="usbRadio">
             <property name="text">
              <string>USB</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1" colspan="2">
-           <widget class="QRadioButton" name="btRadio">
-            <property name="text">
-             <string>BT</string>
             </property>
            </widget>
           </item>
@@ -405,13 +418,23 @@
             </property>
            </widget>
           </item>
+          <item row="0" column="1" colspan="2">
+           <widget class="QRadioButton" name="btRadio">
+            <property name="text">
+             <string>BT</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
          </layout>
         </widget>
        </item>
        <item>
         <widget class="QGroupBox" name="groupBox_3">
          <property name="title">
-          <string>GPS Options</string>
+          <string>GPS</string>
          </property>
         </widget>
        </item>

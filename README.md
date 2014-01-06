@@ -44,6 +44,7 @@ For Dev
 	$ make clean        ~ Removes all temp files
 	$ make build        ~ Rebuilds all dependencies 
 	$ make initbuild    ~ Build UI for first time !!! USE MAKE BUILD after!!!
+		Need to enter "from PyQt4.Qwt5 import *" To include Qwt reference
 
 Ideas/TODO
 ==============================================

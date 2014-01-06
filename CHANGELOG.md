@@ -2,6 +2,9 @@ Changelog
 ==============================================
 V1 R*
 ---------------
+1/5/13
+*go - Working clock, Radio serial device selector
+*OBD - Radio serial device selector
 main - radio buttons
 
 1/1/14

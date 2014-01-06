@@ -11,16 +11,13 @@ from PyQt4.QtCore import *
 from main import *
 
 class pi2OBD(QObject):
+	global serialDevice
 
 	def __init__(self):
 		QObject.__init__(self)
-		if self.ui.btButton.isChecked():
-			serialPort = '/dev/rfcomm0'
-		else:
-			serialPort = '/dev/ttyUSB0'
 
 		try:
-			self.serialIO = serial.Serial(serialPort, 38400, timeout=1)
+			self.serialIO = serial.Serial(serialDevice, 38400, timeout=1)
 		except:
 			print "Serial Issue"
 

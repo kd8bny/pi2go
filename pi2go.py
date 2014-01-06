@@ -23,6 +23,7 @@ except:
 
 
 class pi2go(QtGui.QMainWindow):
+	global serialDevice
     
 	def __init__(self, parent=None):
 		QtGui.QWidget.__init__(self, parent)
@@ -45,7 +46,7 @@ class pi2go(QtGui.QMainWindow):
 			print 'Heads up: No GPIO Connection'
 
 
-		#QT 4
+		#Qt4
 		#Welcome tab
 		self.scene = QtGui.QGraphicsScene(self)
 		self.scene.addPixmap(QtGui.QPixmap('graphics/pi_logo.jpeg'))
@@ -58,17 +59,25 @@ class pi2go(QtGui.QMainWindow):
 		#Car Tab
 		QtCore.QObject.connect(self.ui.F_lights, QtCore.SIGNAL("clicked()"), self.fogL)	#fog lights
 		QtCore.QObject.connect(self.ui.A_lights, QtCore.SIGNAL("clicked()"), self.fancy)	#Accent lights
+		
 		#OBD Tab
 		QtCore.QObject.connect(self.ui.obdButton, QtCore.SIGNAL("clicked()"), self.ODBII)	#Start/kill OBD
 		self.stopOBD = False
+		
 		#GPS tab
 		QtCore.QObject.connect(self.ui.logGPS, QtCore.SIGNAL("clicked()"), self.logGPS)
 		QtCore.QObject.connect(self.ui.GPSbutton, QtCore.SIGNAL("clicked()"), self.GPS)
 		self.stopGPS = False
+		
 		#Settings tab
 		QtCore.QObject.connect(self.ui.pushButton_bt, QtCore.SIGNAL("clicked()"), self.blueman)	#Start Blueman
 		QtCore.QObject.connect(self.ui.obdClear, QtCore.SIGNAL("clicked()"), self.clearCodes) #clear codes
 		QtCore.QObject.connect(self.ui.spinBox_ATSP, QtCore.SIGNAL("valueChanged(int)"), self.settings)	#ATSP Value
+		
+		if self.ui.btRadio.isChecked():
+			serialDevice = '/dev/rfcomm0'
+		else:
+			serialDevice = '/dev/ttyUSB0'
 		
 
 #################################################################################################################		
