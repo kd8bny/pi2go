@@ -51,7 +51,10 @@ class pi2go(QtGui.QMainWindow):
 		self.scene.addPixmap(QtGui.QPixmap('graphics/pi_logo.jpeg'))
 		self.ui.welcome.setScene(self.scene)
 
-		self.ui.AnalogClock.setCurrentTime()
+		self.timer = QtCore.QTimer()
+		QtCore.QObject.connect(self.timer, QtCore.SIGNAL("timeout()"), self.ui.AnalogClock, QtCore.SLOT("setCurrentTime()"))
+		self.timer.start(1000)
+
 		#Car Tab
 		QtCore.QObject.connect(self.ui.F_lights, QtCore.SIGNAL("clicked()"), self.fogL)	#fog lights
 		QtCore.QObject.connect(self.ui.A_lights, QtCore.SIGNAL("clicked()"), self.fancy)	#Accent lights
