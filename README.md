@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 	####   #  ####  #####    ####
 	#   #        #  #       #    #
 	####   #  ####  #  ###  #    #
@@ -55,3 +56,9 @@ Ideas/TODO
 - OBD data tracking
 - make autoinstall required package
 - Options for USB or BT OBDII
+=======
+makeQWT
+=======
+
+Edit QT4 Designer file to support QWT5
+>>>>>>> a9e33c9e87c2af8b0373f3c9b7c37e98ec915d3a
