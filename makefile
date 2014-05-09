@@ -15,6 +15,7 @@ update:
 	@ make clean
 	@ echo "*** Updating ***"
 	@ git pull
+	@ cd makeQWT/
 	@ git pull makeQWT/
 	@ echo "*** Complete ***"
 
