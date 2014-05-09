@@ -11,7 +11,7 @@ from PyQt4.QtCore import *
 from main import *
 
 class pi2OBD(QObject):
-	global serialDevice
+	global serialDevice, lineNumber
 
 	def __init__(self):
 		QObject.__init__(self)
@@ -109,6 +109,7 @@ class pi2OBD(QObject):
 	def OBDread(self):
 		"""Function to read and write data"""
 		try:
+			self.obdTemp.seek(lineNumber)
 			self.obdTemp.write(str(self.speed())+',')
 			self.obdTemp.write(str(self.rpm())+',')
 			self.obdTemp.write(str(self.intake_temp())+',')

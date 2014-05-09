@@ -19,19 +19,19 @@ from main import *
 try:
 	import RPi.GPIO as GPIO
 except:
+	print "Developmental Use Only"
 	pass
 
 
 class pi2go(QtGui.QMainWindow):
-	global serialDevice
+	global serialDevice, lineNumber
     
 	def __init__(self, parent=None):
 		QtGui.QWidget.__init__(self, parent)
 		self.ui = Ui_MainWindow()
 		self.ui.setupUi(self)
 
-		#Used by pi2go	
-		#self.sOff = sOff()
+		lineNumber = 0
 		
 		try:
 			#Set Hardware TODO Make class is enough features are introduced
@@ -63,6 +63,10 @@ class pi2go(QtGui.QMainWindow):
 		#OBD Tab
 		QtCore.QObject.connect(self.ui.obdButton, QtCore.SIGNAL("clicked()"), self.ODBII)	#Start/kill OBD
 		self.stopOBD = False
+		QtCore.QObject.connect(self.ui.obdClear, QtCore.SIGNAL("clicked()"), self.clearCodes) #clear codes
+
+		#maybe?? 
+		#QtCore.QObject.connect(self.ui.obdClear, QtCore.SIGNAL("clicked()"), pi2OBD.pi2OBD, QtCore.SLOT("clear_codes()")) #clear codes
 		
 		#GPS tab
 		QtCore.QObject.connect(self.ui.logGPS, QtCore.SIGNAL("clicked()"), self.logGPS)
@@ -71,7 +75,6 @@ class pi2go(QtGui.QMainWindow):
 		
 		#Settings tab
 		QtCore.QObject.connect(self.ui.pushButton_bt, QtCore.SIGNAL("clicked()"), self.blueman)	#Start Blueman
-		QtCore.QObject.connect(self.ui.obdClear, QtCore.SIGNAL("clicked()"), self.clearCodes) #clear codes
 		QtCore.QObject.connect(self.ui.spinBox_ATSP, QtCore.SIGNAL("valueChanged(int)"), self.settings)	#ATSP Value
 		
 		if self.ui.btRadio.isChecked():
@@ -110,6 +113,7 @@ class pi2go(QtGui.QMainWindow):
 			pi2OBD.pi2OBD().main(False)
 			while not self.stopOBD:
 				obdTemp = open('obdTemp.txt', 'r')
+				obdTemp.seek(self.lineNumber-1)
 				values = obdTemp.readline().split(',')	#TODO When readline is null Still need to know line numbers
 				# receive [speed, rpm, intake, coolant, load]
 				self.ui.lcdNumber_speed.display(values[0])
@@ -130,7 +134,7 @@ class pi2go(QtGui.QMainWindow):
 		
 	def clearCodes(self):
 		"""Clear all trouble codes"""
-		self.OBD.clear_codes()
+		pi2OBD.pi2OBD.clear_codes()
 
 ####################################################################################################
 	def GPS(self):
