@@ -2,6 +2,8 @@ Changelog
 ==============================================
 V1 R*
 ---------------
+5-9-14
+make - Upped Revision. Removed initbuild option. Added makeQWT support to automatically build a working main.ui file. See http://www.github.com/kd8bny/makeQWT
 1/5/13
 *go - Working clock, Radio serial device selector
 *OBD - Radio serial device selector
