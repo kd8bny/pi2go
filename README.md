@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 	####   #  ####  #####    ####
 	#   #        #  #       #    #
 	####   #  ####  #  ###  #    #
@@ -44,9 +42,8 @@ To Update
 
 For Dev
 	$ make clean        ~ Removes all temp files
-	$ make build        ~ Rebuilds all dependencies 
-	$ make initbuild    ~ Build UI for first time !!! USE MAKE BUILD after!!!
-		Need to enter "from PyQt4.Qwt5 import *" To include Qwt reference
+	$ make build        ~ Build UI and all dependencies 
+	$ make initbuild    ~  for first time !!! USE MAKE BUILD after!!!
 
 Ideas/TODO
 ==============================================
@@ -57,14 +54,3 @@ Ideas/TODO
 - OBD data tracking
 - make autoinstall required package
 - Options for USB or BT OBDII
-=======
-=======
->>>>>>> a9e33c9e87c2af8b0373f3c9b7c37e98ec915d3a
-makeQWT
-=======
-
-Edit QT4 Designer file to support QWT5
-<<<<<<< HEAD
->>>>>>> a9e33c9e87c2af8b0373f3c9b7c37e98ec915d3a
-=======
->>>>>>> a9e33c9e87c2af8b0373f3c9b7c37e98ec915d3a
