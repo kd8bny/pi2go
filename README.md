@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 	####   #  ####  #####    ####
 	#   #        #  #       #    #
 	####   #  ####  #  ###  #    #
@@ -57,8 +58,13 @@ Ideas/TODO
 - make autoinstall required package
 - Options for USB or BT OBDII
 =======
+=======
+>>>>>>> a9e33c9e87c2af8b0373f3c9b7c37e98ec915d3a
 makeQWT
 =======
 
 Edit QT4 Designer file to support QWT5
+<<<<<<< HEAD
+>>>>>>> a9e33c9e87c2af8b0373f3c9b7c37e98ec915d3a
+=======
 >>>>>>> a9e33c9e87c2af8b0373f3c9b7c37e98ec915d3a
