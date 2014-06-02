@@ -2,6 +2,16 @@ Changelog
 ==============================================
 V1 R*
 ---------------
+6-01-14
+*OBD - Reworked completely 
+config - removed
+*go - handles all signals. OBD is once again working. THANK GOD!!!
+README - Update ideas. Removed thread handling and make fixes already complete
+
+5-22-14
+Removed Global variables and added config
+*OBD - derp derp derp derp rework threads
+
 5-9-14
 make - Upped Revision. Removed initbuild option. Added makeQWT support to automatically build a working main.ui file. See http://www.github.com/kd8bny/makeQWT
 1/5/13

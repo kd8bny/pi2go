@@ -43,14 +43,12 @@ To Update
 For Dev
 	$ make clean        ~ Removes all temp files
 	$ make build        ~ Build UI and all dependencies 
-	$ make initbuild    ~  for first time !!! USE MAKE BUILD after!!!
 
 Ideas/TODO
 ==============================================
 - Better signals/sockets
-- Thread handler
 - Better version tracking
 - Data server
 - OBD data tracking
-- make autoinstall required package
 - Options for USB or BT OBDII
+- Switch to new signals
