@@ -28,7 +28,7 @@
      <bool>false</bool>
     </property>
     <property name="currentIndex">
-     <number>4</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="welcomeTab">
      <attribute name="title">
@@ -72,11 +72,20 @@
      <widget class="QwtAnalogClock" name="AnalogClock">
       <property name="geometry">
        <rect>
-        <x>349</x>
-        <y>40</y>
-        <width>211</width>
-        <height>200</height>
+        <x>350</x>
+        <y>50</y>
+        <width>206</width>
+        <height>206</height>
        </rect>
+      </property>
+      <property name="cursor">
+       <cursorShape>BlankCursor</cursorShape>
+      </property>
+      <property name="contextMenuPolicy">
+       <enum>Qt::NoContextMenu</enum>
+      </property>
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
       </property>
       <property name="lineWidth">
        <number>4</number>
@@ -85,7 +94,7 @@
        <enum>QwtDial::Plain</enum>
       </property>
       <property name="mode">
-       <enum>QwtDial::RotateScale</enum>
+       <enum>QwtDial::RotateNeedle</enum>
       </property>
      </widget>
     </widget>
@@ -369,8 +378,6 @@
            <string>Connect Device</string>
           </property>
          </widget>
-         <zorder>pushButton_bt</zorder>
-         <zorder>btRadio</zorder>
         </widget>
        </item>
        <item>

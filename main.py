@@ -2,13 +2,16 @@
 
 # Form implementation generated from reading ui file 'main.ui'
 #
-# Created: Sun Jan  5 21:26:49 2014
-#      by: PyQt4 UI code generator 4.10.3
+# Created: Sun Jun  1 21:30:59 2014
+#      by: PyQt4 UI code generator 4.10.4
 #
 # WARNING! All changes made in this file will be lost!
 
+#Edited By: #Daryl W. Bennett --kd8bny@gmail.com 
+#QWT5 support added using makeQWT V1 R0 
+
 from PyQt4 import QtCore, QtGui
-from PyQt4.Qwt5 import *
+from PyQt4.Qwt5 import * 
 
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
@@ -47,10 +50,13 @@ class Ui_MainWindow(object):
         self.label.setGeometry(QtCore.QRect(410, 280, 101, 20))
         self.label.setObjectName(_fromUtf8("label"))
         self.AnalogClock = QwtAnalogClock(self.welcomeTab)
-        self.AnalogClock.setGeometry(QtCore.QRect(349, 40, 211, 200))
+        self.AnalogClock.setGeometry(QtCore.QRect(350, 50, 206, 206))
+        self.AnalogClock.setCursor(QtGui.QCursor(QtCore.Qt.BlankCursor))
+        self.AnalogClock.setContextMenuPolicy(QtCore.Qt.NoContextMenu)
+        self.AnalogClock.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.AnalogClock.setLineWidth(4)
         self.AnalogClock.setFrameShadow(QwtDial.Plain)
-        self.AnalogClock.setMode(QwtDial.RotateScale)
+        self.AnalogClock.setMode(QwtDial.RotateNeedle)
         self.AnalogClock.setObjectName(_fromUtf8("AnalogClock"))
         self.tabWidget.addTab(self.welcomeTab, _fromUtf8(""))
         self.carTab = QtGui.QWidget()
@@ -190,7 +196,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
-        self.tabWidget.setCurrentIndex(4)
+        self.tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -221,6 +227,7 @@ class Ui_MainWindow(object):
         self.btRadio.setText(_translate("MainWindow", "BT", None))
         self.groupBox_3.setTitle(_translate("MainWindow", "GPS", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.settingTab), _translate("MainWindow", "Settings", None))
+
 
 if __name__ == "__main__":
     import sys
