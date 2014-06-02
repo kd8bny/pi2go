@@ -6,7 +6,7 @@
 ###############################
 #In car use of the raspberry pi
 #Daryl W. Bennett --kd8bny@gmail.com
-#Prupose is to have a DIY in car computer using RPi
+#Purpose is to have a DIY in car computer using RPi
 #TODO port back to RPi disabled now in order for serial testing
 
 #V1 R5
@@ -25,7 +25,7 @@ except:
 
 class pi2go(QtGui.QMainWindow):
 
-    trigger = QtCore.pyqtSignal([list], name='speedChange')
+    OBDsignal = QtCore.pyqtSignal([list], name='OBDsignal')
 
     def __init__(self, parent=None):
         QtGui.QWidget.__init__(self, parent)
@@ -60,7 +60,7 @@ class pi2go(QtGui.QMainWindow):
         QtCore.QObject.connect(self.ui.A_lights, QtCore.SIGNAL("clicked()"), self.fancy)    #Accent lights
         
         #OBD Tab
-        self.trigger.connect(self.updateGUI)
+        self.OBDsignal.connect(self.updateGUI)
         QtCore.QObject.connect(self.ui.obdButton, QtCore.SIGNAL("clicked()"), self.ODBII)   #Start/kill OBD
         QtCore.QObject.connect(self.ui.obdClear, QtCore.SIGNAL("clicked()"), self.clearCodes) #clear codes
         self.stopOBD = True #init stopped
@@ -78,9 +78,12 @@ class pi2go(QtGui.QMainWindow):
         QtCore.QObject.connect(self.ui.spinBox_ATSP, QtCore.SIGNAL("valueChanged(int)"), self.settings) #ATSP Value
         
         if self.ui.btRadio.isChecked():
-            serialDevice = 'rfcomm0'
+            config.serialDevice = 'rfcomm0'
+        if self.ui.usbRadio.isChecked():
+            config.serialDevice = '/dev/ttyUSB0'
         else:
-            serialDevice = '/dev/ttyUSB0'
+            config.serialDevice = '/dev/pts/5'
+            
         
 
 #################################################################################################################       
@@ -112,23 +115,23 @@ class pi2go(QtGui.QMainWindow):
         OBDvalues = [0, 0, 0, 0, 0]
         while not self.stopOBD:
             self.ui.obdButton.setText("Stop")
-            OBDvalues = pi2OBD.pi2OBD().OBDread(OBDvalues) 
-            self.trigger.emit(OBDvalues)
+            OBDvalues = pi2OBD.pi2OBD().OBDread() 
+            self.OBDsignal.emit(OBDvalues)
             PyQt4.QtCore.QCoreApplication.processEvents()
             
         self.ui.obdButton.setText("Start")
-        self.trigger.emit(OBDvalues)
+        self.OBDsignal.emit(OBDvalues)
 
         return
 
-    def updateGUI(self, OBDvalues):
+    def updateGUI(self):
         """Update LCD values in QT: receive [speed, rpm, intake, coolant, load]"""
         self.ui.lcdNumber_speed.display(OBDvalues[0])
         self.ui.lcdNumber_rpm.display(OBDvalues[1])
         self.ui.lcdNumber_inTemp.display(OBDvalues[2])
         self.ui.lcdNumber_coolTemp.display(OBDvalues[3])
         self.ui.lcdNumber_load.display(OBDvalues[4])
-        time.sleep(1) #TODO: find better option
+        time.sleep(config.refresh)
 
         return
 

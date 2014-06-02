@@ -2,7 +2,7 @@
 ###################################################
 #In car use of the raspberry pi OBD functions
 #Daryl W. Bennett --kd8bny@gmail.com
-#Prupose is to have a DIY in car computer using RPi
+#Purpose is to have a DIY in car computer using RPi
 
 #V3 R0
 
@@ -17,7 +17,7 @@ class pi2OBD(QObject):
         QObject.__init__(self)
 
         try:
-        self.serialIO = serial.Serial(config.serialDevice, 38400, timeout=1)
+            self.serialIO = serial.Serial(config.serialDevice, 38400, timeout=1)
         except:
             print "Serial Issue"
         
