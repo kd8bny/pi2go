@@ -434,7 +434,7 @@
            <rect>
             <x>17</x>
             <y>25</y>
-            <width>167</width>
+            <width>175</width>
             <height>23</height>
            </rect>
           </property>
@@ -452,14 +452,17 @@
               <string>BT</string>
              </property>
              <property name="checked">
-              <bool>true</bool>
+              <bool>false</bool>
              </property>
             </widget>
            </item>
            <item>
             <widget class="QRadioButton" name="devRadio">
+             <property name="enabled">
+              <bool>true</bool>
+             </property>
              <property name="text">
-              <string>BT</string>
+              <string>Dev</string>
              </property>
              <property name="checked">
               <bool>true</bool>

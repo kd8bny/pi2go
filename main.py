@@ -2,16 +2,16 @@
 
 # Form implementation generated from reading ui file 'main.ui'
 #
-# Created: Mon Jun  2 19:38:58 2014
+# Created: Mon Jun  2 19:48:25 2014
 #      by: PyQt4 UI code generator 4.10.4
 #
 # WARNING! All changes made in this file will be lost!
 
-#Edited By:# -*- coding: utf-8 -*-
+#Edited By: # -*- coding: utf-8 -*-
 
 # Form implementation generated from reading ui file 'main.ui'
 #
-# Created: Mon Jun  2 19:38:58 2014
+# Created: Mon Jun  2 19:48:25 2014
 #      by: PyQt4 UI code generator 4.10.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -189,7 +189,7 @@ class Ui_MainWindow(object):
         self.spinBox_ATSP.setProperty("value", 1)
         self.spinBox_ATSP.setObjectName(_fromUtf8("spinBox_ATSP"))
         self.widget = QtGui.QWidget(self.groupBox_2)
-        self.widget.setGeometry(QtCore.QRect(17, 25, 167, 23))
+        self.widget.setGeometry(QtCore.QRect(17, 25, 175, 23))
         self.widget.setObjectName(_fromUtf8("widget"))
         self.horizontalLayout = QtGui.QHBoxLayout(self.widget)
         self.horizontalLayout.setMargin(0)
@@ -198,10 +198,11 @@ class Ui_MainWindow(object):
         self.usbRadio.setObjectName(_fromUtf8("usbRadio"))
         self.horizontalLayout.addWidget(self.usbRadio)
         self.btRadio = QtGui.QRadioButton(self.widget)
-        self.btRadio.setChecked(True)
+        self.btRadio.setChecked(False)
         self.btRadio.setObjectName(_fromUtf8("btRadio"))
         self.horizontalLayout.addWidget(self.btRadio)
         self.devRadio = QtGui.QRadioButton(self.widget)
+        self.devRadio.setEnabled(True)
         self.devRadio.setChecked(True)
         self.devRadio.setObjectName(_fromUtf8("devRadio"))
         self.horizontalLayout.addWidget(self.devRadio)
@@ -242,7 +243,7 @@ class Ui_MainWindow(object):
         self.label_7.setText(_translate("MainWindow", "ATSP Mode", None))
         self.usbRadio.setText(_translate("MainWindow", "USB", None))
         self.btRadio.setText(_translate("MainWindow", "BT", None))
-        self.devRadio.setText(_translate("MainWindow", "BT", None))
+        self.devRadio.setText(_translate("MainWindow", "Dev", None))
         self.groupBox_3.setTitle(_translate("MainWindow", "GPS", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.settingTab), _translate("MainWindow", "Settings", None))
 
