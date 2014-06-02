@@ -2,22 +2,22 @@
 
 # Form implementation generated from reading ui file 'main.ui'
 #
-# Created: Sun Jun  1 21:54:58 2014
+# Created: Mon Jun  2 19:38:58 2014
 #      by: PyQt4 UI code generator 4.10.4
 #
 # WARNING! All changes made in this file will be lost!
 
-#E# -*- coding: utf-8 -*-
+#Edited By:# -*- coding: utf-8 -*-
 
 # Form implementation generated from reading ui file 'main.ui'
 #
-# Created: Sun Jun  1 21:54:58 2014
+# Created: Mon Jun  2 19:38:58 2014
 #      by: PyQt4 UI code generator 4.10.4
 #
 # WARNING! All changes made in this file will be lost!
 
 #Edited By: #Daryl W. Bennett --kd8bny@gmail.com 
-#QWT5 support added using makeQWT V1 R0 
+#QWT5 support added using makeQWT V1 R1 
 
 from PyQt4 import QtCore, QtGui
 from PyQt4.Qwt5 import * 
@@ -175,15 +175,11 @@ class Ui_MainWindow(object):
         self.verticalLayout.addWidget(self.groupBox)
         self.groupBox_2 = QtGui.QGroupBox(self.layoutWidget1)
         self.groupBox_2.setObjectName(_fromUtf8("groupBox_2"))
-        self.gridLayout_3 = QtGui.QGridLayout(self.groupBox_2)
-        self.gridLayout_3.setObjectName(_fromUtf8("gridLayout_3"))
-        self.usbRadio = QtGui.QRadioButton(self.groupBox_2)
-        self.usbRadio.setObjectName(_fromUtf8("usbRadio"))
-        self.gridLayout_3.addWidget(self.usbRadio, 0, 0, 1, 1)
         self.label_7 = QtGui.QLabel(self.groupBox_2)
+        self.label_7.setGeometry(QtCore.QRect(17, 79, 73, 16))
         self.label_7.setObjectName(_fromUtf8("label_7"))
-        self.gridLayout_3.addWidget(self.label_7, 1, 0, 1, 2)
         self.spinBox_ATSP = QtGui.QSpinBox(self.groupBox_2)
+        self.spinBox_ATSP.setGeometry(QtCore.QRect(122, 79, 38, 26))
         self.spinBox_ATSP.setToolTip(_fromUtf8(""))
         self.spinBox_ATSP.setWrapping(True)
         self.spinBox_ATSP.setReadOnly(False)
@@ -192,11 +188,23 @@ class Ui_MainWindow(object):
         self.spinBox_ATSP.setMaximum(5)
         self.spinBox_ATSP.setProperty("value", 1)
         self.spinBox_ATSP.setObjectName(_fromUtf8("spinBox_ATSP"))
-        self.gridLayout_3.addWidget(self.spinBox_ATSP, 1, 2, 1, 1)
-        self.btRadio = QtGui.QRadioButton(self.groupBox_2)
+        self.widget = QtGui.QWidget(self.groupBox_2)
+        self.widget.setGeometry(QtCore.QRect(17, 25, 167, 23))
+        self.widget.setObjectName(_fromUtf8("widget"))
+        self.horizontalLayout = QtGui.QHBoxLayout(self.widget)
+        self.horizontalLayout.setMargin(0)
+        self.horizontalLayout.setObjectName(_fromUtf8("horizontalLayout"))
+        self.usbRadio = QtGui.QRadioButton(self.widget)
+        self.usbRadio.setObjectName(_fromUtf8("usbRadio"))
+        self.horizontalLayout.addWidget(self.usbRadio)
+        self.btRadio = QtGui.QRadioButton(self.widget)
         self.btRadio.setChecked(True)
         self.btRadio.setObjectName(_fromUtf8("btRadio"))
-        self.gridLayout_3.addWidget(self.btRadio, 0, 1, 1, 2)
+        self.horizontalLayout.addWidget(self.btRadio)
+        self.devRadio = QtGui.QRadioButton(self.widget)
+        self.devRadio.setChecked(True)
+        self.devRadio.setObjectName(_fromUtf8("devRadio"))
+        self.horizontalLayout.addWidget(self.devRadio)
         self.verticalLayout.addWidget(self.groupBox_2)
         self.groupBox_3 = QtGui.QGroupBox(self.layoutWidget1)
         self.groupBox_3.setObjectName(_fromUtf8("groupBox_3"))
@@ -205,7 +213,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
-        self.tabWidget.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(4)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -231,9 +239,10 @@ class Ui_MainWindow(object):
         self.groupBox.setTitle(_translate("MainWindow", "Bluetooth", None))
         self.pushButton_bt.setText(_translate("MainWindow", "Connect Device", None))
         self.groupBox_2.setTitle(_translate("MainWindow", "ODBII", None))
-        self.usbRadio.setText(_translate("MainWindow", "USB", None))
         self.label_7.setText(_translate("MainWindow", "ATSP Mode", None))
+        self.usbRadio.setText(_translate("MainWindow", "USB", None))
         self.btRadio.setText(_translate("MainWindow", "BT", None))
+        self.devRadio.setText(_translate("MainWindow", "BT", None))
         self.groupBox_3.setTitle(_translate("MainWindow", "GPS", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.settingTab), _translate("MainWindow", "Settings", None))
 
