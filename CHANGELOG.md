@@ -2,6 +2,11 @@ Changelog
 ==============================================
 V1 R*
 ---------------
+6-02-14
+OBD&go - clean coade and add support for config
+config - added again
+main - added dev option for connection
+
 6-01-14
 *OBD - Reworked completely 
 config - removed
