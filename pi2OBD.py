@@ -4,7 +4,7 @@
 #Daryl W. Bennett --kd8bny@gmail.com
 #Prupose is to have a DIY in car computer using RPi
 
-#V2 R0a
+#V3 R0
 
 import serial, string, time
 from PyQt4.QtCore import *
@@ -17,7 +17,7 @@ class pi2OBD(QObject):
         QObject.__init__(self)
 
         try:
-            self.serialIO = serial.Serial('/dev/pts/6', 38400, timeout=1) #serialDevice
+        self.serialIO = serial.Serial(config.serialDevice, 38400, timeout=1)
         except:
             print "Serial Issue"
         
@@ -98,7 +98,7 @@ class pi2OBD(QObject):
         temp_list = self.serialIO.readline().split(' ')
         pass
         
-    def OBDread(self,oldvalues):
+    def OBDread(self):
         """Function to read and write data: [speed, rpm, intake, coolant, load]"""
         OBDvalues = [0, 0, 0, 0, 0]
         OBDvalues[0] = self.speed()
@@ -117,7 +117,7 @@ class pi2OBD(QObject):
         """Set up OBD Comm"""
         self.serialIO.write("ATZ \r")
         time.sleep(2)
-        self.serialIO.write("ATSP 1 \r")  #self.serialIO.write("ATSP %d \r" %pi2go.ATSP)
+        self.serialIO.write("ATSP %d \r" % self.config.ATSP)  #self.serialIO.write("ATSP %d \r" %pi2go.ATSP)
         time.sleep(.5)
         self.serialIO.readline().split(' ')
         self.serialIO.write("01 00 \r")
@@ -126,4 +126,4 @@ class pi2OBD(QObject):
         
 if __name__ == "__main__":
     test = pi2OBD()
-    test.main()
+    test.OBDread()
