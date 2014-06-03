@@ -22,7 +22,7 @@ update:
 # Auto install required packages
 prereq:
 	@ echo "*** Installing Prerequisites... Standby ***"
-	@ sudo apt-get install git python2.7 python-serial python-qt4 python-numpy python-qwt5-qt4 blueman pyqt4-dev-tools
+	@ sudo apt-get install git python2.7 python-serial python-qt4 python-numpy python-qwt5-qt4 blueman pyqt4-dev-tools python-xlwt python-xlrd 
 	@ echo "*** Cloning makeQWT ***"
 	@ git clone https://www.github.com/kd8bny/makeQWT.git
 	@ echo "*** Complete ***"
