@@ -19,6 +19,7 @@ Software
 - python-qt4
 - python-numpy
 - python-qwt5-qt4 
+- python-odf
 
 Optional
 - blueman (Only to use BT features)

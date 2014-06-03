@@ -2,7 +2,11 @@ Changelog
 ==============================================
 V1 R*
 ---------------
-6-02-14
+6-03-14
+*go -  added feature for maintenance logs
+*log - created Now saves data to spreadsheet
+
+---------------
 OBD&go - clean coade and add support for config
 config - added again
 main - added dev option for connection
