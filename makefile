@@ -5,9 +5,9 @@
 # Cleans your directory
 clean:
 	@ echo "*** Removing all temp files ***"
-	@ rm -f *.pyc
-	@ rm -f *.txt
-	@ rm -f *~
+	@ rm -f libs/*.pyc
+	@ rm -f libs/*.txt
+	@ rm -f libs/*~
 	@ echo "*** Complete ***"
 
 # Update 
@@ -31,13 +31,13 @@ prereq:
 
 # Runs the code
 run:
-	sudo python2.7 pi2go.py
+	sudo python2.7 libs/pi2go.py
 
 # Build UI
 build:
 	#Build main UI
 	@ echo "*** Utilizing pyuic4 ***"
-	@ pyuic4 -xd -o main.py main.ui
+	@ pyuic4 -xd -o libs/main.py libs/main.ui
 	@ echo "*** Edit for QWT5 Support ***"
 	@ sudo python2.7 makeQWT/makeQWT.py
 	@ echo "*** Complete ***"
