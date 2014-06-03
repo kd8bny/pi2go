@@ -13,7 +13,7 @@
 
 import sys, os, threading, PyQt4, time
 import PyQt4.Qwt5 as Qwt
-import pi2OBD, config #,sOff
+import config, pi2OBD, pi2log #,sOff
 from main import *
 
 try:
@@ -113,7 +113,6 @@ class pi2go(QtGui.QMainWindow):
     def ODBII(self):
         """Starts to read the ODB data"""
         self.stopOBD = not self.stopOBD
-        OBDvalues = [0, 0, 0, 0, 0]
         while not self.stopOBD:
             self.ui.obdButton.setText("Stop")
             OBDvalues = pi2OBD.pi2OBD().OBDread() 
@@ -157,6 +156,7 @@ class pi2go(QtGui.QMainWindow):
         logValues = []
         if reset:
             self.ui.careOdo.clear()
+            #TODO: Clear all fields
 
         else:
             tempQDate = self.ui.caredateEdit.date()
@@ -168,7 +168,8 @@ class pi2go(QtGui.QMainWindow):
             logValues.insert(0, tempPyDate)
             logValues.insert(1, tempTask)
             logValues.insert(2, tempOdo)
-            logValues.insert(3, tempComment)             
+            logValues.insert(3, tempComment)
+            pi2log.pi2log().addData(logValues)     
 
 ####################################################################################################
 
