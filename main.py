@@ -2,16 +2,17 @@
 
 # Form implementation generated from reading ui file 'main.ui'
 #
-# Created: Mon Jun  2 19:48:25 2014
+# Created: Mon Jun  2 22:17:34 2014
 #      by: PyQt4 UI code generator 4.10.4
 #
 # WARNING! All changes made in this file will be lost!
 
-#Edited By: # -*- coding: utf-8 -*-
+#Edited By: #Daryl W. Bennett --kd8bny@gmail.com 
+#QWT5 support added using makeQW# -*- coding: utf-8 -*-
 
 # Form implementation generated from reading ui file 'main.ui'
 #
-# Created: Mon Jun  2 19:48:25 2014
+# Created: Mon Jun  2 22:17:34 2014
 #      by: PyQt4 UI code generator 4.10.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -159,6 +160,60 @@ class Ui_MainWindow(object):
         self.Compass.setLineWidth(4)
         self.Compass.setObjectName(_fromUtf8("Compass"))
         self.tabWidget.addTab(self.GPStab, _fromUtf8(""))
+        self.caretab = QtGui.QWidget()
+        self.caretab.setObjectName(_fromUtf8("caretab"))
+        self.caredateEdit = QtGui.QDateEdit(self.caretab)
+        self.caredateEdit.setGeometry(QtCore.QRect(10, 40, 131, 26))
+        self.caredateEdit.setWrapping(False)
+        self.caredateEdit.setMinimumDate(QtCore.QDate(2014, 1, 1))
+        self.caredateEdit.setCurrentSection(QtGui.QDateTimeEdit.DaySection)
+        self.caredateEdit.setCalendarPopup(True)
+        self.caredateEdit.setObjectName(_fromUtf8("caredateEdit"))
+        self.careComments = QtGui.QPlainTextEdit(self.caretab)
+        self.careComments.setEnabled(True)
+        self.careComments.setGeometry(QtCore.QRect(10, 220, 281, 121))
+        self.careComments.setFocusPolicy(QtCore.Qt.ClickFocus)
+        self.careComments.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
+        self.careComments.setTabChangesFocus(False)
+        self.careComments.setTextInteractionFlags(QtCore.Qt.TextEditorInteraction)
+        self.careComments.setBackgroundVisible(True)
+        self.careComments.setObjectName(_fromUtf8("careComments"))
+        self.careOdo = QtGui.QLineEdit(self.caretab)
+        self.careOdo.setGeometry(QtCore.QRect(10, 160, 113, 26))
+        self.careOdo.setMaxLength(8)
+        self.careOdo.setObjectName(_fromUtf8("careOdo"))
+        self.careTask = QtGui.QComboBox(self.caretab)
+        self.careTask.setGeometry(QtCore.QRect(10, 100, 131, 26))
+        self.careTask.setObjectName(_fromUtf8("careTask"))
+        self.careTask.addItem(_fromUtf8(""))
+        self.careTask.addItem(_fromUtf8(""))
+        self.careTask.addItem(_fromUtf8(""))
+        self.careTask.addItem(_fromUtf8(""))
+        self.careTask.addItem(_fromUtf8(""))
+        self.careTask.addItem(_fromUtf8(""))
+        self.careTask.addItem(_fromUtf8(""))
+        self.careTask.addItem(_fromUtf8(""))
+        self.careTask.setItemText(7, _fromUtf8(""))
+        self.careTask.addItem(_fromUtf8(""))
+        self.label_8 = QtGui.QLabel(self.caretab)
+        self.label_8.setGeometry(QtCore.QRect(10, 20, 81, 16))
+        self.label_8.setObjectName(_fromUtf8("label_8"))
+        self.label_9 = QtGui.QLabel(self.caretab)
+        self.label_9.setGeometry(QtCore.QRect(10, 80, 63, 16))
+        self.label_9.setObjectName(_fromUtf8("label_9"))
+        self.label_10 = QtGui.QLabel(self.caretab)
+        self.label_10.setGeometry(QtCore.QRect(10, 140, 63, 16))
+        self.label_10.setObjectName(_fromUtf8("label_10"))
+        self.logCare = QtGui.QPushButton(self.caretab)
+        self.logCare.setGeometry(QtCore.QRect(320, 310, 93, 27))
+        self.logCare.setObjectName(_fromUtf8("logCare"))
+        self.resetCare = QtGui.QPushButton(self.caretab)
+        self.resetCare.setGeometry(QtCore.QRect(430, 310, 93, 27))
+        self.resetCare.setObjectName(_fromUtf8("resetCare"))
+        self.checkBox = QtGui.QCheckBox(self.caretab)
+        self.checkBox.setGeometry(QtCore.QRect(10, 200, 161, 21))
+        self.checkBox.setObjectName(_fromUtf8("checkBox"))
+        self.tabWidget.addTab(self.caretab, _fromUtf8(""))
         self.settingTab = QtGui.QWidget()
         self.settingTab.setObjectName(_fromUtf8("settingTab"))
         self.layoutWidget1 = QtGui.QWidget(self.settingTab)
@@ -215,6 +270,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
         self.tabWidget.setCurrentIndex(4)
+        QtCore.QObject.connect(self.checkBox, QtCore.SIGNAL(_fromUtf8("clicked(bool)")), self.careComments.setVisible)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -237,6 +293,21 @@ class Ui_MainWindow(object):
         self.GPSbutton.setText(_translate("MainWindow", "Start", None))
         self.logGPS.setText(_translate("MainWindow", "Start Log", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.GPStab), _translate("MainWindow", "GPS", None))
+        self.careTask.setItemText(0, _translate("MainWindow", "Air Filter", None))
+        self.careTask.setItemText(1, _translate("MainWindow", "Brakes", None))
+        self.careTask.setItemText(2, _translate("MainWindow", "Fuel Filter", None))
+        self.careTask.setItemText(3, _translate("MainWindow", "New Tires", None))
+        self.careTask.setItemText(4, _translate("MainWindow", "Oil Change", None))
+        self.careTask.setItemText(5, _translate("MainWindow", "Tire Rotation", None))
+        self.careTask.setItemText(6, _translate("MainWindow", "Plugs and Wires", None))
+        self.careTask.setItemText(8, _translate("MainWindow", "Miscellaneous", None))
+        self.label_8.setText(_translate("MainWindow", "Date", None))
+        self.label_9.setText(_translate("MainWindow", "Task", None))
+        self.label_10.setText(_translate("MainWindow", "Mileage", None))
+        self.logCare.setText(_translate("MainWindow", "Log It!", None))
+        self.resetCare.setText(_translate("MainWindow", "Reset Fields", None))
+        self.checkBox.setText(_translate("MainWindow", "Other Comments", None))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.caretab), _translate("MainWindow", "Maintenance", None))
         self.groupBox.setTitle(_translate("MainWindow", "Bluetooth", None))
         self.pushButton_bt.setText(_translate("MainWindow", "Connect Device", None))
         self.groupBox_2.setTitle(_translate("MainWindow", "ODBII", None))

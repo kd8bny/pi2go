@@ -46,7 +46,7 @@ class pi2go(QtGui.QMainWindow):
 
 
         #Qt4
-        #Welcome tab
+        #Welcome Tab
         self.scene = QtGui.QGraphicsScene(self)
         self.scene.addPixmap(QtGui.QPixmap('graphics/pi_logo.jpeg'))
         self.ui.welcome.setScene(self.scene)
@@ -59,21 +59,22 @@ class pi2go(QtGui.QMainWindow):
         QtCore.QObject.connect(self.ui.F_lights, QtCore.SIGNAL("clicked()"), self.fogL) #fog lights
         QtCore.QObject.connect(self.ui.A_lights, QtCore.SIGNAL("clicked()"), self.fancy)    #Accent lights
         
-        #OBD Tab
+        #OBDII Tab
         self.OBDsignal.connect(self.updateGUI)
         QtCore.QObject.connect(self.ui.obdButton, QtCore.SIGNAL("clicked()"), self.ODBII)   #Start/kill OBD
         QtCore.QObject.connect(self.ui.obdClear, QtCore.SIGNAL("clicked()"), self.clearCodes) #clear codes
         self.stopOBD = True #init stopped
 
-        #maybe?? 
-        #QtCore.QObject.connect(self.ui.obdClear, QtCore.SIGNAL("clicked()"), pi2OBD.pi2OBD, QtCore.SLOT("clear_codes()")) #clear codes
-        
-        #GPS tab
+        #GPS Tab
         QtCore.QObject.connect(self.ui.logGPS, QtCore.SIGNAL("clicked()"), self.logGPS)
         QtCore.QObject.connect(self.ui.GPSbutton, QtCore.SIGNAL("clicked()"), self.GPS)
         self.stopGPS = False
+
+        #Maintenance Tab
+        QtCore.QObject.connect(self.ui.logCare, QtCore.SIGNAL("clicked()"), (lambda reset=False : self.logCare(reset))) #Pass reset field
+        QtCore.QObject.connect(self.ui.resetCare, QtCore.SIGNAL("clicked()"), (lambda reset=True : self.logCare(reset)))
         
-        #Settings tab
+        #Settings Tab
         QtCore.QObject.connect(self.ui.pushButton_bt, QtCore.SIGNAL("clicked()"), self.blueman) #Start Blueman
         QtCore.QObject.connect(self.ui.spinBox_ATSP, QtCore.SIGNAL("valueChanged(int)"), self.settings) #ATSP Value
         
@@ -149,6 +150,26 @@ class pi2go(QtGui.QMainWindow):
 
     def logGPS(self):
         pass
+####################################################################################################
+
+    def logCare(self, reset):
+        """Log Maintenance values into spreadsheet: [date, task, odo, comments]"""
+        logValues = []
+        if reset:
+            self.ui.careOdo.clear()
+
+        else:
+            tempQDate = self.ui.caredateEdit.date()
+            tempPyDate = str(tempQDate.toPyDate())
+            tempTask = str(self.ui.careTask.currentText())
+            tempOdo = str(self.ui.careOdo.text())
+            tempComment = str(self.ui.careComments.toPlainText())
+
+            logValues.insert(0, tempPyDate)
+            logValues.insert(1, tempTask)
+            logValues.insert(2, tempOdo)
+            logValues.insert(3, tempComment)             
+
 ####################################################################################################
 
     def settings(self):
