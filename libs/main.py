@@ -1,18 +1,18 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'main.ui'
+# Form implementation generated from reading ui file 'libs/main.ui'
 #
-# Created: Mon Jun  2 22:17:34 2014
+# Created: Tue Jun  3 19:43:55 2014
 #      by: PyQt4 UI code generator 4.10.4
 #
 # WARNING! All changes made in this file will be lost!
 
 #Edited By: #Daryl W. Bennett --kd8bny@gmail.com 
-#QWT5 support added using makeQW# -*- coding: utf-8 -*-
+#QWT5 support added using m# -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'main.ui'
+# Form implementation generated from reading ui file 'libs/main.ui'
 #
-# Created: Mon Jun  2 22:17:34 2014
+# Created: Tue Jun  3 19:43:55 2014
 #      by: PyQt4 UI code generator 4.10.4
 #
 # WARNING! All changes made in this file will be lost!
