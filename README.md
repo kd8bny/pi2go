@@ -19,7 +19,8 @@ Software
 - python-qt4
 - python-numpy
 - python-qwt5-qt4 
-- python-odf
+- python-xlwt & python-xlwt
+	xlutils : $ pip install xlutils @ http://www.python-excel.org/
 
 Optional
 - blueman (Only to use BT features)

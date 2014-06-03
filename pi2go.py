@@ -71,6 +71,8 @@ class pi2go(QtGui.QMainWindow):
         self.stopGPS = False
 
         #Maintenance Tab
+        self.ui.careComments.setHidden(True)
+        self.ui.caredateEdit.setDateTime(QtCore.QDateTime.currentDateTime())
         QtCore.QObject.connect(self.ui.logCare, QtCore.SIGNAL("clicked()"), (lambda reset=False : self.logCare(reset))) #Pass reset field
         QtCore.QObject.connect(self.ui.resetCare, QtCore.SIGNAL("clicked()"), (lambda reset=True : self.logCare(reset)))
         
@@ -156,7 +158,7 @@ class pi2go(QtGui.QMainWindow):
         logValues = []
         if reset:
             self.ui.careOdo.clear()
-            #TODO: Clear all fields
+            self.ui.careComments.clear()
 
         else:
             tempQDate = self.ui.caredateEdit.date()
