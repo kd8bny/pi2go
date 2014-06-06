@@ -31,7 +31,10 @@ class pi2OBD(QObject):
         except:
             return 0
         
-        speed_float = speed_float*0.621371  #Comment out if you would rather have Kph
+        if config.units == 'metric':
+            speed_float = speed_float
+        else:
+            speed_float = speed_float*0.621371
         return speed_float
     
     def rpm(self):
@@ -60,9 +63,11 @@ class pi2OBD(QObject):
             temp_float = float(int("0x"+temp_hex, 0))
         except:
             return 0
-            
-        temp_final = temp_float-40  
-        temp_final = temp_final*(9/5)+32    #Comment out if you would rather have deg C 
+        
+        if config.units == 'metric':  
+            temp_final = temp_float-40 
+        else: 
+            temp_final = temp_final*(9/5)+32
         return temp_final
         
     def coolant_temp(self):
@@ -74,9 +79,11 @@ class pi2OBD(QObject):
             temp_float = float(int("0x"+temp_hex, 0))
         except:
             return 0
-            
-        temp_final = temp_float-40
-        temp_final = temp_final*(9/5)+32    #Comment out if you would rather have deg C
+        
+        if config.units == 'metric':   
+            temp_final = temp_float-40
+        else:
+            temp_final = temp_final*(9/5)+32
         return temp_final
         
     def load(self):
@@ -97,6 +104,22 @@ class pi2OBD(QObject):
         self.serialIO.write("01 7F \r")
         temp_list = self.serialIO.readline().split(' ')
         pass
+
+    def clearCodes(self):
+        """Clear all trouble codes"""
+        self.serialIO.write("04")
+        return
+
+    def setup(self):
+        """Set up OBD Comm"""
+        self.serialIO.write("ATZ \r")
+        time.sleep(2)
+        self.serialIO.write("ATSP %d \r" % self.config.ATSP)
+        time.sleep(.5)
+        self.serialIO.readline().split(' ')
+        self.serialIO.write("01 00 \r")
+        time.sleep(.5)
+        return
         
     def OBDread(self):
         """Function to read and write data: [speed, rpm, intake, coolant, load]"""
@@ -107,22 +130,7 @@ class pi2OBD(QObject):
         OBDvalues[3] = self.coolant_temp()
         OBDvalues[4] = self.load()
 
-        return OBDvalues
-        
-    def clear_codes(self):  #TODO Will add to own class when working with codes
-        """Clear all trouble codes"""
-        self.serialIO.write("04")
-
-    def setup(self):
-        """Set up OBD Comm"""
-        self.serialIO.write("ATZ \r")
-        time.sleep(2)
-        self.serialIO.write("ATSP %d \r" % self.config.ATSP)  #self.serialIO.write("ATSP %d \r" %pi2go.ATSP)
-        time.sleep(.5)
-        self.serialIO.readline().split(' ')
-        self.serialIO.write("01 00 \r")
-        time.sleep(.5)
-        return
+        return OBDvalues  
         
 if __name__ == "__main__":
     test = pi2OBD()
