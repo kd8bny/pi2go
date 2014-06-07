@@ -48,7 +48,7 @@ class pi2go(QtGui.QMainWindow):
         #Qt4
         #Welcome Tab
         self.scene = QtGui.QGraphicsScene(self)
-        self.scene.addPixmap(QtGui.QPixmap('../graphics/pi_logo.jpeg'))
+        self.scene.addPixmap(QtGui.QPixmap('graphics/pi_logo.jpeg'))
         self.ui.welcome.setScene(self.scene)
 
         self.piClocktimer = QtCore.QTimer()
