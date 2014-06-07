@@ -20,14 +20,14 @@ class pi2log():
     def __init__(self):
         
         try:
-           self.careBook = open_workbook('MaintainanceLog.xls', formatting_info=True)
+           self.careBook = open_workbook('logs/MaintainanceLog.xls', formatting_info=True)
            self.logSheet = self.careBook.sheet_by_index(0)
 
         except:
             self.careBook = xlwt.Workbook()
             self.logSheet = self.careBook.add_sheet('Log')
             self.format()
-            self.careBook.save('MaintainanceLog.xls')
+            self.careBook.save('logs/MaintainanceLog.xls')
             self.careBook.save(TemporaryFile())
 
     def format(self):
@@ -38,14 +38,11 @@ class pi2log():
         self.logSheet.write(0,3,'Comments')
         self.logSheet.col(3).width = 30000
 
-        #better (row0)
-        #row1 = self.logSheet.row(1)
-        #row1.write(0,'A2')
-        #row1.write(1,'B2')
         return
 
     def addData(self, careValues):
         """Add row of data to the end of sheet"""
+
         tempBook = copy(self.careBook)
         tempSheet = tempBook.get_sheet(0)
         lastRow = self.logSheet.nrows 
@@ -53,9 +50,27 @@ class pi2log():
         tempSheet.write(lastRow,1,careValues[1])
         tempSheet.write(lastRow,2,careValues[2])
         tempSheet.write(lastRow,3,careValues[3])
-        tempBook.save('MaintainanceLog.xls')
+        tempBook.save('logs/MaintainanceLog.xls')
         return
+
+    def readLast(self):
+        """Grab last recored data set"""
+        careValues = []
+        lastRow = self.logSheet.nrows-1
+        careValues.insert(0, self.logSheet.cell(lastRow,0).value)
+        careValues.insert(1, self.logSheet.cell(lastRow,1).value)
+        careValues.insert(2, self.logSheet.cell(lastRow,2).value)
+        careValues.insert(3, self.logSheet.cell(lastRow,3).value)
+        
+        return careValues
+
+
 
 if __name__ == "__main__":
     test = pi2log()
-    test.addData(['test','test','test','test'])
+    #test.addData(['test','test','test','test'])
+    test.readLast()
+    #better (row0)
+    #row1 = self.logSheet.row(1)
+    #row1.write(0,'A2')
+    #row1.write(1,'B2')

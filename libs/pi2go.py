@@ -62,7 +62,7 @@ class pi2go(QtGui.QMainWindow):
         #OBDII Tab
         self.OBDsignal.connect(self.updateGUI)
         QtCore.QObject.connect(self.ui.obdButton, QtCore.SIGNAL("clicked()"), self.ODBII)
-        QtCore.QObject.connect(self.ui.obdClear, QtCore.SIGNAL("clicked()"), (lambda : pi2OBD.pi2OBD().clearCodes())) #self.clearCodes
+        QtCore.QObject.connect(self.ui.obdClear, QtCore.SIGNAL("clicked()"), (lambda : pi2OBD.pi2OBD().clearCodes()))
         self.stopOBD = True #init stopped
 
         #GPS Tab
@@ -71,14 +71,16 @@ class pi2go(QtGui.QMainWindow):
         self.stopGPS = False
 
         #Maintenance Tab
+        #New
         self.ui.caredateEdit.setDateTime(QtCore.QDateTime.currentDateTime())
-        QtCore.QObject.connect(self.ui.checkBox, QtCore.SIGNAL("toggled(bool)"), (lambda show=True : self.ui.careComments.setHidden(not show)))
+        QtCore.QObject.connect(self.ui.commentcheckBox, QtCore.SIGNAL("toggled(bool)"), (lambda show=True : self.ui.careComments.setHidden(not show)))
         QtCore.QObject.connect(self.ui.logCare, QtCore.SIGNAL("clicked()"), (lambda reset=False : self.logCare(reset))) #Pass reset field
         QtCore.QObject.connect(self.ui.resetCare, QtCore.SIGNAL("clicked()"), (lambda reset=True : self.logCare(reset)))
+        #Last
+        self.logCare_last()
         
         #Settings Tab
         ## OBDII
-        QtCore.QObject.connect(self.ui.pushButton_bt, QtCore.SIGNAL("clicked()"), (lambda label='blueman' : self.settings(label))) #Start Blueman
         QtCore.QObject.connect(self.ui.spinBox_ATSP, QtCore.SIGNAL("valueChanged(int)"), (lambda label='atsp' : self.settings(label)))
 
         QtCore.QObject.connect(self.ui.btRadio, QtCore.SIGNAL("clicked()"), (lambda label='bt' : self.settings(label)))
@@ -137,10 +139,6 @@ class pi2go(QtGui.QMainWindow):
 
         return
 
-    def clearCodes(self):
-        """Clear all trouble codes"""
-        pi2OBD.pi2OBD.clear_codes()
-
 ####################################################################################################
     def GPS(self):
         if not self.GPS:
@@ -148,8 +146,8 @@ class pi2go(QtGui.QMainWindow):
         else:
             self.ui.GPSbutton.setText("Start")
         self.stopGPS = not self.stopGPS #toggle value
-        print config.serialDevice
-        print config.units
+
+        return
 
 
     def logGPS(self):
@@ -173,16 +171,30 @@ class pi2go(QtGui.QMainWindow):
             logValues.insert(1, tempTask)
             logValues.insert(2, tempOdo)
             logValues.insert(3, tempComment)
-            pi2log.pi2log().addData(logValues)     
+            pi2log.pi2log().addData(logValues) 
+            self.logCare_last()
+
+        return
+
+    def logCare_last(self):
+        """Calls function read last line -> updates GUI"""
+        careValues = pi2log.pi2log().readLast()
+        self.ui.date_output.setText(careValues[0])
+        self.ui.task_output.setText(careValues[1]) 
+        self.ui.odo_output.setText(careValues[2]) 
+        self.ui.comment_output.setText(careValues[3])  
+
+        return
 
 ####################################################################################################
     def settings(self, label):
-        """Function of the settings tab"""
-    
-        if label == 'atsp':
-            config.ATSP = self.ui.spinBox_ATSP.value()
-        elif label == 'bt':
-            config.serialDevice = 'rfcomm0'
+        """Function of the settings tab"""       
+        if label == 'bt':
+            try:
+                config.serialDevice = 'rfcomm0'
+                os.system("blueman-manager")
+            except:
+                print "Please install 'blueman' package"
         elif label == 'usb':
             config.serialDevice = '/dev/ttyUSB0'
         elif label == 'dev':
@@ -190,14 +202,9 @@ class pi2go(QtGui.QMainWindow):
         elif label == 'metric':
             config.units = 'metric'
         elif label == 'us':
-            config.units = 'US'
-        elif label == 'blueman':
-            try:
-                os.system("blueman-manager")
-            except:
-                print "Please install 'blueman' package"
-        else:
-            print 'Error: '+label
+            config.units = 'US'            
+        else: #ATSP signal return int -> else
+            config.ATSP = self.ui.spinBox_ATSP.value()
 
         return    
 
