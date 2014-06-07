@@ -31,7 +31,7 @@ prereq:
 
 # Runs the code
 run:
-	sudo python2.7 libs/pi2go.py
+	sudo python2.7 ./libs/pi2go.py
 
 # Build UI
 build:
