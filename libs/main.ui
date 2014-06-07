@@ -8,7 +8,7 @@
     <x>0</x>
     <y>0</y>
     <width>640</width>
-    <height>422</height>
+    <height>429</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -21,14 +21,29 @@
       <x>10</x>
       <y>10</y>
       <width>620</width>
-      <height>401</height>
+      <height>411</height>
      </rect>
+    </property>
+    <property name="acceptDrops">
+     <bool>false</bool>
     </property>
     <property name="autoFillBackground">
      <bool>false</bool>
     </property>
+    <property name="tabShape">
+     <enum>QTabWidget::Rounded</enum>
+    </property>
     <property name="currentIndex">
      <number>4</number>
+    </property>
+    <property name="usesScrollButtons">
+     <bool>true</bool>
+    </property>
+    <property name="tabsClosable">
+     <bool>false</bool>
+    </property>
+    <property name="movable">
+     <bool>false</bool>
     </property>
     <widget class="QWidget" name="welcomeTab">
      <attribute name="title">
@@ -350,204 +365,323 @@
      <attribute name="title">
       <string>Maintenance</string>
      </attribute>
-     <widget class="QFrame" name="frame">
+     <widget class="QWidget" name="">
       <property name="geometry">
        <rect>
-        <x>0</x>
+        <x>11</x>
         <y>10</y>
-        <width>261</width>
-        <height>351</height>
+        <width>601</width>
+        <height>361</height>
        </rect>
       </property>
-      <property name="frameShape">
-       <enum>QFrame::StyledPanel</enum>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Raised</enum>
-      </property>
-      <widget class="QPlainTextEdit" name="careComments">
-       <property name="enabled">
-        <bool>true</bool>
-       </property>
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>150</y>
-         <width>231</width>
-         <height>121</height>
-        </rect>
-       </property>
-       <property name="focusPolicy">
-        <enum>Qt::ClickFocus</enum>
-       </property>
-       <property name="horizontalScrollBarPolicy">
-        <enum>Qt::ScrollBarAlwaysOff</enum>
-       </property>
-       <property name="tabChangesFocus">
-        <bool>false</bool>
-       </property>
-       <property name="textInteractionFlags">
-        <set>Qt::TextEditorInteraction</set>
-       </property>
-       <property name="backgroundVisible">
-        <bool>true</bool>
-       </property>
-      </widget>
-      <widget class="QCheckBox" name="checkBox">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>110</y>
-         <width>161</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Other Comments</string>
-       </property>
-       <property name="checked">
-        <bool>true</bool>
-       </property>
-      </widget>
-      <widget class="QWidget" name="layoutWidget">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>10</y>
-         <width>189</width>
-         <height>92</height>
-        </rect>
-       </property>
-       <layout class="QGridLayout" name="gridLayout_2">
-        <item row="0" column="0">
-         <widget class="QDateEdit" name="caredateEdit">
-          <property name="wrapping">
+      <layout class="QHBoxLayout" name="horizontalLayout_7">
+       <item>
+        <widget class="QGroupBox" name="addnew_groupBox">
+         <property name="autoFillBackground">
+          <bool>true</bool>
+         </property>
+         <property name="title">
+          <string>Add New</string>
+         </property>
+         <property name="checkable">
+          <bool>false</bool>
+         </property>
+         <widget class="QWidget" name="layoutWidget">
+          <property name="geometry">
+           <rect>
+            <x>30</x>
+            <y>20</y>
+            <width>204</width>
+            <height>92</height>
+           </rect>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_2">
+           <item row="0" column="0">
+            <widget class="QDateEdit" name="caredateEdit">
+             <property name="wrapping">
+              <bool>false</bool>
+             </property>
+             <property name="minimumDate">
+              <date>
+               <year>2014</year>
+               <month>1</month>
+               <day>1</day>
+              </date>
+             </property>
+             <property name="currentSection">
+              <enum>QDateTimeEdit::DaySection</enum>
+             </property>
+             <property name="calendarPopup">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QLabel" name="label_8">
+             <property name="text">
+              <string>Date</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QComboBox" name="careTask">
+             <item>
+              <property name="text">
+               <string>Air Filter</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Brakes</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Fuel Filter</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>New Tires</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Oil Change</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Tire Rotation</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Plugs and Wires</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string/>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Miscellaneous</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLineEdit" name="careOdo">
+             <property name="maxLength">
+              <number>8</number>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QLabel" name="label_10">
+             <property name="text">
+              <string>Odometer</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QLabel" name="label_9">
+             <property name="text">
+              <string>Task</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QPlainTextEdit" name="careComments">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
+          <property name="geometry">
+           <rect>
+            <x>30</x>
+            <y>160</y>
+            <width>231</width>
+            <height>121</height>
+           </rect>
+          </property>
+          <property name="focusPolicy">
+           <enum>Qt::ClickFocus</enum>
+          </property>
+          <property name="horizontalScrollBarPolicy">
+           <enum>Qt::ScrollBarAlwaysOff</enum>
+          </property>
+          <property name="tabChangesFocus">
            <bool>false</bool>
           </property>
-          <property name="minimumDate">
-           <date>
-            <year>2014</year>
-            <month>1</month>
-            <day>1</day>
-           </date>
+          <property name="textInteractionFlags">
+           <set>Qt::TextEditorInteraction</set>
           </property>
-          <property name="currentSection">
-           <enum>QDateTimeEdit::DaySection</enum>
-          </property>
-          <property name="calendarPopup">
+          <property name="backgroundVisible">
            <bool>true</bool>
           </property>
          </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="QLabel" name="label_8">
+         <widget class="QCheckBox" name="commentcheckBox">
+          <property name="geometry">
+           <rect>
+            <x>30</x>
+            <y>120</y>
+            <width>161</width>
+            <height>21</height>
+           </rect>
+          </property>
           <property name="text">
-           <string>Date</string>
+           <string>Other Comments</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
           </property>
          </widget>
-        </item>
-        <item row="1" column="0">
-         <widget class="QComboBox" name="careTask">
-          <item>
-           <property name="text">
-            <string>Air Filter</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Brakes</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Fuel Filter</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>New Tires</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Oil Change</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Tire Rotation</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Plugs and Wires</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string/>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Miscellaneous</string>
-           </property>
-          </item>
-         </widget>
-        </item>
-        <item row="2" column="0">
-         <widget class="QLineEdit" name="careOdo">
-          <property name="maxLength">
-           <number>8</number>
+         <widget class="QWidget" name="">
+          <property name="geometry">
+           <rect>
+            <x>41</x>
+            <y>321</y>
+            <width>189</width>
+            <height>29</height>
+           </rect>
           </property>
+          <layout class="QHBoxLayout" name="horizontalLayout_2">
+           <item>
+            <widget class="QPushButton" name="logCare">
+             <property name="text">
+              <string>Log It!</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="resetCare">
+             <property name="text">
+              <string>Reset Fields</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
          </widget>
-        </item>
-        <item row="2" column="1">
-         <widget class="QLabel" name="label_10">
-          <property name="text">
-           <string>Mileage</string>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="last_groupBox">
+         <property name="autoFillBackground">
+          <bool>true</bool>
+         </property>
+         <property name="title">
+          <string>Last Entry</string>
+         </property>
+         <property name="flat">
+          <bool>true</bool>
+         </property>
+         <widget class="QWidget" name="">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>30</y>
+            <width>271</width>
+            <height>220</height>
+           </rect>
           </property>
+          <layout class="QGridLayout" name="gridLayout_3">
+           <item row="3" column="0">
+            <widget class="QLabel" name="label_18">
+             <property name="text">
+              <string>Comments</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QLineEdit" name="date_output">
+             <property name="readOnly">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="label_16">
+             <property name="text">
+              <string>Task</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QLineEdit" name="task_output">
+             <property name="readOnly">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0">
+            <widget class="QLabel" name="label_15">
+             <property name="text">
+              <string>Date</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="label_17">
+             <property name="text">
+              <string>Odometer</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QLineEdit" name="odo_output">
+             <property name="readOnly">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1">
+            <widget class="QTextEdit" name="comment_output"/>
+           </item>
+          </layout>
          </widget>
-        </item>
-        <item row="1" column="1">
-         <widget class="QLabel" name="label_9">
-          <property name="text">
-           <string>Task</string>
+         <widget class="QWidget" name="">
+          <property name="geometry">
+           <rect>
+            <x>60</x>
+            <y>310</y>
+            <width>178</width>
+            <height>29</height>
+           </rect>
           </property>
+          <layout class="QHBoxLayout" name="horizontalLayout_5">
+           <item>
+            <widget class="QPushButton" name="pushButton_2">
+             <property name="text">
+              <string>Search</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="pushButton">
+             <property name="text">
+              <string>Delete</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
          </widget>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="layoutWidget">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>310</y>
-         <width>189</width>
-         <height>29</height>
-        </rect>
-       </property>
-       <layout class="QHBoxLayout" name="horizontalLayout_2">
-        <item>
-         <widget class="QPushButton" name="logCare">
-          <property name="text">
-           <string>Log It!</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="resetCare">
-          <property name="text">
-           <string>Reset Fields</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-      <zorder>layoutWidget</zorder>
-      <zorder>layoutWidget</zorder>
-      <zorder>careComments</zorder>
-      <zorder>checkBox</zorder>
+         <zorder>label_15</zorder>
+         <zorder>label_16</zorder>
+         <zorder>label_17</zorder>
+         <zorder>label_18</zorder>
+         <zorder>textEdit</zorder>
+         <zorder>date_output</zorder>
+         <zorder>task_output</zorder>
+         <zorder>odo_output</zorder>
+         <zorder>pushButton</zorder>
+         <zorder>pushButton_2</zorder>
+         <zorder>layoutWidget</zorder>
+        </widget>
+       </item>
+      </layout>
      </widget>
     </widget>
     <widget class="QWidget" name="settingTab">
@@ -567,15 +701,15 @@
        <enum>QFrame::StyledPanel</enum>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>3</number>
       </property>
-      <widget class="QWidget" name="page_2">
+      <widget class="QWidget" name="OBDpage">
        <property name="geometry">
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>98</width>
-         <height>28</height>
+         <width>269</width>
+         <height>169</height>
         </rect>
        </property>
        <attribute name="label">
@@ -667,24 +801,37 @@
          </item>
         </layout>
        </widget>
-       <widget class="QPushButton" name="pushButton_bt">
+       <widget class="QLabel" name="label_11">
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>90</y>
-          <width>111</width>
-          <height>27</height>
+          <y>100</y>
+          <width>63</width>
+          <height>16</height>
          </rect>
         </property>
         <property name="text">
-         <string>Connect Device</string>
+         <string>Units</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_14">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>40</y>
+          <width>111</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Connection Type</string>
         </property>
        </widget>
        <widget class="QWidget" name="">
         <property name="geometry">
          <rect>
-          <x>20</x>
-          <y>150</y>
+          <x>10</x>
+          <y>120</y>
           <width>129</width>
           <height>23</height>
          </rect>
@@ -710,17 +857,22 @@
         </layout>
        </widget>
       </widget>
-      <widget class="QWidget" name="page">
+      <widget class="QWidget" name="GPSpage">
        <property name="geometry">
         <rect>
          <x>0</x>
          <y>0</y>
          <width>269</width>
-         <height>199</height>
+         <height>169</height>
         </rect>
        </property>
        <attribute name="label">
         <string>GPS</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="carePage">
+       <attribute name="label">
+        <string>Maintenance</string>
        </attribute>
       </widget>
       <widget class="QWidget" name="page_3">
@@ -730,6 +882,28 @@
       </widget>
      </widget>
     </widget>
+   </widget>
+   <widget class="QWidget" name="">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>2</width>
+      <height>2</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_6"/>
+   </widget>
+   <widget class="QWidget" name="">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>2</width>
+      <height>2</height>
+     </rect>
+    </property>
+    <layout class="QFormLayout" name="formLayout"/>
    </widget>
   </widget>
  </widget>
