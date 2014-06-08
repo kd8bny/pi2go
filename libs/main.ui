@@ -34,7 +34,7 @@
      <enum>QTabWidget::Rounded</enum>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <property name="usesScrollButtons">
      <bool>true</bool>
@@ -365,7 +365,7 @@
      <attribute name="title">
       <string>Maintenance</string>
      </attribute>
-     <widget class="QWidget" name="">
+     <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
         <x>11</x>
@@ -391,7 +391,7 @@
            <rect>
             <x>30</x>
             <y>20</y>
-            <width>204</width>
+            <width>205</width>
             <height>92</height>
            </rect>
           </property>
@@ -539,7 +539,7 @@
            <bool>true</bool>
           </property>
          </widget>
-         <widget class="QWidget" name="">
+         <widget class="QWidget" name="layoutWidget">
           <property name="geometry">
            <rect>
             <x>41</x>
@@ -578,7 +578,7 @@
          <property name="flat">
           <bool>true</bool>
          </property>
-         <widget class="QWidget" name="">
+         <widget class="QWidget" name="layoutWidget">
           <property name="geometry">
            <rect>
             <x>10</x>
@@ -642,7 +642,7 @@
            </item>
           </layout>
          </widget>
-         <widget class="QWidget" name="">
+         <widget class="QWidget" name="layoutWidget">
           <property name="geometry">
            <rect>
             <x>60</x>
@@ -653,14 +653,14 @@
           </property>
           <layout class="QHBoxLayout" name="horizontalLayout_5">
            <item>
-            <widget class="QPushButton" name="pushButton_2">
+            <widget class="QPushButton" name="searchLast">
              <property name="text">
               <string>Search</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton">
+            <widget class="QPushButton" name="deleteLast">
              <property name="text">
               <string>Delete</string>
              </property>
@@ -668,16 +668,7 @@
            </item>
           </layout>
          </widget>
-         <zorder>label_15</zorder>
-         <zorder>label_16</zorder>
-         <zorder>label_17</zorder>
-         <zorder>label_18</zorder>
-         <zorder>textEdit</zorder>
-         <zorder>date_output</zorder>
-         <zorder>task_output</zorder>
-         <zorder>odo_output</zorder>
-         <zorder>pushButton</zorder>
-         <zorder>pushButton_2</zorder>
+         <zorder>layoutWidget</zorder>
          <zorder>layoutWidget</zorder>
         </widget>
        </item>
@@ -708,14 +699,14 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>269</width>
-         <height>169</height>
+         <width>98</width>
+         <height>28</height>
         </rect>
        </property>
        <attribute name="label">
         <string>OBDII</string>
        </attribute>
-       <widget class="QWidget" name="">
+       <widget class="QWidget" name="layoutWidget">
         <property name="geometry">
          <rect>
           <x>10</x>
@@ -827,7 +818,7 @@
          <string>Connection Type</string>
         </property>
        </widget>
-       <widget class="QWidget" name="">
+       <widget class="QWidget" name="layoutWidget">
         <property name="geometry">
          <rect>
           <x>10</x>
@@ -862,8 +853,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>269</width>
-         <height>169</height>
+         <width>98</width>
+         <height>28</height>
         </rect>
        </property>
        <attribute name="label">
@@ -871,11 +862,27 @@
        </attribute>
       </widget>
       <widget class="QWidget" name="carePage">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>98</width>
+         <height>28</height>
+        </rect>
+       </property>
        <attribute name="label">
         <string>Maintenance</string>
        </attribute>
       </widget>
       <widget class="QWidget" name="page_3">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>269</width>
+         <height>169</height>
+        </rect>
+       </property>
        <attribute name="label">
         <string>Save Changes</string>
        </attribute>
@@ -883,7 +890,7 @@
      </widget>
     </widget>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>0</x>
@@ -894,7 +901,7 @@
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout_6"/>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>0</x>

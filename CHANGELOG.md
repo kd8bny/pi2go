@@ -5,12 +5,14 @@ V1 R*
 6-07-14
 makefile - Fixed path error
 *log - fixed path error with make. Fixed Bug when log doesnt exist
+*go && *log - Added deleted last entry
 
 6-06-14
 Thinking about rolling V2 soon....Till all the features I have work that is
 *go & *log - Added feature to read the last logged data
 *go Fixed ATSP error
 makeQWT is still funky for builds....working on that
+
 ----------------
 TONS OF CODE FIXES. Squishing bugs galore :D
 *go & *OBD - Added the option for metric or US units

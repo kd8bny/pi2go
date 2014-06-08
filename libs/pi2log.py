@@ -45,7 +45,6 @@ class pi2log():
 
     def addData(self, careValues):
         """Add row of data to the end of sheet"""
-
         tempBook = copy(self.careBook)
         tempSheet = tempBook.get_sheet(0)
         lastRow = self.logSheet.nrows 
@@ -54,6 +53,7 @@ class pi2log():
         tempSheet.write(lastRow,2,careValues[2])
         tempSheet.write(lastRow,3,careValues[3])
         tempBook.save('../logs/MaintainanceLog.xls')
+
         return
 
     def readLast(self):
@@ -67,12 +67,25 @@ class pi2log():
         
         return careValues
 
+    def delLast(self):
+        """Delete the last entry in log"""
+        tempBook = xlwt.Workbook()
+        tempSheet = tempBook.add_sheet('Log')
+        for rowNum in range(0, self.logSheet.nrows-1):
+            for colNum in range(self.logSheet.ncols):
+                getValue = self.logSheet.cell(rowNum,colNum).value
+                tempSheet.write(rowNum,colNum,getValue)
+        tempSheet.col(3).width = 30000
+        tempBook.save('../logs/MaintainanceLog.xls')
+        
+        return
+
 
 
 if __name__ == "__main__":
     test = pi2log()
     #test.addData(['test','test','test','test'])
-    test.readLast()
+    test.delLast()
     #better (row0)
     #row1 = self.logSheet.row(1)
     #row1.write(0,'A2')

@@ -74,10 +74,11 @@ class pi2go(QtGui.QMainWindow):
         #New
         self.ui.caredateEdit.setDateTime(QtCore.QDateTime.currentDateTime())
         QtCore.QObject.connect(self.ui.commentcheckBox, QtCore.SIGNAL("toggled(bool)"), (lambda show=True : self.ui.careComments.setHidden(not show)))
-        QtCore.QObject.connect(self.ui.logCare, QtCore.SIGNAL("clicked()"), (lambda reset=False : self.logCare(reset))) #Pass reset field
+        QtCore.QObject.connect(self.ui.logCare, QtCore.SIGNAL("clicked()"), (lambda reset=False : self.logCare(reset)))
         QtCore.QObject.connect(self.ui.resetCare, QtCore.SIGNAL("clicked()"), (lambda reset=True : self.logCare(reset)))
         #Last
         self.logCare_last()
+        QtCore.QObject.connect(self.ui.deleteLast, QtCore.SIGNAL("clicked()"), (lambda : pi2log.pi2log().delLast()))
         
         #Settings Tab
         ## OBDII
