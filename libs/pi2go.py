@@ -93,7 +93,6 @@ class pi2go(QtGui.QMainWindow):
             
 
 #################################################################################################################       
-        
     def fogL(self):  
         """Will turn fog ligths on and off"""
         if(self.F_state is False ):

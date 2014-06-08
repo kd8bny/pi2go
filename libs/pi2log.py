@@ -60,10 +60,16 @@ class pi2log():
         """Grab last recored data set"""
         careValues = []
         lastRow = self.logSheet.nrows-1
-        careValues.insert(0, self.logSheet.cell(lastRow,0).value)
-        careValues.insert(1, self.logSheet.cell(lastRow,1).value)
-        careValues.insert(2, self.logSheet.cell(lastRow,2).value)
-        careValues.insert(3, self.logSheet.cell(lastRow,3).value)
+        if self.logSheet.cell(lastRow,0).value == 'Date':
+            careValues.insert(0, 'NA')
+            careValues.insert(1, 'NA')
+            careValues.insert(2, 'NA')
+            careValues.insert(3, 'NA')
+        else:
+            careValues.insert(0, self.logSheet.cell(lastRow,0).value)
+            careValues.insert(1, self.logSheet.cell(lastRow,1).value)
+            careValues.insert(2, self.logSheet.cell(lastRow,2).value)
+            careValues.insert(3, self.logSheet.cell(lastRow,3).value)
         
         return careValues
 
@@ -77,7 +83,7 @@ class pi2log():
                 tempSheet.write(rowNum,colNum,getValue)
         tempSheet.col(3).width = 30000
         tempBook.save('../logs/MaintainanceLog.xls')
-        
+
         return
 
 

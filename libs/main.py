@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'libs/main.ui'
 #
-# Created: Sun Jun  8 09:58:33 2014
+# Created: Sun Jun  8 10:39:26 2014
 #      by: PyQt4 UI code generator 4.10.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -437,6 +437,8 @@ class Ui_MainWindow(object):
         self.toolBox.setItemText(self.toolBox.indexOf(self.carePage), _translate("MainWindow", "Maintenance", None))
         self.toolBox.setItemText(self.toolBox.indexOf(self.page_3), _translate("MainWindow", "Save Changes", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.settingTab), _translate("MainWindow", "Settings", None))
+
+#Removedrt QwtPlot
 
 if __name__ == "__main__":
     import sys
