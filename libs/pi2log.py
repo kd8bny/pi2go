@@ -28,7 +28,10 @@ class pi2log():
             self.logSheet = self.careBook.add_sheet('Log')
             self.format()
             self.careBook.save('../logs/MaintainanceLog.xls')
-            self.careBook.save(TemporaryFile())
+
+            self.careBook = open_workbook('../logs/MaintainanceLog.xls', formatting_info=True)
+            self.logSheet = self.careBook.sheet_by_index(0)
+            
 
     def format(self):
         """Set Data Headers: No existing log"""
