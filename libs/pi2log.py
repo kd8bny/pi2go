@@ -20,14 +20,14 @@ class pi2log():
     def __init__(self):
         
         try:
-           self.careBook = open_workbook('logs/MaintainanceLog.xls', formatting_info=True)
+           self.careBook = open_workbook('../logs/MaintainanceLog.xls', formatting_info=True)
            self.logSheet = self.careBook.sheet_by_index(0)
 
         except:
             self.careBook = xlwt.Workbook()
             self.logSheet = self.careBook.add_sheet('Log')
             self.format()
-            self.careBook.save('logs/MaintainanceLog.xls')
+            self.careBook.save('../logs/MaintainanceLog.xls')
             self.careBook.save(TemporaryFile())
 
     def format(self):
@@ -50,7 +50,7 @@ class pi2log():
         tempSheet.write(lastRow,1,careValues[1])
         tempSheet.write(lastRow,2,careValues[2])
         tempSheet.write(lastRow,3,careValues[3])
-        tempBook.save('logs/MaintainanceLog.xls')
+        tempBook.save('../logs/MaintainanceLog.xls')
         return
 
     def readLast(self):

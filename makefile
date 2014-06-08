@@ -1,6 +1,7 @@
 #kd8bny Makefile
 #Project: pi2go
-#V1 R4
+#V1 R5
+
      
 # Cleans your directory
 clean:
@@ -31,7 +32,7 @@ prereq:
 
 # Runs the code
 run:
-	sudo python2.7 ./libs/pi2go.py
+	cd libs/ && sudo python2.7 pi2go.py
 
 # Build UI
 build:

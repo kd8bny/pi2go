@@ -2,6 +2,10 @@ Changelog
 ==============================================
 V1 R*
 ---------------
+6-07-14
+makefile - Fixed path error
+*log - fixed path error with make
+
 6-06-14
 Thinking about rolling V2 soon....Till all the features I have work that is
 *go & *log - Added feature to read the last logged data
