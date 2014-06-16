@@ -2,6 +2,11 @@ Changelog
 ==============================================
 V1 R*
 ---------------
+6-16-14
+main.* - Major UI cleanup. Removed car tab gimiky feature
+*go - removed cartab back end testing graph stuff...can be ignored. Removed logGPS buttons
+
+
 6-07-14
 makefile - Fixed path error
 *log - fixed path error with make. Fixed Bug when log doesnt exist

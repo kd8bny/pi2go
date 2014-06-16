@@ -32,7 +32,7 @@ prereq:
 
 # Runs the code
 run:
-	cd libs/ && sudo python2.7 pi2go.py
+	@ cd libs/ && sudo python2.7 pi2go.py
 
 # Build UI
 build:

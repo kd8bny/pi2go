@@ -11,15 +11,18 @@
 
 #V1 R5
 
-import sys, os, threading, PyQt4, time
+import sys, os, time, numpy
+import PyQt4
 import PyQt4.Qwt5 as Qwt
+from PyQt4.Qwt5.anynumpy import *
+
 import config, pi2OBD, pi2log #,sOff
 from main import *
 
 try:
     import RPi.GPIO as GPIO
 except:
-    print "Developmental Use Only"
+    "Missing RPi.GPIO"
     pass
 
 
@@ -32,19 +35,6 @@ class pi2go(QtGui.QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         
-        try:
-            #Set Hardware TODO Make class is enough features are introduced
-            GPIO.setmode(GPIO.BCM)
-            self.F_lights = 17
-            self.A_lights = 22
-            GPIO.setup(self.F_lights, GPIO.OUT)
-            GPIO.setup(self.A_lights, GPIO.OUT)
-            GPIO.output(self.F_lights, GPIO.LOW)    ; self.F_state = False
-            GPIO.output(self.A_lights, GPIO.LOW)    ; self.A_state = False
-        except:
-            print 'Heads up: No GPIO Connection'
-
-
         #Qt4
         #Welcome Tab
         self.scene = QtGui.QGraphicsScene(self)
@@ -54,10 +44,6 @@ class pi2go(QtGui.QMainWindow):
         self.piClocktimer = QtCore.QTimer()
         QtCore.QObject.connect(self.piClocktimer, QtCore.SIGNAL("timeout()"), self.ui.AnalogClock, QtCore.SLOT("setCurrentTime()"))
         self.piClocktimer.start(1000)
-
-        #Car Tab
-        QtCore.QObject.connect(self.ui.F_lights, QtCore.SIGNAL("clicked()"), self.fogL)
-        QtCore.QObject.connect(self.ui.A_lights, QtCore.SIGNAL("clicked()"), self.fancy)
         
         #OBDII Tab
         self.OBDsignal.connect(self.updateGUI)
@@ -66,7 +52,6 @@ class pi2go(QtGui.QMainWindow):
         self.stopOBD = True #init stopped
 
         #GPS Tab
-        QtCore.QObject.connect(self.ui.logGPS, QtCore.SIGNAL("clicked()"), self.logGPS)
         QtCore.QObject.connect(self.ui.GPSbutton, QtCore.SIGNAL("clicked()"), self.GPS)
         self.stopGPS = False
 
@@ -90,28 +75,8 @@ class pi2go(QtGui.QMainWindow):
 
         QtCore.QObject.connect(self.ui.units_metric_radio, QtCore.SIGNAL("clicked()"), (lambda label='metric' : self.settings(label)))
         QtCore.QObject.connect(self.ui.units_US_radio, QtCore.SIGNAL("clicked()"), (lambda label='US' : self.settings(label)))    
-            
-
-#################################################################################################################       
-    def fogL(self):  
-        """Will turn fog ligths on and off"""
-        if(self.F_state is False ):
-            GPIO.output(self.F_lights, GPIO.HIGH)
-            self.F_state = True
-        else:
-            GPIO.output(self.F_lights, GPIO.LOW)
-            self.F_state = False
-        return 
-
-    def fancy(self):
-        """Will turn fog ligths on and off"""
-        if(self.A_state is False):
-            GPIO.output(self.A_lights, GPIO.HIGH)
-            self.A_state = True
-        else:
-            GPIO.output(self.A_lights, GPIO.LOW)
-            self.A_state = False
-        return
+        
+        #self.plot()    
 
 #################################################################################################################
     def ODBII(self):
@@ -121,7 +86,7 @@ class pi2go(QtGui.QMainWindow):
             self.ui.obdButton.setText("Stop")
             OBDvalues = pi2OBD.pi2OBD().OBDread() 
             self.OBDsignal.emit(OBDvalues)
-            PyQt4.QtCore.QCoreApplication.processEvents()
+            PyQt4.QtCore.QCoreApplication.processEvents() #self.update() self.ui
             
         self.ui.obdButton.setText("Start")
         self.OBDsignal.emit(OBDvalues)
@@ -139,19 +104,53 @@ class pi2go(QtGui.QMainWindow):
 
         return
 
+    def plot(self):
+         # Initialize data
+        x = arange(0.0, 100.1, 0.5)
+        y = arange(0.0, 100.1, 0.5)
+        z = arange(50, 0.0, 0.5)
+
+        curveR = Qwt.QwtPlotCurve("Data Moving Right")
+        curveR.attach(self.ui.OBDplot)
+        curveL = Qwt.QwtPlotCurve("Data Moving Left")
+        curveL.attach(self.ui.OBDplot)
+
+
+        curveL.setSymbol(Qwt.QwtSymbol(Qwt.QwtSymbol.Ellipse,
+                                        QtGui.QBrush(),
+                                        QtGui.QPen(PyQt4.QtGui.QColor('yellow')),
+                                        QtCore.QSize(7, 7)))
+
+        curveR.setPen(QtGui.QPen(PyQt4.QtGui.QColor('red')))
+        curveL.setPen(QtGui.QPen(PyQt4.QtGui.QColor('blue')))
+
+        mY = Qwt.QwtPlotMarker()
+        mY.setLabelAlignment(PyQt4.QtCore.Qt.AlignRight | PyQt4.QtCore.Qt.AlignTop)
+        mY.setLineStyle(Qwt.QwtPlotMarker.HLine)
+        mY.setYValue(0.0)
+        mY.attach(self.ui.OBDplot)
+
+        self.ui.OBDplot.setAxisTitle(Qwt.QwtPlot.xBottom, "Time (seconds)")
+        self.ui.OBDplot.setAxisTitle(Qwt.QwtPlot.yLeft, "Values")
+
+
+        curveR.setData(x, y)
+        curveL.setData(x, z)
+
+        self.ui.OBDplot.replot()
+
+        return
+
 ####################################################################################################
     def GPS(self):
         if not self.GPS:
             self.ui.GPSbutton.setText("Stop")           
         else:
             self.ui.GPSbutton.setText("Start")
-        self.stopGPS = not self.stopGPS #toggle value
+        self.stopGPS = not self.stopGPS
 
         return
 
-
-    def logGPS(self):
-        pass
 ####################################################################################################
     def logCare(self, reset):
         """Log Maintenance values into spreadsheet: [date, task, odo, comments]"""
