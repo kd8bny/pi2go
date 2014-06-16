@@ -39,6 +39,9 @@
       <property name="autoFillBackground">
        <bool>false</bool>
       </property>
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
       <property name="usesScrollButtons">
        <bool>true</bool>
       </property>
@@ -507,13 +510,10 @@
            <property name="title">
             <string>Last Entry</string>
            </property>
-           <property name="flat">
-            <bool>true</bool>
-           </property>
            <widget class="QWidget" name="layoutWidget">
             <property name="geometry">
              <rect>
-              <x>0</x>
+              <x>10</x>
               <y>30</y>
               <width>271</width>
               <height>241</height>
