@@ -23,7 +23,7 @@ update:
 # Auto install required packages
 prereq:
 	@ echo "*** Installing Prerequisites... Standby ***"
-	@ sudo apt-get install git python2.7 python-serial python-qt4 python-numpy python-qwt5-qt4 blueman pyqt4-dev-tools python-xlwt python-xlrd 
+	@ sudo apt-get install git python2.7 python-pip python-serial python-qt4 python-numpy python-qwt5-qt4 blueman pyqt4-dev-tools python-xlwt python-xlrd 
 	@ wget https://pypi.python.org/packages/source/x/xlutils/xlutils-1.7.1.tar.gz
 	@ sudo pip install xlutils
 	@ echo "*** Cloning makeQWT ***"
