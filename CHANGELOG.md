@@ -2,6 +2,11 @@ Changelog
 ==============================================
 V1 R*
 ---------------
+6-18-14
+*OBD - prepping for diagnostics addition
+*go - added a few more settings. A little pseudo code
+Prepping for version 2!
+
 6-16-14
 main.* - Major UI cleanup. Removed car tab gimiky feature
 *go - removed cartab back end testing graph stuff...can be ignored. Removed logGPS buttons

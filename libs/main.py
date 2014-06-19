@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'libs/main.ui'
 #
-# Created: Mon Jun 16 18:49:22 2014
+# Created: Wed Jun 18 21:44:39 2014
 #      by: PyQt4 UI code generator 4.10.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -357,16 +357,16 @@ class Ui_MainWindow(object):
         self.GPSpage = QtGui.QWidget()
         self.GPSpage.setGeometry(QtCore.QRect(0, 0, 269, 299))
         self.GPSpage.setObjectName(_fromUtf8("GPSpage"))
-        self.pushButton = QtGui.QPushButton(self.GPSpage)
-        self.pushButton.setGeometry(QtCore.QRect(10, 10, 93, 27))
-        self.pushButton.setObjectName(_fromUtf8("pushButton"))
+        self.GPS_delLog = QtGui.QPushButton(self.GPSpage)
+        self.GPS_delLog.setGeometry(QtCore.QRect(10, 10, 93, 27))
+        self.GPS_delLog.setObjectName(_fromUtf8("GPS_delLog"))
         self.settingToolBox.addItem(self.GPSpage, _fromUtf8(""))
         self.carePage = QtGui.QWidget()
         self.carePage.setGeometry(QtCore.QRect(0, 0, 269, 299))
         self.carePage.setObjectName(_fromUtf8("carePage"))
-        self.pushButton_2 = QtGui.QPushButton(self.carePage)
-        self.pushButton_2.setGeometry(QtCore.QRect(10, 10, 93, 27))
-        self.pushButton_2.setObjectName(_fromUtf8("pushButton_2"))
+        self.care_delLog = QtGui.QPushButton(self.carePage)
+        self.care_delLog.setGeometry(QtCore.QRect(10, 10, 93, 27))
+        self.care_delLog.setObjectName(_fromUtf8("care_delLog"))
         self.settingToolBox.addItem(self.carePage, _fromUtf8(""))
         self.page_3 = QtGui.QWidget()
         self.page_3.setGeometry(QtCore.QRect(0, 0, 269, 299))
@@ -432,7 +432,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
         self.tabWidget.setCurrentIndex(0)
-        self.settingToolBox.setCurrentIndex(0)
+        self.settingToolBox.setCurrentIndex(2)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -483,9 +483,9 @@ class Ui_MainWindow(object):
         self.units_US_radio.setText(_translate("MainWindow", "US", None))
         self.obdClear.setText(_translate("MainWindow", "Clear Error Codes", None))
         self.settingToolBox.setItemText(self.settingToolBox.indexOf(self.OBDpage), _translate("MainWindow", "OBDII", None))
-        self.pushButton.setText(_translate("MainWindow", "Delete Log", None))
+        self.GPS_delLog.setText(_translate("MainWindow", "Delete Log", None))
         self.settingToolBox.setItemText(self.settingToolBox.indexOf(self.GPSpage), _translate("MainWindow", "GPS", None))
-        self.pushButton_2.setText(_translate("MainWindow", "Delete Log", None))
+        self.care_delLog.setText(_translate("MainWindow", "Delete Log", None))
         self.settingToolBox.setItemText(self.settingToolBox.indexOf(self.carePage), _translate("MainWindow", "Maintenance", None))
         self.settingToolBox.setItemText(self.settingToolBox.indexOf(self.page_3), _translate("MainWindow", "Save Changes", None))
         self.label_19.setText(_translate("MainWindow", "pi2go", None))

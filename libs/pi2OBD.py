@@ -4,18 +4,16 @@
 #Daryl W. Bennett --kd8bny@gmail.com
 #Purpose is to have a DIY in car computer using RPi
 
-#V3 R0
+#V4 R0
 
 import serial, string, time
 from PyQt4.QtCore import *
 from main import *
 import config
 
-class pi2OBD(QObject):
+class pi2OBD(object):
 
     def __init__(self):
-        QObject.__init__(self)
-
         try:
             self.serialIO = serial.Serial(config.serialDevice, 38400, timeout=1)
         except:
@@ -105,11 +103,6 @@ class pi2OBD(QObject):
         temp_list = self.serialIO.readline().split(' ')
         pass
 
-    def clearCodes(self):
-        """Clear all trouble codes"""
-        self.serialIO.write("04")
-        return
-
     def setup(self):
         """Set up OBD Comm"""
         self.serialIO.write("ATZ \r")
@@ -131,7 +124,17 @@ class pi2OBD(QObject):
         OBDvalues[4] = self.load()
 
         return OBDvalues  
+
+class pi2diag(pi2OBD):
+
+    def __init__(self):
+        pi2OBD.__init__(self)
+
+    def clearCodes(self):
+        """Clear all trouble codes"""
+        self.serialIO.write("04")
+        return
         
 if __name__ == "__main__":
-    test = pi2OBD()
-    test.OBDread()
+    test = pi2diag()
+    test.clearCodes()

@@ -48,7 +48,6 @@ class pi2go(QtGui.QMainWindow):
         #OBDII Tab
         self.OBDsignal.connect(self.updateGUI)
         QtCore.QObject.connect(self.ui.obdButton, QtCore.SIGNAL("clicked()"), self.ODBII)
-        QtCore.QObject.connect(self.ui.obdClear, QtCore.SIGNAL("clicked()"), (lambda : pi2OBD.pi2OBD().clearCodes()))
         self.stopOBD = True #init stopped
 
         #GPS Tab
@@ -67,16 +66,22 @@ class pi2go(QtGui.QMainWindow):
         
         #Settings Tab
         ## OBDII
-        QtCore.QObject.connect(self.ui.spinBox_ATSP, QtCore.SIGNAL("valueChanged(int)"), (lambda label='atsp' : self.settings(label)))
+        QtCore.QObject.connect(self.ui.spinBox_ATSP, QtCore.SIGNAL("valueChanged(int)"), (lambda label='atsp' : self.settings_OBD(label)))
 
-        QtCore.QObject.connect(self.ui.btRadio, QtCore.SIGNAL("clicked()"), (lambda label='bt' : self.settings(label)))
-        QtCore.QObject.connect(self.ui.usbRadio, QtCore.SIGNAL("clicked()"), (lambda label='usb' : self.settings(label)))
-        QtCore.QObject.connect(self.ui.devRadio, QtCore.SIGNAL("clicked()"), (lambda label='dev' : self.settings(label)))
+        QtCore.QObject.connect(self.ui.btRadio, QtCore.SIGNAL("clicked()"), (lambda label='bt' : self.settings_OBD(label)))
+        QtCore.QObject.connect(self.ui.usbRadio, QtCore.SIGNAL("clicked()"), (lambda label='usb' : self.settings_OBD(label)))
+        QtCore.QObject.connect(self.ui.devRadio, QtCore.SIGNAL("clicked()"), (lambda label='dev' : self.settings_OBD(label)))
 
-        QtCore.QObject.connect(self.ui.units_metric_radio, QtCore.SIGNAL("clicked()"), (lambda label='metric' : self.settings(label)))
-        QtCore.QObject.connect(self.ui.units_US_radio, QtCore.SIGNAL("clicked()"), (lambda label='US' : self.settings(label)))    
-        
-        #self.plot()    
+        QtCore.QObject.connect(self.ui.units_metric_radio, QtCore.SIGNAL("clicked()"), (lambda label='metric' : self.settings_OBD(label)))
+        QtCore.QObject.connect(self.ui.units_US_radio, QtCore.SIGNAL("clicked()"), (lambda label='US' : self.settings_OBD(label))) 
+
+        QtCore.QObject.connect(self.ui.obdClear, QtCore.SIGNAL("clicked()"), (lambda : pi2OBD.pi2diag().clearCodes())) 
+
+        ## GPS  
+        QtCore.QObject.connect(self.ui.GPS_delLog, QtCore.SIGNAL("clicked()"), (lambda label='del' : self.settings_GPS(label)))
+
+        ## Maintenance
+        QtCore.QObject.connect(self.ui.care_delLog, QtCore.SIGNAL("clicked()"), (lambda label='del' : self.settings_care(label)))
 
 #################################################################################################################
     def ODBII(self):
@@ -101,43 +106,6 @@ class pi2go(QtGui.QMainWindow):
         self.ui.lcdNumber_coolTemp.display(OBDvalues[3])
         self.ui.lcdNumber_load.display(OBDvalues[4])
         time.sleep(config.refresh)
-
-        return
-
-    def plot(self):
-         # Initialize data
-        x = arange(0.0, 100.1, 0.5)
-        y = arange(0.0, 100.1, 0.5)
-        z = arange(50, 0.0, 0.5)
-
-        curveR = Qwt.QwtPlotCurve("Data Moving Right")
-        curveR.attach(self.ui.OBDplot)
-        curveL = Qwt.QwtPlotCurve("Data Moving Left")
-        curveL.attach(self.ui.OBDplot)
-
-
-        curveL.setSymbol(Qwt.QwtSymbol(Qwt.QwtSymbol.Ellipse,
-                                        QtGui.QBrush(),
-                                        QtGui.QPen(PyQt4.QtGui.QColor('yellow')),
-                                        QtCore.QSize(7, 7)))
-
-        curveR.setPen(QtGui.QPen(PyQt4.QtGui.QColor('red')))
-        curveL.setPen(QtGui.QPen(PyQt4.QtGui.QColor('blue')))
-
-        mY = Qwt.QwtPlotMarker()
-        mY.setLabelAlignment(PyQt4.QtCore.Qt.AlignRight | PyQt4.QtCore.Qt.AlignTop)
-        mY.setLineStyle(Qwt.QwtPlotMarker.HLine)
-        mY.setYValue(0.0)
-        mY.attach(self.ui.OBDplot)
-
-        self.ui.OBDplot.setAxisTitle(Qwt.QwtPlot.xBottom, "Time (seconds)")
-        self.ui.OBDplot.setAxisTitle(Qwt.QwtPlot.yLeft, "Values")
-
-
-        curveR.setData(x, y)
-        curveL.setData(x, z)
-
-        self.ui.OBDplot.replot()
 
         return
 
@@ -186,7 +154,7 @@ class pi2go(QtGui.QMainWindow):
         return
 
 ####################################################################################################
-    def settings(self, label):
+    def settings_OBD(self, label):
         """Function of the settings tab"""       
         if label == 'bt':
             try:
@@ -205,7 +173,31 @@ class pi2go(QtGui.QMainWindow):
         else: #ATSP signal return int -> else
             config.ATSP = self.ui.spinBox_ATSP.value()
 
-        return    
+        return
+
+    def settings_GPS(self, label):
+        """Function of the settings tab"""       
+        if label == 'del':
+            try:
+                os.remove('../logs/GPSLog.txt')
+            except:
+                print "No file"
+        else:
+            pass
+
+        return 
+
+    def settings_care(self, label):
+        """Function of the settings tab"""       
+        if label == 'del':   
+            try:
+                os.remove("../logs/MaintainanceLog.xls")
+            except:
+                print "No file"
+        else:
+            pass
+
+        return 
 
 
 if __name__ == "__main__":
