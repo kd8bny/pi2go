@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'libs/main.ui'
 #
-# Created: Sat Jun 21 17:49:26 2014
+# Created: Sat Jun 21 19:38:04 2014
 #      by: PyQt4 UI code generator 4.10.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -192,7 +192,7 @@ class Ui_MainWindow(object):
         self.resetCare.setObjectName(_fromUtf8("resetCare"))
         self.horizontalLayout_2.addWidget(self.resetCare)
         self.layoutWidget3 = QtGui.QWidget(self.addnew_groupBox)
-        self.layoutWidget3.setGeometry(QtCore.QRect(0, 0, 205, 92))
+        self.layoutWidget3.setGeometry(QtCore.QRect(20, 20, 205, 92))
         self.layoutWidget3.setObjectName(_fromUtf8("layoutWidget3"))
         self.gridLayout_2 = QtGui.QGridLayout(self.layoutWidget3)
         self.gridLayout_2.setMargin(0)
@@ -477,7 +477,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
-        self.tabWidget.setCurrentIndex(3)
+        self.tabWidget.setCurrentIndex(0)
         self.settingToolBox.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
