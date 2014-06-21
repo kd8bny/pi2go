@@ -31,6 +31,7 @@ class pi2go(QtGui.QMainWindow):
         self.ui.setupUi(self)
 
         #Qt4      
+        # new connection: self.pushButton.clicked.connect(self.setTableWidgetItem)
         #Welcome Tab
         self.scene = QtGui.QGraphicsScene(self)
         self.scene.addPixmap(QtGui.QPixmap('../graphics/pi_logo.jpeg'))
@@ -55,10 +56,12 @@ class pi2go(QtGui.QMainWindow):
         QtCore.QObject.connect(self.ui.commentcheckBox, QtCore.SIGNAL("toggled(bool)"), (lambda show=True : self.ui.careComments.setHidden(not show)))
         QtCore.QObject.connect(self.ui.logCare, QtCore.SIGNAL("clicked()"), (lambda reset=False : self.logCare(reset)))
         QtCore.QObject.connect(self.ui.resetCare, QtCore.SIGNAL("clicked()"), (lambda reset=True : self.logCare(reset)))
+        
         ## Last
         self.logCare_last()
-        QtCore.QObject.connect(self.ui.deleteLast, QtCore.SIGNAL("clicked()"), (lambda : pi2log.pi2log().delLast()))
-        QtCore.QObject.connect(self.ui.searchLast, QtCore.SIGNAL("clicked()"), (lambda : search().main()))
+        self.ui.deleteLast.clicked.connect((lambda : pi2log.pi2log().delLast()))
+        self.ui.deleteLast.clicked.connect((lambda : self.logCare_last()))
+        QtCore.QObject.connect(self.ui.searchLast, QtCore.SIGNAL("clicked()"), (lambda : searchDialog().doSearch(self.ui.careTask.currentText())))
         
         #Settings Tab
         ## OBDII
@@ -81,13 +84,6 @@ class pi2go(QtGui.QMainWindow):
 
         ## Save
         QtCore.QObject.connect(self.ui.saveButton, QtCore.SIGNAL("clicked()"), self.settings_save)
-        try:
-            f = open('store.pckl')
-            object = pickle.load(f)
-            f.close()
-            PyQt4.QtCore.QCoreApplication.processEvents()
-        except:
-            print "no pickles"
 
 #################################################################################################################
     def ODBII(self):
@@ -207,22 +203,34 @@ class pi2go(QtGui.QMainWindow):
 
     def settings_save(self):
         """Function of the settings tab"""       
-        f = open('store.pckl', 'w')
-        pickle.dump(self, f)
-        f.close()
-
-        return 
+        pass 
 
 
-class search(QtGui.QDialog):
+class searchDialog(QtGui.QDialog):
 
     def __init__(self, parent=None):
-        QtGui.QWidget.__init__(self, parent)
+        QtGui.QDialog.__init__(self, parent)
         self.ui = Ui_Dialog()
         self.ui.setupUi(self)
+    
+        
+    def doSearch(self, task):
+        """Search through logs for data"""
+        taskList = pi2log.pi2log().search(task)
 
-    def main(self):
-        print "hello"
+        self.ui.tableWidget.setColumnCount(4)
+        self.ui.tableWidget.setRowCount(len(taskList))
+        self.ui.tableWidget.setHorizontalHeaderLabels(QtCore.QString('Date;Task;Odometer;Comments').split(';'))
+        
+        for taskIndex in range(len(taskList)):
+            dataList = taskList[taskIndex]
+            for dataIndex in range(len(dataList)):
+                print dataList[dataIndex]
+                self.ui.tableWidget.setItem(taskIndex, dataIndex, QtGui.QTableWidgetItem(dataList[dataIndex]))
+        
+        return self.exec_()     
+        
+        
 
 if __name__ == "__main__":
     app = QtGui.QApplication(sys.argv)

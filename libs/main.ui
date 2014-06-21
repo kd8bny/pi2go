@@ -7,689 +7,19 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>645</width>
-    <height>508</height>
+    <width>656</width>
+    <height>524</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>pi2go V1 R4</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QTabWidget" name="tabWidget">
-    <property name="enabled">
-     <bool>true</bool>
-    </property>
-    <property name="geometry">
-     <rect>
-      <x>2</x>
-      <y>2</y>
-      <width>638</width>
-      <height>478</height>
-     </rect>
-    </property>
-    <property name="sizePolicy">
-     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-      <horstretch>0</horstretch>
-      <verstretch>0</verstretch>
-     </sizepolicy>
-    </property>
-    <property name="minimumSize">
-     <size>
-      <width>638</width>
-      <height>478</height>
-     </size>
-    </property>
-    <property name="acceptDrops">
-     <bool>false</bool>
-    </property>
-    <property name="autoFillBackground">
-     <bool>false</bool>
-    </property>
-    <property name="currentIndex">
-     <number>0</number>
-    </property>
-    <property name="usesScrollButtons">
-     <bool>true</bool>
-    </property>
-    <widget class="QWidget" name="welcomeTab">
-     <attribute name="title">
-      <string>Welcome</string>
-     </attribute>
-     <widget class="QGraphicsView" name="welcome">
-      <property name="geometry">
-       <rect>
-        <x>30</x>
-        <y>40</y>
-        <width>261</width>
-        <height>251</height>
-       </rect>
-      </property>
-      <property name="frameShape">
-       <enum>QFrame::WinPanel</enum>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Sunken</enum>
-      </property>
-      <property name="cacheMode">
-       <set>QGraphicsView::CacheBackground</set>
-      </property>
-      <property name="optimizationFlags">
-       <set>QGraphicsView::DontAdjustForAntialiasing</set>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label">
-      <property name="geometry">
-       <rect>
-        <x>410</x>
-        <y>280</y>
-        <width>101</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>pi2go V1 R4A</string>
-      </property>
-     </widget>
-     <widget class="QwtAnalogClock" name="AnalogClock">
-      <property name="geometry">
-       <rect>
-        <x>350</x>
-        <y>50</y>
-        <width>206</width>
-        <height>206</height>
-       </rect>
-      </property>
-      <property name="cursor">
-       <cursorShape>BlankCursor</cursorShape>
-      </property>
-      <property name="contextMenuPolicy">
-       <enum>Qt::NoContextMenu</enum>
-      </property>
-      <property name="layoutDirection">
-       <enum>Qt::LeftToRight</enum>
-      </property>
-      <property name="lineWidth">
-       <number>4</number>
-      </property>
-      <property name="frameShadow">
-       <enum>QwtDial::Plain</enum>
-      </property>
-      <property name="mode">
-       <enum>QwtDial::RotateNeedle</enum>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="obdTab">
-     <attribute name="title">
-      <string>OBDII</string>
-     </attribute>
-     <widget class="QWidget" name="layoutWidget">
-      <property name="geometry">
-       <rect>
-        <x>7</x>
-        <y>13</y>
-        <width>181</width>
-        <height>201</height>
-       </rect>
-      </property>
-      <layout class="QGridLayout" name="gridLayout">
-       <item row="0" column="0">
-        <widget class="QLCDNumber" name="lcdNumber_speed">
-         <property name="frameShape">
-          <enum>QFrame::Box</enum>
-         </property>
-         <property name="segmentStyle">
-          <enum>QLCDNumber::Flat</enum>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="1" colspan="2">
-        <widget class="QLabel" name="label_3">
-         <property name="text">
-          <string>Mph</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="0">
-        <widget class="QLCDNumber" name="lcdNumber_rpm">
-         <property name="frameShape">
-          <enum>QFrame::Box</enum>
-         </property>
-         <property name="segmentStyle">
-          <enum>QLCDNumber::Flat</enum>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1" colspan="2">
-        <widget class="QLabel" name="label_2">
-         <property name="text">
-          <string>RPM</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="0">
-        <widget class="QLCDNumber" name="lcdNumber_inTemp">
-         <property name="frameShape">
-          <enum>QFrame::Box</enum>
-         </property>
-         <property name="segmentStyle">
-          <enum>QLCDNumber::Flat</enum>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="1" colspan="2">
-        <widget class="QLabel" name="label_4">
-         <property name="text">
-          <string>deg (Intake)</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="0">
-        <widget class="QLCDNumber" name="lcdNumber_coolTemp">
-         <property name="frameShape">
-          <enum>QFrame::Box</enum>
-         </property>
-         <property name="segmentStyle">
-          <enum>QLCDNumber::Flat</enum>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="1" colspan="2">
-        <widget class="QLabel" name="label_5">
-         <property name="text">
-          <string>deg (Coolant)</string>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="0">
-        <widget class="QLCDNumber" name="lcdNumber_load">
-         <property name="frameShape">
-          <enum>QFrame::Box</enum>
-         </property>
-         <property name="segmentStyle">
-          <enum>QLCDNumber::Flat</enum>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="1" colspan="2">
-        <widget class="QLabel" name="label_6">
-         <property name="text">
-          <string>Load</string>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="0" colspan="3">
-        <widget class="QPushButton" name="obdButton">
-         <property name="text">
-          <string>Start</string>
-         </property>
-         <property name="checkable">
-          <bool>false</bool>
-         </property>
-         <property name="autoRepeat">
-          <bool>false</bool>
-         </property>
-         <property name="autoDefault">
-          <bool>false</bool>
-         </property>
-         <property name="default">
-          <bool>false</bool>
-         </property>
-         <property name="flat">
-          <bool>false</bool>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-     <widget class="QwtPlot" name="OBDplot">
-      <property name="geometry">
-       <rect>
-        <x>210</x>
-        <y>30</y>
-        <width>400</width>
-        <height>200</height>
-       </rect>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="GPStab">
-     <attribute name="title">
-      <string>GPS</string>
-     </attribute>
-     <widget class="QLabel" name="label_12">
-      <property name="geometry">
-       <rect>
-        <x>340</x>
-        <y>70</y>
-        <width>66</width>
-        <height>17</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Latitude</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_13">
-      <property name="geometry">
-       <rect>
-        <x>340</x>
-        <y>100</y>
-        <width>71</width>
-        <height>17</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Longitude</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="GPSbutton">
-      <property name="geometry">
-       <rect>
-        <x>330</x>
-        <y>280</y>
-        <width>98</width>
-        <height>27</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Start</string>
-      </property>
-     </widget>
-     <widget class="QwtCompass" name="Compass">
-      <property name="geometry">
-       <rect>
-        <x>30</x>
-        <y>80</y>
-        <width>200</width>
-        <height>200</height>
-       </rect>
-      </property>
-      <property name="lineWidth">
-       <number>4</number>
-      </property>
-     </widget>
-     <widget class="QToolButton" name="toolButton">
-      <property name="geometry">
-       <rect>
-        <x>320</x>
-        <y>370</y>
-        <width>101</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>...</string>
-      </property>
-      <property name="checkable">
-       <bool>false</bool>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="caretab">
-     <attribute name="title">
-      <string>Maintenance</string>
-     </attribute>
-     <widget class="QWidget" name="">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>631</width>
-        <height>431</height>
-       </rect>
-      </property>
-      <layout class="QHBoxLayout" name="horizontalLayout_5">
-       <item>
-        <widget class="QGroupBox" name="addnew_groupBox">
-         <property name="enabled">
-          <bool>true</bool>
-         </property>
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="autoFillBackground">
-          <bool>false</bool>
-         </property>
-         <property name="title">
-          <string>Add New</string>
-         </property>
-         <widget class="QCheckBox" name="commentcheckBox">
-          <property name="geometry">
-           <rect>
-            <x>17</x>
-            <y>123</y>
-            <width>140</width>
-            <height>21</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>Other Comments</string>
-          </property>
-          <property name="checked">
-           <bool>true</bool>
-          </property>
-         </widget>
-         <widget class="QPlainTextEdit" name="careComments">
-          <property name="enabled">
-           <bool>true</bool>
-          </property>
-          <property name="geometry">
-           <rect>
-            <x>17</x>
-            <y>150</y>
-            <width>251</width>
-            <height>131</height>
-           </rect>
-          </property>
-          <property name="focusPolicy">
-           <enum>Qt::ClickFocus</enum>
-          </property>
-          <property name="acceptDrops">
-           <bool>false</bool>
-          </property>
-          <property name="horizontalScrollBarPolicy">
-           <enum>Qt::ScrollBarAlwaysOff</enum>
-          </property>
-          <property name="tabChangesFocus">
-           <bool>true</bool>
-          </property>
-          <property name="textInteractionFlags">
-           <set>Qt::TextEditorInteraction</set>
-          </property>
-         </widget>
-         <widget class="QWidget" name="">
-          <property name="geometry">
-           <rect>
-            <x>20</x>
-            <y>320</y>
-            <width>191</width>
-            <height>31</height>
-           </rect>
-          </property>
-          <layout class="QHBoxLayout" name="horizontalLayout_2">
-           <property name="margin">
-            <number>2</number>
-           </property>
-           <item>
-            <widget class="QPushButton" name="logCare">
-             <property name="text">
-              <string>Log It!</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QPushButton" name="resetCare">
-             <property name="text">
-              <string>Reset Fields</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-         <widget class="QWidget" name="">
-          <layout class="QGridLayout" name="gridLayout_2">
-           <item row="0" column="0">
-            <widget class="QDateEdit" name="caredateEdit">
-             <property name="wrapping">
-              <bool>false</bool>
-             </property>
-             <property name="minimumDate">
-              <date>
-               <year>2014</year>
-               <month>1</month>
-               <day>1</day>
-              </date>
-             </property>
-             <property name="currentSection">
-              <enum>QDateTimeEdit::DaySection</enum>
-             </property>
-             <property name="calendarPopup">
-              <bool>true</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="1">
-            <widget class="QLabel" name="label_8">
-             <property name="text">
-              <string>Date</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="0">
-            <widget class="QComboBox" name="careTask">
-             <item>
-              <property name="text">
-               <string>Air Filter</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Brakes</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Fuel Filter</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>New Tires</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Oil Change</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Tire Rotation</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Plugs and Wires</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string/>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Miscellaneous</string>
-              </property>
-             </item>
-            </widget>
-           </item>
-           <item row="2" column="0">
-            <widget class="QLineEdit" name="careOdo">
-             <property name="inputMethodHints">
-              <set>Qt::ImhFormattedNumbersOnly|Qt::ImhPreferNumbers</set>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-             <property name="maxLength">
-              <number>8</number>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="1">
-            <widget class="QLabel" name="label_10">
-             <property name="text">
-              <string>Odometer</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="1">
-            <widget class="QLabel" name="label_9">
-             <property name="text">
-              <string>Task</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-         <zorder>commentcheckBox</zorder>
-         <zorder>careComments</zorder>
-         <zorder>last_groupBox</zorder>
-         <zorder></zorder>
-        </widget>
-       </item>
-       <item>
-        <widget class="Line" name="line_2">
-         <property name="windowModality">
-          <enum>Qt::NonModal</enum>
-         </property>
-         <property name="frameShadow">
-          <enum>QFrame::Raised</enum>
-         </property>
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QGroupBox" name="last_groupBox">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="autoFillBackground">
-          <bool>false</bool>
-         </property>
-         <property name="title">
-          <string>Last Entry</string>
-         </property>
-         <widget class="QWidget" name="layoutWidget">
-          <property name="geometry">
-           <rect>
-            <x>10</x>
-            <y>30</y>
-            <width>271</width>
-            <height>241</height>
-           </rect>
-          </property>
-          <layout class="QGridLayout" name="gridLayout_3">
-           <item row="3" column="0">
-            <widget class="QLabel" name="label_18">
-             <property name="text">
-              <string>Comments</string>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="2">
-            <widget class="QLineEdit" name="date_output">
-             <property name="readOnly">
-              <bool>true</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="0">
-            <widget class="QLabel" name="label_16">
-             <property name="text">
-              <string>Task</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="2">
-            <widget class="QLineEdit" name="task_output">
-             <property name="readOnly">
-              <bool>true</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="0">
-            <widget class="QLabel" name="label_15">
-             <property name="text">
-              <string>Date</string>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="0">
-            <widget class="QLabel" name="label_17">
-             <property name="text">
-              <string>Odometer</string>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="2">
-            <widget class="QLineEdit" name="odo_output">
-             <property name="readOnly">
-              <bool>true</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="3" column="2">
-            <widget class="QTextEdit" name="comment_output"/>
-           </item>
-          </layout>
-         </widget>
-         <widget class="QWidget" name="layoutWidget">
-          <property name="geometry">
-           <rect>
-            <x>50</x>
-            <y>320</y>
-            <width>178</width>
-            <height>29</height>
-           </rect>
-          </property>
-          <layout class="QHBoxLayout" name="horizontalLayout_6">
-           <item>
-            <widget class="QPushButton" name="searchLast">
-             <property name="text">
-              <string>Search</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QPushButton" name="deleteLast">
-             <property name="text">
-              <string>Delete</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-         <widget class="Line" name="line">
-          <property name="geometry">
-           <rect>
-            <x>-17</x>
-            <y>0</y>
-            <width>20</width>
-            <height>431</height>
-           </rect>
-          </property>
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-         </widget>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="settingTab">
-     <attribute name="title">
-      <string>Settings</string>
-     </attribute>
-     <widget class="QToolBox" name="settingToolBox">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>10</y>
-        <width>271</width>
-        <height>421</height>
-       </rect>
+   <layout class="QGridLayout" name="gridLayout_4">
+    <item row="0" column="0" colspan="4">
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="enabled">
+       <bool>true</bool>
       </property>
       <property name="sizePolicy">
        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -697,443 +27,1149 @@
         <verstretch>0</verstretch>
        </sizepolicy>
       </property>
-      <property name="frameShape">
-       <enum>QFrame::StyledPanel</enum>
+      <property name="minimumSize">
+       <size>
+        <width>638</width>
+        <height>478</height>
+       </size>
+      </property>
+      <property name="acceptDrops">
+       <bool>false</bool>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>3</number>
       </property>
-      <widget class="QWidget" name="OBDpage">
-       <property name="geometry">
-        <rect>
-         <x>0</x>
-         <y>0</y>
-         <width>269</width>
-         <height>299</height>
-        </rect>
-       </property>
-       <attribute name="label">
+      <property name="usesScrollButtons">
+       <bool>true</bool>
+      </property>
+      <widget class="QWidget" name="welcomeTab">
+       <attribute name="title">
+        <string>Welcome</string>
+       </attribute>
+       <widget class="QGraphicsView" name="welcome">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>40</y>
+          <width>261</width>
+          <height>251</height>
+         </rect>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::WinPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Sunken</enum>
+        </property>
+        <property name="cacheMode">
+         <set>QGraphicsView::CacheBackground</set>
+        </property>
+        <property name="optimizationFlags">
+         <set>QGraphicsView::DontAdjustForAntialiasing</set>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label">
+        <property name="geometry">
+         <rect>
+          <x>410</x>
+          <y>280</y>
+          <width>101</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>pi2go V1 R4A</string>
+        </property>
+       </widget>
+       <widget class="QwtAnalogClock" name="AnalogClock">
+        <property name="geometry">
+         <rect>
+          <x>350</x>
+          <y>50</y>
+          <width>206</width>
+          <height>206</height>
+         </rect>
+        </property>
+        <property name="cursor">
+         <cursorShape>BlankCursor</cursorShape>
+        </property>
+        <property name="contextMenuPolicy">
+         <enum>Qt::NoContextMenu</enum>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::LeftToRight</enum>
+        </property>
+        <property name="lineWidth">
+         <number>4</number>
+        </property>
+        <property name="frameShadow">
+         <enum>QwtDial::Plain</enum>
+        </property>
+        <property name="mode">
+         <enum>QwtDial::RotateNeedle</enum>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="obdTab">
+       <attribute name="title">
         <string>OBDII</string>
        </attribute>
        <widget class="QWidget" name="layoutWidget">
         <property name="geometry">
          <rect>
-          <x>10</x>
-          <y>0</y>
-          <width>139</width>
-          <height>28</height>
+          <x>7</x>
+          <y>13</y>
+          <width>181</width>
+          <height>201</height>
          </rect>
         </property>
-        <layout class="QHBoxLayout" name="horizontalLayout_3">
-         <item>
-          <widget class="QLabel" name="label_7">
-           <property name="text">
-            <string>ATSP Mode</string>
+        <layout class="QGridLayout" name="gridLayout">
+         <item row="0" column="0">
+          <widget class="QLCDNumber" name="lcdNumber_speed">
+           <property name="frameShape">
+            <enum>QFrame::Box</enum>
+           </property>
+           <property name="segmentStyle">
+            <enum>QLCDNumber::Flat</enum>
            </property>
           </widget>
          </item>
-         <item>
-          <widget class="QSpinBox" name="spinBox_ATSP">
-           <property name="toolTip">
-            <string extracomment="Value between 1 and 5"/>
+         <item row="0" column="1" colspan="2">
+          <widget class="QLabel" name="label_3">
+           <property name="text">
+            <string>Mph</string>
            </property>
-           <property name="wrapping">
-            <bool>true</bool>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLCDNumber" name="lcdNumber_rpm">
+           <property name="frameShape">
+            <enum>QFrame::Box</enum>
            </property>
-           <property name="readOnly">
+           <property name="segmentStyle">
+            <enum>QLCDNumber::Flat</enum>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1" colspan="2">
+          <widget class="QLabel" name="label_2">
+           <property name="text">
+            <string>RPM</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLCDNumber" name="lcdNumber_inTemp">
+           <property name="frameShape">
+            <enum>QFrame::Box</enum>
+           </property>
+           <property name="segmentStyle">
+            <enum>QLCDNumber::Flat</enum>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1" colspan="2">
+          <widget class="QLabel" name="label_4">
+           <property name="text">
+            <string>deg (Intake)</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLCDNumber" name="lcdNumber_coolTemp">
+           <property name="frameShape">
+            <enum>QFrame::Box</enum>
+           </property>
+           <property name="segmentStyle">
+            <enum>QLCDNumber::Flat</enum>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1" colspan="2">
+          <widget class="QLabel" name="label_5">
+           <property name="text">
+            <string>deg (Coolant)</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="0">
+          <widget class="QLCDNumber" name="lcdNumber_load">
+           <property name="frameShape">
+            <enum>QFrame::Box</enum>
+           </property>
+           <property name="segmentStyle">
+            <enum>QLCDNumber::Flat</enum>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="1" colspan="2">
+          <widget class="QLabel" name="label_6">
+           <property name="text">
+            <string>Load</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="0" colspan="3">
+          <widget class="QPushButton" name="obdButton">
+           <property name="text">
+            <string>Start</string>
+           </property>
+           <property name="checkable">
             <bool>false</bool>
            </property>
-           <property name="correctionMode">
-            <enum>QAbstractSpinBox::CorrectToNearestValue</enum>
+           <property name="autoRepeat">
+            <bool>false</bool>
            </property>
-           <property name="minimum">
-            <number>1</number>
+           <property name="autoDefault">
+            <bool>false</bool>
            </property>
-           <property name="maximum">
-            <number>5</number>
+           <property name="default">
+            <bool>false</bool>
            </property>
-           <property name="value">
-            <number>1</number>
+           <property name="flat">
+            <bool>false</bool>
            </property>
           </widget>
          </item>
         </layout>
        </widget>
+       <widget class="QwtPlot" name="OBDplot">
+        <property name="geometry">
+         <rect>
+          <x>210</x>
+          <y>30</y>
+          <width>400</width>
+          <height>200</height>
+         </rect>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="GPStab">
+       <attribute name="title">
+        <string>GPS</string>
+       </attribute>
+       <widget class="QLabel" name="label_12">
+        <property name="geometry">
+         <rect>
+          <x>340</x>
+          <y>70</y>
+          <width>66</width>
+          <height>17</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Latitude</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_13">
+        <property name="geometry">
+         <rect>
+          <x>340</x>
+          <y>100</y>
+          <width>71</width>
+          <height>17</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Longitude</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="GPSbutton">
+        <property name="geometry">
+         <rect>
+          <x>330</x>
+          <y>280</y>
+          <width>98</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Start</string>
+        </property>
+       </widget>
+       <widget class="QwtCompass" name="Compass">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>80</y>
+          <width>200</width>
+          <height>200</height>
+         </rect>
+        </property>
+        <property name="lineWidth">
+         <number>4</number>
+        </property>
+       </widget>
+       <widget class="QToolButton" name="toolButton">
+        <property name="geometry">
+         <rect>
+          <x>320</x>
+          <y>370</y>
+          <width>101</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>...</string>
+        </property>
+        <property name="checkable">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="caretab">
+       <attribute name="title">
+        <string>Maintenance</string>
+       </attribute>
        <widget class="QWidget" name="layoutWidget">
         <property name="geometry">
          <rect>
-          <x>10</x>
-          <y>60</y>
-          <width>175</width>
-          <height>23</height>
+          <x>0</x>
+          <y>0</y>
+          <width>631</width>
+          <height>431</height>
          </rect>
         </property>
-        <layout class="QHBoxLayout" name="horizontalLayout">
+        <layout class="QHBoxLayout" name="horizontalLayout_5">
          <item>
-          <widget class="QRadioButton" name="usbRadio">
-           <property name="text">
-            <string>USB</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QRadioButton" name="btRadio">
-           <property name="text">
-            <string>BT</string>
-           </property>
-           <property name="checked">
-            <bool>false</bool>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QRadioButton" name="devRadio">
+          <widget class="QGroupBox" name="addnew_groupBox">
            <property name="enabled">
             <bool>true</bool>
            </property>
-           <property name="text">
-            <string>Dev</string>
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
            </property>
-           <property name="checked">
-            <bool>true</bool>
+           <property name="autoFillBackground">
+            <bool>false</bool>
            </property>
+           <property name="title">
+            <string>Add New</string>
+           </property>
+           <widget class="QCheckBox" name="commentcheckBox">
+            <property name="geometry">
+             <rect>
+              <x>17</x>
+              <y>123</y>
+              <width>140</width>
+              <height>21</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string>Other Comments</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+           <widget class="QPlainTextEdit" name="careComments">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="geometry">
+             <rect>
+              <x>17</x>
+              <y>150</y>
+              <width>251</width>
+              <height>131</height>
+             </rect>
+            </property>
+            <property name="focusPolicy">
+             <enum>Qt::ClickFocus</enum>
+            </property>
+            <property name="acceptDrops">
+             <bool>false</bool>
+            </property>
+            <property name="horizontalScrollBarPolicy">
+             <enum>Qt::ScrollBarAlwaysOff</enum>
+            </property>
+            <property name="tabChangesFocus">
+             <bool>true</bool>
+            </property>
+            <property name="textInteractionFlags">
+             <set>Qt::TextEditorInteraction</set>
+            </property>
+           </widget>
+           <widget class="QWidget" name="layoutWidget">
+            <property name="geometry">
+             <rect>
+              <x>20</x>
+              <y>320</y>
+              <width>191</width>
+              <height>31</height>
+             </rect>
+            </property>
+            <layout class="QHBoxLayout" name="horizontalLayout_2">
+             <property name="margin">
+              <number>2</number>
+             </property>
+             <item>
+              <widget class="QPushButton" name="logCare">
+               <property name="text">
+                <string>Log It!</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="resetCare">
+               <property name="text">
+                <string>Reset Fields</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+           <widget class="QWidget" name="layoutWidget">
+            <property name="geometry">
+             <rect>
+              <x>0</x>
+              <y>0</y>
+              <width>205</width>
+              <height>92</height>
+             </rect>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_2">
+             <item row="0" column="0">
+              <widget class="QDateEdit" name="caredateEdit">
+               <property name="wrapping">
+                <bool>false</bool>
+               </property>
+               <property name="minimumDate">
+                <date>
+                 <year>2014</year>
+                 <month>1</month>
+                 <day>1</day>
+                </date>
+               </property>
+               <property name="currentSection">
+                <enum>QDateTimeEdit::DaySection</enum>
+               </property>
+               <property name="calendarPopup">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QLabel" name="label_8">
+               <property name="text">
+                <string>Date</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QComboBox" name="careTask">
+               <item>
+                <property name="text">
+                 <string>Air Filter</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Brakes</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Fuel Filter</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>New Tires</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Oil Change</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Tire Rotation</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Plugs and Wires</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string/>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Miscellaneous</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="2" column="0">
+              <widget class="QLineEdit" name="careOdo">
+               <property name="inputMethodHints">
+                <set>Qt::ImhFormattedNumbersOnly|Qt::ImhPreferNumbers</set>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="maxLength">
+                <number>8</number>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="1">
+              <widget class="QLabel" name="label_10">
+               <property name="text">
+                <string>Odometer</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QLabel" name="label_9">
+               <property name="text">
+                <string>Task</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+           <zorder>layoutWidget</zorder>
+           <zorder>commentcheckBox</zorder>
+           <zorder>careComments</zorder>
+           <zorder>layoutWidget</zorder>
+          </widget>
+         </item>
+         <item>
+          <widget class="Line" name="line_2">
+           <property name="windowModality">
+            <enum>Qt::NonModal</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Raised</enum>
+           </property>
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QGroupBox" name="last_groupBox">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="autoFillBackground">
+            <bool>false</bool>
+           </property>
+           <property name="title">
+            <string>Last Entry</string>
+           </property>
+           <widget class="QWidget" name="layoutWidget">
+            <property name="geometry">
+             <rect>
+              <x>10</x>
+              <y>30</y>
+              <width>271</width>
+              <height>241</height>
+             </rect>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_3">
+             <item row="3" column="0">
+              <widget class="QLabel" name="label_18">
+               <property name="text">
+                <string>Comments</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="2">
+              <widget class="QLineEdit" name="date_output">
+               <property name="readOnly">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="label_16">
+               <property name="text">
+                <string>Task</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="2">
+              <widget class="QLineEdit" name="task_output">
+               <property name="readOnly">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="0">
+              <widget class="QLabel" name="label_15">
+               <property name="text">
+                <string>Date</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="0">
+              <widget class="QLabel" name="label_17">
+               <property name="text">
+                <string>Odometer</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="2">
+              <widget class="QLineEdit" name="odo_output">
+               <property name="readOnly">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="2">
+              <widget class="QTextEdit" name="comment_output"/>
+             </item>
+            </layout>
+           </widget>
+           <widget class="Line" name="line">
+            <property name="geometry">
+             <rect>
+              <x>-17</x>
+              <y>0</y>
+              <width>20</width>
+              <height>431</height>
+             </rect>
+            </property>
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+           </widget>
+           <widget class="QComboBox" name="careTask_Search">
+            <property name="geometry">
+             <rect>
+              <x>70</x>
+              <y>390</y>
+              <width>129</width>
+              <height>26</height>
+             </rect>
+            </property>
+            <item>
+             <property name="text">
+              <string>Air Filter</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Brakes</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Fuel Filter</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>New Tires</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Oil Change</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Tire Rotation</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Plugs and Wires</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string/>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Miscellaneous</string>
+             </property>
+            </item>
+           </widget>
+           <widget class="QPushButton" name="deleteLast">
+            <property name="geometry">
+             <rect>
+              <x>190</x>
+              <y>280</y>
+              <width>85</width>
+              <height>27</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string>Delete</string>
+            </property>
+           </widget>
+           <widget class="QPushButton" name="searchLast">
+            <property name="geometry">
+             <rect>
+              <x>210</x>
+              <y>390</y>
+              <width>85</width>
+              <height>27</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string>Search</string>
+            </property>
+           </widget>
           </widget>
          </item>
         </layout>
        </widget>
-       <widget class="QLabel" name="label_11">
+      </widget>
+      <widget class="QWidget" name="settingTab">
+       <attribute name="title">
+        <string>Settings</string>
+       </attribute>
+       <widget class="QToolBox" name="settingToolBox">
         <property name="geometry">
          <rect>
           <x>10</x>
-          <y>100</y>
-          <width>63</width>
-          <height>16</height>
+          <y>10</y>
+          <width>271</width>
+          <height>421</height>
          </rect>
         </property>
-        <property name="text">
-         <string>Units</string>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
         </property>
-       </widget>
-       <widget class="QLabel" name="label_14">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>40</y>
-          <width>111</width>
-          <height>16</height>
-         </rect>
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
         </property>
-        <property name="text">
-         <string>Connection Type</string>
+        <property name="currentIndex">
+         <number>0</number>
         </property>
+        <widget class="QWidget" name="OBDpage">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>269</width>
+           <height>299</height>
+          </rect>
+         </property>
+         <attribute name="label">
+          <string>OBDII</string>
+         </attribute>
+         <widget class="QWidget" name="layoutWidget">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>0</y>
+            <width>139</width>
+            <height>28</height>
+           </rect>
+          </property>
+          <layout class="QHBoxLayout" name="horizontalLayout_3">
+           <item>
+            <widget class="QLabel" name="label_7">
+             <property name="text">
+              <string>ATSP Mode</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QSpinBox" name="spinBox_ATSP">
+             <property name="toolTip">
+              <string extracomment="Value between 1 and 5"/>
+             </property>
+             <property name="wrapping">
+              <bool>true</bool>
+             </property>
+             <property name="readOnly">
+              <bool>false</bool>
+             </property>
+             <property name="correctionMode">
+              <enum>QAbstractSpinBox::CorrectToNearestValue</enum>
+             </property>
+             <property name="minimum">
+              <number>1</number>
+             </property>
+             <property name="maximum">
+              <number>5</number>
+             </property>
+             <property name="value">
+              <number>1</number>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="layoutWidget">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>60</y>
+            <width>175</width>
+            <height>23</height>
+           </rect>
+          </property>
+          <layout class="QHBoxLayout" name="horizontalLayout">
+           <item>
+            <widget class="QRadioButton" name="usbRadio">
+             <property name="text">
+              <string>USB</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QRadioButton" name="btRadio">
+             <property name="text">
+              <string>BT</string>
+             </property>
+             <property name="checked">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QRadioButton" name="devRadio">
+             <property name="enabled">
+              <bool>true</bool>
+             </property>
+             <property name="text">
+              <string>Dev</string>
+             </property>
+             <property name="checked">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QLabel" name="label_11">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>100</y>
+            <width>63</width>
+            <height>16</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Units</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label_14">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>40</y>
+            <width>111</width>
+            <height>16</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Connection Type</string>
+          </property>
+         </widget>
+         <widget class="QWidget" name="layoutWidget">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>120</y>
+            <width>129</width>
+            <height>23</height>
+           </rect>
+          </property>
+          <layout class="QHBoxLayout" name="horizontalLayout_4">
+           <item>
+            <widget class="QRadioButton" name="units_metric_radio">
+             <property name="text">
+              <string>Metric</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QRadioButton" name="units_US_radio">
+             <property name="text">
+              <string>US</string>
+             </property>
+             <property name="checked">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QPushButton" name="obdClear">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>160</y>
+            <width>131</width>
+            <height>27</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Clear Error Codes</string>
+          </property>
+         </widget>
+        </widget>
+        <widget class="QWidget" name="GPSpage">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>100</width>
+           <height>30</height>
+          </rect>
+         </property>
+         <attribute name="label">
+          <string>GPS</string>
+         </attribute>
+         <widget class="QPushButton" name="GPS_delLog">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>10</y>
+            <width>93</width>
+            <height>27</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Delete Log</string>
+          </property>
+         </widget>
+        </widget>
+        <widget class="QWidget" name="carePage">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>100</width>
+           <height>30</height>
+          </rect>
+         </property>
+         <attribute name="label">
+          <string>Maintenance</string>
+         </attribute>
+         <widget class="QPushButton" name="care_delLog">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>10</y>
+            <width>93</width>
+            <height>27</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Delete Log</string>
+          </property>
+         </widget>
+        </widget>
+        <widget class="QWidget" name="page_3">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>100</width>
+           <height>30</height>
+          </rect>
+         </property>
+         <attribute name="label">
+          <string>Save Changes</string>
+         </attribute>
+         <widget class="QPushButton" name="saveButton">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="geometry">
+           <rect>
+            <x>50</x>
+            <y>240</y>
+            <width>93</width>
+            <height>27</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>save</string>
+          </property>
+         </widget>
+        </widget>
        </widget>
        <widget class="QWidget" name="layoutWidget">
         <property name="geometry">
          <rect>
-          <x>10</x>
-          <y>120</y>
-          <width>129</width>
-          <height>23</height>
+          <x>310</x>
+          <y>20</y>
+          <width>282</width>
+          <height>141</height>
          </rect>
         </property>
-        <layout class="QHBoxLayout" name="horizontalLayout_4">
+        <layout class="QVBoxLayout" name="verticalLayout">
          <item>
-          <widget class="QRadioButton" name="units_metric_radio">
+          <widget class="QLabel" name="label_19">
+           <property name="font">
+            <font>
+             <pointsize>24</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
            <property name="text">
-            <string>Metric</string>
+            <string>pi2go</string>
+           </property>
+           <property name="textFormat">
+            <enum>Qt::AutoText</enum>
+           </property>
+           <property name="scaledContents">
+            <bool>false</bool>
+           </property>
+           <property name="wordWrap">
+            <bool>false</bool>
+           </property>
+           <property name="openExternalLinks">
+            <bool>false</bool>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QRadioButton" name="units_US_radio">
-           <property name="text">
-            <string>US</string>
+          <widget class="QLabel" name="label_20">
+           <property name="font">
+            <font>
+             <pointsize>24</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
            </property>
-           <property name="checked">
+           <property name="text">
+            <string>Daryl Bennett</string>
+           </property>
+           <property name="textFormat">
+            <enum>Qt::AutoText</enum>
+           </property>
+           <property name="scaledContents">
+            <bool>false</bool>
+           </property>
+           <property name="wordWrap">
             <bool>true</bool>
+           </property>
+           <property name="openExternalLinks">
+            <bool>false</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_21">
+           <property name="font">
+            <font>
+             <pointsize>18</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>kd8bny@gmail.com</string>
+           </property>
+           <property name="textFormat">
+            <enum>Qt::AutoText</enum>
+           </property>
+           <property name="scaledContents">
+            <bool>false</bool>
+           </property>
+           <property name="wordWrap">
+            <bool>true</bool>
+           </property>
+           <property name="openExternalLinks">
+            <bool>false</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_22">
+           <property name="frameShape">
+            <enum>QFrame::NoFrame</enum>
+           </property>
+           <property name="text">
+            <string>http://www.kd8bny.blogpot.com</string>
+           </property>
+           <property name="textInteractionFlags">
+            <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
            </property>
           </widget>
          </item>
         </layout>
        </widget>
-       <widget class="QPushButton" name="obdClear">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>160</y>
-          <width>131</width>
-          <height>27</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Clear Error Codes</string>
-        </property>
-       </widget>
-      </widget>
-      <widget class="QWidget" name="GPSpage">
-       <property name="geometry">
-        <rect>
-         <x>0</x>
-         <y>0</y>
-         <width>100</width>
-         <height>30</height>
-        </rect>
-       </property>
-       <attribute name="label">
-        <string>GPS</string>
-       </attribute>
-       <widget class="QPushButton" name="GPS_delLog">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>10</y>
-          <width>93</width>
-          <height>27</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Delete Log</string>
-        </property>
-       </widget>
-      </widget>
-      <widget class="QWidget" name="carePage">
-       <property name="geometry">
-        <rect>
-         <x>0</x>
-         <y>0</y>
-         <width>269</width>
-         <height>299</height>
-        </rect>
-       </property>
-       <attribute name="label">
-        <string>Maintenance</string>
-       </attribute>
-       <widget class="QPushButton" name="care_delLog">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>10</y>
-          <width>93</width>
-          <height>27</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Delete Log</string>
-        </property>
-       </widget>
-      </widget>
-      <widget class="QWidget" name="page_3">
-       <property name="geometry">
-        <rect>
-         <x>0</x>
-         <y>0</y>
-         <width>269</width>
-         <height>299</height>
-        </rect>
-       </property>
-       <attribute name="label">
-        <string>Save Changes</string>
-       </attribute>
-       <widget class="QPushButton" name="saveButton">
-        <property name="geometry">
-         <rect>
-          <x>50</x>
-          <y>240</y>
-          <width>93</width>
-          <height>27</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>save</string>
-        </property>
-       </widget>
       </widget>
      </widget>
-     <widget class="QWidget" name="layoutWidget">
-      <property name="geometry">
-       <rect>
-        <x>310</x>
-        <y>20</y>
-        <width>282</width>
-        <height>141</height>
-       </rect>
+    </item>
+    <item row="1" column="0">
+     <widget class="QLabel" name="label_23">
+      <property name="text">
+       <string>Direction</string>
       </property>
-      <layout class="QVBoxLayout" name="verticalLayout">
-       <item>
-        <widget class="QLabel" name="label_19">
-         <property name="font">
-          <font>
-           <pointsize>24</pointsize>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="text">
-          <string>pi2go</string>
-         </property>
-         <property name="textFormat">
-          <enum>Qt::AutoText</enum>
-         </property>
-         <property name="scaledContents">
-          <bool>false</bool>
-         </property>
-         <property name="wordWrap">
-          <bool>false</bool>
-         </property>
-         <property name="openExternalLinks">
-          <bool>false</bool>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLabel" name="label_20">
-         <property name="font">
-          <font>
-           <pointsize>24</pointsize>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="text">
-          <string>Daryl Bennett</string>
-         </property>
-         <property name="textFormat">
-          <enum>Qt::AutoText</enum>
-         </property>
-         <property name="scaledContents">
-          <bool>false</bool>
-         </property>
-         <property name="wordWrap">
-          <bool>true</bool>
-         </property>
-         <property name="openExternalLinks">
-          <bool>false</bool>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLabel" name="label_21">
-         <property name="font">
-          <font>
-           <pointsize>18</pointsize>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="text">
-          <string>kd8bny@gmail.com</string>
-         </property>
-         <property name="textFormat">
-          <enum>Qt::AutoText</enum>
-         </property>
-         <property name="scaledContents">
-          <bool>false</bool>
-         </property>
-         <property name="wordWrap">
-          <bool>true</bool>
-         </property>
-         <property name="openExternalLinks">
-          <bool>false</bool>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLabel" name="label_22">
-         <property name="frameShape">
-          <enum>QFrame::NoFrame</enum>
-         </property>
-         <property name="text">
-          <string>http://www.kd8bny.blogpot.com</string>
-         </property>
-         <property name="textInteractionFlags">
-          <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
-         </property>
-        </widget>
-       </item>
-      </layout>
      </widget>
-    </widget>
-   </widget>
-   <widget class="QLabel" name="label_23">
-    <property name="geometry">
-     <rect>
-      <x>1</x>
-      <y>481</y>
-      <width>63</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Direction</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_24">
-    <property name="geometry">
-     <rect>
-      <x>67</x>
-      <y>481</y>
-      <width>63</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Lat</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_25">
-    <property name="geometry">
-     <rect>
-      <x>133</x>
-      <y>481</y>
-      <width>63</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Long</string>
-    </property>
-   </widget>
-   <widget class="QWidget" name="">
-    <property name="geometry">
-     <rect>
-      <x>554</x>
-      <y>481</y>
-      <width>91</width>
-      <height>22</height>
-     </rect>
-    </property>
-    <layout class="QHBoxLayout" name="horizontalLayout_7">
-     <item>
-      <widget class="QGraphicsView" name="graphicsView">
-       <property name="minimumSize">
-        <size>
-         <width>20</width>
-         <height>20</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>20</width>
-         <height>20</height>
-        </size>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="status">
-       <property name="frameShape">
-        <enum>QFrame::StyledPanel</enum>
-       </property>
-       <property name="text">
-        <string>Good</string>
-       </property>
-       <property name="textFormat">
-        <enum>Qt::AutoText</enum>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
+    </item>
+    <item row="1" column="1">
+     <widget class="QLabel" name="label_24">
+      <property name="text">
+       <string>Lat</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="2">
+     <widget class="QLabel" name="label_25">
+      <property name="text">
+       <string>Long</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="3">
+     <layout class="QHBoxLayout" name="horizontalLayout_7">
+      <item>
+       <widget class="QGraphicsView" name="graphicsView">
+        <property name="minimumSize">
+         <size>
+          <width>20</width>
+          <height>20</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>20</width>
+          <height>20</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="status">
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="text">
+         <string>Good</string>
+        </property>
+        <property name="textFormat">
+         <enum>Qt::AutoText</enum>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
   </widget>
  </widget>
  <customwidgets>

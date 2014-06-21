@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'libs/search.ui'
 #
-# Created: Wed Jun 18 22:15:30 2014
+# Created: Sat Jun 21 17:49:26 2014
 #      by: PyQt4 UI code generator 4.10.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -26,12 +26,18 @@ except AttributeError:
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName(_fromUtf8("Dialog"))
-        Dialog.resize(506, 139)
+        Dialog.resize(568, 206)
+        Dialog.setSizeGripEnabled(True)
         self.buttonBox = QtGui.QDialogButtonBox(Dialog)
-        self.buttonBox.setGeometry(QtCore.QRect(390, 10, 81, 621))
+        self.buttonBox.setGeometry(QtCore.QRect(480, 160, 81, 31))
         self.buttonBox.setOrientation(QtCore.Qt.Vertical)
-        self.buttonBox.setStandardButtons(QtGui.QDialogButtonBox.Cancel|QtGui.QDialogButtonBox.Ok)
+        self.buttonBox.setStandardButtons(QtGui.QDialogButtonBox.Close)
         self.buttonBox.setObjectName(_fromUtf8("buttonBox"))
+        self.tableWidget = QtGui.QTableWidget(Dialog)
+        self.tableWidget.setGeometry(QtCore.QRect(0, 10, 471, 192))
+        self.tableWidget.setObjectName(_fromUtf8("tableWidget"))
+        self.tableWidget.setColumnCount(0)
+        self.tableWidget.setRowCount(0)
 
         self.retranslateUi(Dialog)
         QtCore.QObject.connect(self.buttonBox, QtCore.SIGNAL(_fromUtf8("accepted()")), Dialog.accept)

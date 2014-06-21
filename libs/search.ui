@@ -6,27 +6,40 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>506</width>
-    <height>139</height>
+    <width>568</width>
+    <height>206</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
+  <property name="sizeGripEnabled">
+   <bool>true</bool>
+  </property>
   <widget class="QDialogButtonBox" name="buttonBox">
    <property name="geometry">
     <rect>
-     <x>390</x>
-     <y>10</y>
+     <x>480</x>
+     <y>160</y>
      <width>81</width>
-     <height>621</height>
+     <height>31</height>
     </rect>
    </property>
    <property name="orientation">
     <enum>Qt::Vertical</enum>
    </property>
    <property name="standardButtons">
-    <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+    <set>QDialogButtonBox::Close</set>
+   </property>
+  </widget>
+  <widget class="QTableWidget" name="tableWidget">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>10</y>
+     <width>471</width>
+     <height>192</height>
+    </rect>
    </property>
   </widget>
  </widget>

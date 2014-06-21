@@ -39,6 +39,7 @@ build:
 	#Build main UI
 	@ echo "*** Utilizing pyuic4 ***"
 	@ pyuic4 -xd -o libs/main.py libs/main.ui
+	@ pyuic4 -xd -o libs/search.py libs/search.ui
 	@ echo "*** Edit for QWT5 Support ***"
 	@ sudo python2.7 makeQWT/makeQWT.py
 	@ echo "*** Complete ***"

@@ -2,6 +2,12 @@ Changelog
 ==============================================
 V1 R*
 ---------------
+6-21-14
+*log - Fixed empty log issue and missing directory issue
+*go -Searches work!!! Add new signal/slot style....ish. Maintenance log now updates when deleting 
+make - Added support for new search box.
+main - Changed layout a little. Working with a new idea for GPS
+
 6-18-14
 *OBD - prepping for diagnostics addition
 *go - added a few more settings. A little pseudo code

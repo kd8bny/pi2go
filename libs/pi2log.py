@@ -63,7 +63,7 @@ class pi2log():
         """Grab last recored data set"""
         careValues = []
         lastRow = self.logSheet.nrows
-        if lastRow==0:
+        if lastRow==1:
             careValues.insert(0, 'NA')
             careValues.insert(1, 'NA')
             careValues.insert(2, 'NA')
@@ -78,23 +78,32 @@ class pi2log():
 
     def delLast(self):
         """Delete the last entry in log"""
-        tempBook = xlwt.Workbook()
-        tempSheet = tempBook.add_sheet('Log')
-        for rowNum in range(0, self.logSheet.nrows-1):
-            for colNum in range(self.logSheet.ncols):
-                getValue = self.logSheet.cell(rowNum,colNum).value
-                tempSheet.write(rowNum,colNum,getValue)
-        tempSheet.col(3).width = 30000
-        tempBook.save('../logs/MaintainanceLog.xls')
-
+        if self.logSheet.nrows != 0:
+            tempBook = xlwt.Workbook()
+            tempSheet = tempBook.add_sheet('Log')
+            for rowNum in range(0, self.logSheet.nrows-1):
+                for colNum in range(self.logSheet.ncols):
+                    getValue = self.logSheet.cell(rowNum,colNum).value
+                    tempSheet.write(rowNum,colNum,getValue)
+                    tempSheet.col(3).width = 30000
+                    tempBook.save('../logs/MaintainanceLog.xls')     
         return
 
+    def search(self, task):
+        """Lists on Lists on Lists"""
+        taskList = []
+
+        for rowNum in range(0, self.logSheet.nrows):
+            if self.logSheet.cell(rowNum,1).value == task:
+                taskList.append(self.logSheet.row_values(rowNum))
+
+        return taskList
 
 
 if __name__ == "__main__":
     test = pi2log()
     #test.addData(['test','test','test','test'])
-    test.delLast()
+    test.search('Air Filter')
     #better (row0)
     #row1 = self.logSheet.row(1)
     #row1.write(0,'A2')
