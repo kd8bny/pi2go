@@ -11,19 +11,14 @@
 
 #V1 R5
 
-import sys, os, time, numpy
+import sys, os, time, numpy, pickle
 import PyQt4
 import PyQt4.Qwt5 as Qwt
 from PyQt4.Qwt5.anynumpy import *
 
 import config, pi2OBD, pi2log #,sOff
 from main import *
-
-try:
-    import RPi.GPIO as GPIO
-except:
-    "Missing RPi.GPIO"
-    pass
+from search import *
 
 
 class pi2go(QtGui.QMainWindow):
@@ -34,8 +29,8 @@ class pi2go(QtGui.QMainWindow):
         QtGui.QWidget.__init__(self, parent)
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
-        
-        #Qt4
+
+        #Qt4      
         #Welcome Tab
         self.scene = QtGui.QGraphicsScene(self)
         self.scene.addPixmap(QtGui.QPixmap('../graphics/pi_logo.jpeg'))
@@ -55,14 +50,15 @@ class pi2go(QtGui.QMainWindow):
         self.stopGPS = False
 
         #Maintenance Tab
-        #New
+        ## New
         self.ui.caredateEdit.setDateTime(QtCore.QDateTime.currentDateTime())
         QtCore.QObject.connect(self.ui.commentcheckBox, QtCore.SIGNAL("toggled(bool)"), (lambda show=True : self.ui.careComments.setHidden(not show)))
         QtCore.QObject.connect(self.ui.logCare, QtCore.SIGNAL("clicked()"), (lambda reset=False : self.logCare(reset)))
         QtCore.QObject.connect(self.ui.resetCare, QtCore.SIGNAL("clicked()"), (lambda reset=True : self.logCare(reset)))
-        #Last
+        ## Last
         self.logCare_last()
         QtCore.QObject.connect(self.ui.deleteLast, QtCore.SIGNAL("clicked()"), (lambda : pi2log.pi2log().delLast()))
+        QtCore.QObject.connect(self.ui.searchLast, QtCore.SIGNAL("clicked()"), (lambda : search().main()))
         
         #Settings Tab
         ## OBDII
@@ -82,6 +78,16 @@ class pi2go(QtGui.QMainWindow):
 
         ## Maintenance
         QtCore.QObject.connect(self.ui.care_delLog, QtCore.SIGNAL("clicked()"), (lambda label='del' : self.settings_care(label)))
+
+        ## Save
+        QtCore.QObject.connect(self.ui.saveButton, QtCore.SIGNAL("clicked()"), self.settings_save)
+        try:
+            f = open('store.pckl')
+            object = pickle.load(f)
+            f.close()
+            PyQt4.QtCore.QCoreApplication.processEvents()
+        except:
+            print "no pickles"
 
 #################################################################################################################
     def ODBII(self):
@@ -197,8 +203,26 @@ class pi2go(QtGui.QMainWindow):
         else:
             pass
 
+        return
+
+    def settings_save(self):
+        """Function of the settings tab"""       
+        f = open('store.pckl', 'w')
+        pickle.dump(self, f)
+        f.close()
+
         return 
 
+
+class search(QtGui.QDialog):
+
+    def __init__(self, parent=None):
+        QtGui.QWidget.__init__(self, parent)
+        self.ui = Ui_Dialog()
+        self.ui.setupUi(self)
+
+    def main(self):
+        print "hello"
 
 if __name__ == "__main__":
     app = QtGui.QApplication(sys.argv)
