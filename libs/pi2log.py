@@ -24,6 +24,9 @@ class pi2log():
            self.logSheet = self.careBook.sheet_by_index(0)
 
         except:
+            if not os.path.exists('../logs'):
+                os.makedirs('../logs')
+
             self.careBook = xlwt.Workbook()
             self.logSheet = self.careBook.add_sheet('Log')
             self.format()
