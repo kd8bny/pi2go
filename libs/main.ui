@@ -40,7 +40,7 @@
        <bool>false</bool>
       </property>
       <property name="currentIndex">
-       <number>3</number>
+       <number>0</number>
       </property>
       <property name="usesScrollButtons">
        <bool>true</bool>
@@ -427,8 +427,8 @@
            <widget class="QWidget" name="layoutWidget">
             <property name="geometry">
              <rect>
-              <x>0</x>
-              <y>0</y>
+              <x>20</x>
+              <y>20</y>
               <width>205</width>
               <height>92</height>
              </rect>

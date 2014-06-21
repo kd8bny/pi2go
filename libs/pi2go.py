@@ -225,7 +225,6 @@ class searchDialog(QtGui.QDialog):
         for taskIndex in range(len(taskList)):
             dataList = taskList[taskIndex]
             for dataIndex in range(len(dataList)):
-                print dataList[dataIndex]
                 self.ui.tableWidget.setItem(taskIndex, dataIndex, QtGui.QTableWidgetItem(dataList[dataIndex]))
         
         return self.exec_()     
