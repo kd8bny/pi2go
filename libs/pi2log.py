@@ -62,17 +62,17 @@ class pi2log():
     def readLast(self):
         """Grab last recored data set"""
         careValues = []
-        lastRow = self.logSheet.nrows-1
-        if self.logSheet.cell(lastRow,0).value == 'Date':
+        lastRow = self.logSheet.nrows
+        if lastRow==0:
             careValues.insert(0, 'NA')
             careValues.insert(1, 'NA')
             careValues.insert(2, 'NA')
             careValues.insert(3, 'NA')
         else:
-            careValues.insert(0, self.logSheet.cell(lastRow,0).value)
-            careValues.insert(1, self.logSheet.cell(lastRow,1).value)
-            careValues.insert(2, self.logSheet.cell(lastRow,2).value)
-            careValues.insert(3, self.logSheet.cell(lastRow,3).value)
+            careValues.insert(0, self.logSheet.cell(lastRow-1,0).value)
+            careValues.insert(1, self.logSheet.cell(lastRow-1,1).value)
+            careValues.insert(2, self.logSheet.cell(lastRow-1,2).value)
+            careValues.insert(3, self.logSheet.cell(lastRow-1,3).value)
         
         return careValues
 
