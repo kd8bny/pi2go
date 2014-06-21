@@ -16,7 +16,7 @@ update:
 	@ make clean
 	@ echo "*** Updating ***"
 	@ git pull
-	@ cd makeQWT/ && git pull makeQWT/
+	@ cd makeQWT/ && git pull
 	@ echo "*** Complete ***"
 
 # Auto install required packages
