@@ -5,7 +5,7 @@ V1 R*
 6-21-14
 *log - Fixed empty log issue and missing directory issue
 *go -Searches work!!! Add new signal/slot style....ish. Maintenance log now updates when deleting 
-make - Added support for new search box.
+make - Added support for new search box. Fixed update QWT issue
 main - Changed layout a little. Working with a new idea for GPS
 
 6-18-14
