@@ -91,7 +91,7 @@ class pi2go(QtGui.QMainWindow):
         self.stopOBD = not self.stopOBD
         while not self.stopOBD:
             self.ui.obdButton.setText("Stop")
-            OBDvalues = pi2OBD.pi2OBD().OBDread() 
+            OBDvalues = [1,2,3,4,5]#= pi2OBD.pi2OBD().OBDread() 
             self.OBDsignal.emit(OBDvalues)
             
         self.ui.obdButton.setText("Start")
@@ -100,17 +100,19 @@ class pi2go(QtGui.QMainWindow):
 
     def updateGUI(self, OBDvalues):
         """Update LCD values in QT: receive [speed, rpm, intake, coolant, load]"""
+        OBDvalues[0] = self.old +1
+        self.old = self.old +1
         time_start = time.time()
         time_end = (time_start + config.uiRefresh)
         
         while time_end > time.time():
             PyQt4.QtCore.QCoreApplication.processEvents()
 
-        self.ui.lcdNumber_speed.display(OBDvalues[0])
-        self.ui.lcdNumber_rpm.display(OBDvalues[1])
-        self.ui.lcdNumber_inTemp.display(OBDvalues[2])
-        self.ui.lcdNumber_coolTemp.display(OBDvalues[3])
-        self.ui.lcdNumber_load.display(OBDvalues[4])
+        self.ui.speed_pBar.setValue(OBDvalues[0])
+        self.ui.rpm_pBar.setValue(OBDvalues[1])
+        self.ui.intake_pBar.setValue(OBDvalues[2])
+        self.ui.cool_pBar.setValue(OBDvalues[3])
+        self.ui.load_pBar.setValue(OBDvalues[4])
 
         return
 

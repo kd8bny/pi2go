@@ -2,10 +2,11 @@ Changelog
 ==============================================
 V1 R*
 ---------------
-6-22-14
-*go - Fixed freezing UI during OBDII
-
 6-21-14
+*go - Fixed freezing UI during OBDII, Remove QWT plot- favored progress bars
+make - temp removed makeQWT
+
+------------------
 *log - Fixed empty log issue and missing directory issue
 *go -Searches work!!! Add new signal/slot style....ish. Maintenance log now updates when deleting 
 make - Added support for new search box. Fixed update QWT issue

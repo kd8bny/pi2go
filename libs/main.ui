@@ -16,6 +16,60 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_4">
+    <item row="1" column="0">
+     <widget class="QLabel" name="label_23">
+      <property name="text">
+       <string>Direction</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1">
+     <widget class="QLabel" name="label_24">
+      <property name="text">
+       <string>Lat</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="2">
+     <widget class="QLabel" name="label_25">
+      <property name="text">
+       <string>Long</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="3">
+     <layout class="QHBoxLayout" name="horizontalLayout_7">
+      <item>
+       <widget class="QGraphicsView" name="graphicsView">
+        <property name="minimumSize">
+         <size>
+          <width>20</width>
+          <height>20</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>20</width>
+          <height>20</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="status">
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="text">
+         <string>Good</string>
+        </property>
+        <property name="textFormat">
+         <enum>Qt::AutoText</enum>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
     <item row="0" column="0" colspan="4">
      <widget class="QTabWidget" name="tabWidget">
       <property name="enabled">
@@ -117,134 +171,164 @@
        <attribute name="title">
         <string>OBDII</string>
        </attribute>
-       <widget class="QWidget" name="layoutWidget">
+       <widget class="QFrame" name="frame">
         <property name="geometry">
          <rect>
-          <x>7</x>
-          <y>13</y>
-          <width>181</width>
-          <height>201</height>
+          <x>10</x>
+          <y>10</y>
+          <width>611</width>
+          <height>271</height>
          </rect>
         </property>
-        <layout class="QGridLayout" name="gridLayout">
-         <item row="0" column="0">
-          <widget class="QLCDNumber" name="lcdNumber_speed">
-           <property name="frameShape">
-            <enum>QFrame::Box</enum>
-           </property>
-           <property name="segmentStyle">
-            <enum>QLCDNumber::Flat</enum>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="1" colspan="2">
-          <widget class="QLabel" name="label_3">
-           <property name="text">
-            <string>Mph</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="0">
-          <widget class="QLCDNumber" name="lcdNumber_rpm">
-           <property name="frameShape">
-            <enum>QFrame::Box</enum>
-           </property>
-           <property name="segmentStyle">
-            <enum>QLCDNumber::Flat</enum>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="1" colspan="2">
-          <widget class="QLabel" name="label_2">
-           <property name="text">
-            <string>RPM</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="0">
-          <widget class="QLCDNumber" name="lcdNumber_inTemp">
-           <property name="frameShape">
-            <enum>QFrame::Box</enum>
-           </property>
-           <property name="segmentStyle">
-            <enum>QLCDNumber::Flat</enum>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="1" colspan="2">
-          <widget class="QLabel" name="label_4">
-           <property name="text">
-            <string>deg (Intake)</string>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="0">
-          <widget class="QLCDNumber" name="lcdNumber_coolTemp">
-           <property name="frameShape">
-            <enum>QFrame::Box</enum>
-           </property>
-           <property name="segmentStyle">
-            <enum>QLCDNumber::Flat</enum>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="1" colspan="2">
-          <widget class="QLabel" name="label_5">
-           <property name="text">
-            <string>deg (Coolant)</string>
-           </property>
-          </widget>
-         </item>
-         <item row="4" column="0">
-          <widget class="QLCDNumber" name="lcdNumber_load">
-           <property name="frameShape">
-            <enum>QFrame::Box</enum>
-           </property>
-           <property name="segmentStyle">
-            <enum>QLCDNumber::Flat</enum>
-           </property>
-          </widget>
-         </item>
-         <item row="4" column="1" colspan="2">
-          <widget class="QLabel" name="label_6">
-           <property name="text">
-            <string>Load</string>
-           </property>
-          </widget>
-         </item>
-         <item row="5" column="0" colspan="3">
-          <widget class="QPushButton" name="obdButton">
-           <property name="text">
-            <string>Start</string>
-           </property>
-           <property name="checkable">
-            <bool>false</bool>
-           </property>
-           <property name="autoRepeat">
-            <bool>false</bool>
-           </property>
-           <property name="autoDefault">
-            <bool>false</bool>
-           </property>
-           <property name="default">
-            <bool>false</bool>
-           </property>
-           <property name="flat">
-            <bool>false</bool>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-       <widget class="QwtPlot" name="OBDplot">
-        <property name="geometry">
-         <rect>
-          <x>210</x>
-          <y>30</y>
-          <width>400</width>
-          <height>200</height>
-         </rect>
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
         </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <widget class="QWidget" name="">
+         <property name="geometry">
+          <rect>
+           <x>90</x>
+           <y>30</y>
+           <width>401</width>
+           <height>161</height>
+          </rect>
+         </property>
+         <layout class="QGridLayout" name="gridLayout">
+          <item row="4" column="5">
+           <widget class="QProgressBar" name="load_pBar">
+            <property name="maximum">
+             <number>10</number>
+            </property>
+            <property name="value">
+             <number>2</number>
+            </property>
+            <property name="invertedAppearance">
+             <bool>false</bool>
+            </property>
+            <property name="format">
+             <string>%p%</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="5">
+           <widget class="QProgressBar" name="intake_pBar">
+            <property name="minimum">
+             <number>-32</number>
+            </property>
+            <property name="maximum">
+             <number>110</number>
+            </property>
+            <property name="value">
+             <number>70</number>
+            </property>
+            <property name="format">
+             <string>%v deg</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="5">
+           <widget class="QProgressBar" name="cool_pBar">
+            <property name="maximum">
+             <number>212</number>
+            </property>
+            <property name="value">
+             <number>0</number>
+            </property>
+            <property name="format">
+             <string>%v deg</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="5">
+           <widget class="QProgressBar" name="rpm_pBar">
+            <property name="maximum">
+             <number>5000</number>
+            </property>
+            <property name="value">
+             <number>2300</number>
+            </property>
+            <property name="format">
+             <string>%v rpm</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="5">
+           <widget class="QProgressBar" name="speed_pBar">
+            <property name="invertedAppearance">
+             <bool>false</bool>
+            </property>
+            <property name="format">
+             <string>%v Mph</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="label_5">
+            <property name="text">
+             <string>Engine Temp</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_3">
+            <property name="text">
+             <string>Speed</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="label_6">
+            <property name="text">
+             <string>Engine Load</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_2">
+            <property name="text">
+             <string>Engine Speed</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_4">
+            <property name="text">
+             <string>Outdoor Temp</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QPushButton" name="obdButton">
+         <property name="geometry">
+          <rect>
+           <x>400</x>
+           <y>200</y>
+           <width>91</width>
+           <height>27</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Start</string>
+         </property>
+         <property name="checkable">
+          <bool>false</bool>
+         </property>
+         <property name="autoRepeat">
+          <bool>false</bool>
+         </property>
+         <property name="autoDefault">
+          <bool>false</bool>
+         </property>
+         <property name="default">
+          <bool>false</bool>
+         </property>
+         <property name="flat">
+          <bool>false</bool>
+         </property>
+        </widget>
        </widget>
       </widget>
       <widget class="QWidget" name="GPStab">
@@ -1115,69 +1199,10 @@
       </widget>
      </widget>
     </item>
-    <item row="1" column="0">
-     <widget class="QLabel" name="label_23">
-      <property name="text">
-       <string>Direction</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="1">
-     <widget class="QLabel" name="label_24">
-      <property name="text">
-       <string>Lat</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="2">
-     <widget class="QLabel" name="label_25">
-      <property name="text">
-       <string>Long</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="3">
-     <layout class="QHBoxLayout" name="horizontalLayout_7">
-      <item>
-       <widget class="QGraphicsView" name="graphicsView">
-        <property name="minimumSize">
-         <size>
-          <width>20</width>
-          <height>20</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>20</width>
-          <height>20</height>
-         </size>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLabel" name="status">
-        <property name="frameShape">
-         <enum>QFrame::StyledPanel</enum>
-        </property>
-        <property name="text">
-         <string>Good</string>
-        </property>
-        <property name="textFormat">
-         <enum>Qt::AutoText</enum>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </item>
    </layout>
   </widget>
  </widget>
  <customwidgets>
-  <customwidget>
-   <class>QwtPlot</class>
-   <extends>QFrame</extends>
-   <header>qwt_plot.h</header>
-  </customwidget>
   <customwidget>
    <class>QwtAnalogClock</class>
    <extends>QwtDial</extends>

@@ -2,7 +2,11 @@
 
 # Form implementation generated from reading ui file 'libs/search.ui'
 #
+<<<<<<< HEAD
 # Created: Sat Jun 21 19:38:04 2014
+=======
+# Created: Sat Jun 21 21:38:50 2014
+>>>>>>> 45ecdb6... OBD redesign.
 #      by: PyQt4 UI code generator 4.10.4
 #
 # WARNING! All changes made in this file will be lost!
