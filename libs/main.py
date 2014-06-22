@@ -4,7 +4,11 @@
 #
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 # Created: Sat Jun 21 19:38:04 2014
+=======
+# Created: Sat Jun 21 21:38:50 2014
+>>>>>>> 45ecdb6... OBD redesign.
 =======
 # Created: Sat Jun 21 21:38:50 2014
 >>>>>>> 45ecdb6... OBD redesign.
@@ -223,6 +227,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_2.addWidget(self.resetCare)
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         self.layoutWidget3 = QtGui.QWidget(self.addnew_groupBox)
         self.layoutWidget3.setGeometry(QtCore.QRect(20, 20, 205, 92))
         self.layoutWidget3.setObjectName(_fromUtf8("layoutWidget3"))
@@ -230,11 +235,16 @@ class Ui_MainWindow(object):
 =======
 =======
 >>>>>>> 45ecdb6... OBD redesign.
+=======
+>>>>>>> 45ecdb6... OBD redesign.
         self.layoutWidget2 = QtGui.QWidget(self.addnew_groupBox)
         self.layoutWidget2.setGeometry(QtCore.QRect(20, 20, 205, 92))
         self.layoutWidget2.setObjectName(_fromUtf8("layoutWidget2"))
         self.gridLayout_2 = QtGui.QGridLayout(self.layoutWidget2)
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> 45ecdb6... OBD redesign.
+=======
 >>>>>>> 45ecdb6... OBD redesign.
 =======
 >>>>>>> 45ecdb6... OBD redesign.
