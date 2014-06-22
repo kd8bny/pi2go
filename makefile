@@ -40,5 +40,5 @@ build:
 	@ pyuic4 -xd -o libs/main.py libs/main.ui
 	@ pyuic4 -xd -o libs/search.py libs/search.ui
 	@ echo "*** Edit for QWT5 Support ***"
-	#@ sudo python2.7 makeQWT/makeQWT.py
+	@ cd makeQWT/ && sudo python2.7 makeQWT.py
 	@ echo "*** Complete ***"
