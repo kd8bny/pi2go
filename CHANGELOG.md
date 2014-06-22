@@ -2,6 +2,9 @@ Changelog
 ==============================================
 V1 R*
 ---------------
+6-22-14
+*go - Fixed freezing UI during OBDII
+
 6-21-14
 *log - Fixed empty log issue and missing directory issue
 *go -Searches work!!! Add new signal/slot style....ish. Maintenance log now updates when deleting 
