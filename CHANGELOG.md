@@ -2,6 +2,10 @@ Changelog
 ==============================================
 V1 R*
 ---------------
+7-16-14
+*OBD - MAJOR FIXES!!! Fixed all data grabs. Added engine runtime PID
+*go -add OBD old values
+
 6-21-14
 *go - Fixed freezing UI during OBDII, Remove QWT plot- favored progress bars
 make - temp removed makeQWT

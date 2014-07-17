@@ -31,4 +31,4 @@ uiRefresh = 1 #Seconds
 ###############################################################
 units = 'US' #Alt is 'metric'
 ATSP = 1
-serialDevice = '/dev/pts/5' # Future default 'rfcomm0'
+serialDevice = '/dev/pts/17' # Future default 'rfcomm0'

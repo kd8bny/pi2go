@@ -87,11 +87,12 @@ class pi2go(QtGui.QMainWindow):
 
 #################################################################################################################
     def ODBII(self):
-        """Starts to read the ODB data"""
+        """Starts to read the ODB data [speed, rpm, intake, coolant, load, runtime]"""
         self.stopOBD = not self.stopOBD
+        OBDvalues = [0,0,0,0,0,0]
         while not self.stopOBD:
             self.ui.obdButton.setText("Stop")
-            OBDvalues = pi2OBD.pi2OBD().OBDread() 
+            OBDvalues = pi2OBD.pi2OBD().OBDread(OBDvalues) 
             self.OBDsignal.emit(OBDvalues)
             
         self.ui.obdButton.setText("Start")
