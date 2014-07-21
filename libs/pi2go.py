@@ -11,10 +11,9 @@
 
 #V1 R5
 
-import sys, os, time, numpy, pickle
+import sys, os, time, apscheduler.scheduler
 import PyQt4
 import PyQt4.Qwt5 as Qwt
-from PyQt4.Qwt5.anynumpy import *
 
 import config, pi2OBD, pi2log #,sOff
 from main import *
@@ -24,6 +23,7 @@ from search import *
 class pi2go(QtGui.QMainWindow):
 
     OBDsignal = QtCore.pyqtSignal([list], name='OBDsignal')
+    careCheck_sched = apscheduler.scheduler.Scheduler()
 
     def __init__(self, parent=None):
         QtGui.QWidget.__init__(self, parent)
@@ -51,6 +51,10 @@ class pi2go(QtGui.QMainWindow):
         self.stopGPS = False
 
         #Maintenance Tab
+        ## Scheduler
+        self.careCheck_sched.add_cron_job(self.careCheck, day_of_week='0-6')
+        self.careCheck_sched.start()        
+
         ## New
         self.ui.caredateEdit.setDateTime(QtCore.QDateTime.currentDateTime())
         QtCore.QObject.connect(self.ui.commentcheckBox, QtCore.SIGNAL("toggled(bool)"), (lambda show=True : self.ui.careComments.setHidden(not show)))
@@ -150,13 +154,19 @@ class pi2go(QtGui.QMainWindow):
         return
 
     def logCare_last(self):
-        """Calls function read last line -> updates GUI"""
+        """Calls function read last line -> updates GUI: [date, task, odo, comments]"""
         careValues = pi2log.pi2log().readLast()
         self.ui.date_output.setText(careValues[0])
         self.ui.task_output.setText(careValues[1]) 
         self.ui.odo_output.setText(careValues[2]) 
         self.ui.comment_output.setText(careValues[3])  
 
+        return
+
+    def careCheck(self):    #[WIP]
+        """Reads last odo reading and informs user of suggested Maintenance tasks: [date, task, odo, comments]"""
+        careValues = pi2log.pi2log().readLast()
+        #Still deciding how id like to view care tasks
         return
 
 ####################################################################################################

@@ -2,6 +2,10 @@ Changelog
 ==============================================
 V1 R*
 ---------------
+7-20-14
+make - Added APscheduler. Remove .gz packages
+*go - Cleaned import, Added scheduler for maintenance tasks [WIP!!!]
+
 7-16-14
 *OBD - MAJOR FIXES!!! Fixed all data grabs. Added engine runtime PID
 *go -add OBD old values
