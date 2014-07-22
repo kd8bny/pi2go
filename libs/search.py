@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'libs/search.ui'
 #
-# Created: Sat Jun 21 21:38:50 2014
+# Created: Sun Jul 20 23:15:15 2014
 #      by: PyQt4 UI code generator 4.10.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -45,7 +45,7 @@ class Ui_Dialog(object):
         QtCore.QMetaObject.connectSlotsByName(Dialog)
 
     def retranslateUi(self, Dialog):
-        Dialog.setWindowTitle(_translate("Dialog", "Dialog", None))
+        Dialog.setWindowTitle(_translate("Dialog", "Search Maintenance Log", None))
 
 
 if __name__ == "__main__":

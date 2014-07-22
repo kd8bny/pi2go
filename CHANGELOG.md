@@ -3,6 +3,13 @@ Changelog
 V1 R*
 ---------------
 7-20-14
+error - Add
+*go - Add support for maintenance error dialog
+	- dialog box issues
+	
+search - update window title
+
+-----------------
 make - Added APscheduler. Remove .gz packages
 *go - Cleaned import, Added scheduler for maintenance tasks [WIP!!!]
 

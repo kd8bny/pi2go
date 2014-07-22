@@ -17,7 +17,8 @@ import PyQt4.Qwt5 as Qwt
 
 import config, pi2OBD, pi2log #,sOff
 from main import *
-from search import *
+import search as searchDialog_ui
+import error as errorDialog_ui
 
 
 class pi2go(QtGui.QMainWindow):
@@ -31,7 +32,14 @@ class pi2go(QtGui.QMainWindow):
         self.ui.setupUi(self)
 
         #Qt4      
-        # new connection: self.pushButton.clicked.connect(self.setTableWidgetItem)
+        #All
+        ## Error
+        #self.ui.careStatus.clicked.connect((lambda : errorDialog().display()))
+        #self.ui.careStatus.clicked.connect((lambda : careCheck()))
+        ## Scheduler
+        self.careCheck_sched.add_cron_job(self.careCheck, day_of_week='0-6') # Will decrease after testing
+        self.careCheck_sched.start() 
+
         #Welcome Tab
         self.scene = QtGui.QGraphicsScene(self)
         self.scene.addPixmap(QtGui.QPixmap('../graphics/pi_logo.jpeg'))
@@ -50,11 +58,7 @@ class pi2go(QtGui.QMainWindow):
         QtCore.QObject.connect(self.ui.GPSbutton, QtCore.SIGNAL("clicked()"), self.GPS)
         self.stopGPS = False
 
-        #Maintenance Tab
-        ## Scheduler
-        self.careCheck_sched.add_cron_job(self.careCheck, day_of_week='0-6')
-        self.careCheck_sched.start()        
-
+        #Maintenance Tab  
         ## New
         self.ui.caredateEdit.setDateTime(QtCore.QDateTime.currentDateTime())
         QtCore.QObject.connect(self.ui.commentcheckBox, QtCore.SIGNAL("toggled(bool)"), (lambda show=True : self.ui.careComments.setHidden(not show)))
@@ -167,6 +171,11 @@ class pi2go(QtGui.QMainWindow):
         """Reads last odo reading and informs user of suggested Maintenance tasks: [date, task, odo, comments]"""
         careValues = pi2log.pi2log().readLast()
         #Still deciding how id like to view care tasks
+        if careValues == 'NA':
+            self.ui.careStatus.setText("BAD!!!")
+            self.careValues.append("No init Value")
+            errorDialog.careErrors.append(careValues)
+
         return
 
 ####################################################################################################
@@ -224,10 +233,9 @@ class searchDialog(QtGui.QDialog):
 
     def __init__(self, parent=None):
         QtGui.QDialog.__init__(self, parent)
-        self.ui = Ui_Dialog()
+        self.ui = searchDialog_ui.Ui_Dialog()
         self.ui.setupUi(self)
     
-        
     def doSearch(self, task):
         """Search through logs for data"""
         taskList = pi2log.pi2log().search(task)
@@ -243,7 +251,22 @@ class searchDialog(QtGui.QDialog):
         
         return self.exec_()     
         
-        
+class errorDialog(QtGui.QDialog):
+
+    def __init__(self, parent=None):
+        QtGui.QDialog.__init__(self, parent)
+        self.ui = errorDialog_ui.Ui_Dialog()
+        self.ui.setupUi(self)
+
+        self.careErrors = []
+        #self.ui.clicked.connect
+
+    def display(self):
+        """[date, task, odo, comments, error]"""
+        print self.careErrors
+
+
+        return self.exec_()
 
 if __name__ == "__main__":
     app = QtGui.QApplication(sys.argv)
