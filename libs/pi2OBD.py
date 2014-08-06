@@ -4,7 +4,7 @@
 #Daryl W. Bennett --kd8bny@gmail.com
 #Purpose is to have a DIY in car computer using RPi
 
-#V4 R0
+#R5
 
 import serial, string, time
 from PyQt4.QtCore import *
@@ -15,7 +15,8 @@ class pi2OBD(object):
 
     def __init__(self):
         try:
-            self.serialIO = serial.Serial(config.serialDevice, 9600, timeout=None)
+            self.default = config.config().loadSave()
+            self.serialIO = serial.Serial(self.default['serialDevice'], 9600, timeout=None)
         except serial.SerialException:
             print "Serial Issue"
     

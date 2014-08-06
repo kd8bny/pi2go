@@ -11,7 +11,7 @@
 
 #V1 R5
 
-import sys, os, time, apscheduler.scheduler
+import sys, os, time, apscheduler.scheduler, pickle
 import PyQt4
 import PyQt4.Qwt5 as Qwt
 
@@ -33,9 +33,11 @@ class pi2go(QtGui.QMainWindow):
 
         #Qt4      
         #All
+        ## Default
+        self.default = config.config().loadSave()
         ## Error
-        #self.ui.careStatus.clicked.connect((lambda : errorDialog().display()))
-        #self.ui.careStatus.clicked.connect((lambda : careCheck()))
+        self.ui.careStatus.clicked.connect((lambda : errorDialog().display()))
+        self.ui.careStatus.clicked.connect((lambda : careCheck()))
         ## Scheduler
         self.careCheck_sched.add_cron_job(self.careCheck, day_of_week='0-6') # Will decrease after testing
         self.careCheck_sched.start() 
@@ -72,26 +74,29 @@ class pi2go(QtGui.QMainWindow):
         QtCore.QObject.connect(self.ui.searchLast, QtCore.SIGNAL("clicked()"), (lambda : searchDialog().doSearch(self.ui.careTask.currentText())))
         
         #Settings Tab
+        self.settings_load()
         ## OBDII
-        QtCore.QObject.connect(self.ui.spinBox_ATSP, QtCore.SIGNAL("valueChanged(int)"), (lambda label='atsp' : self.settings_OBD(label)))
+        self.ui.spinBox_ATSP.valueChanged.connect((lambda : self.settings_OBD('atsp')))
 
-        QtCore.QObject.connect(self.ui.btRadio, QtCore.SIGNAL("clicked()"), (lambda label='bt' : self.settings_OBD(label)))
-        QtCore.QObject.connect(self.ui.usbRadio, QtCore.SIGNAL("clicked()"), (lambda label='usb' : self.settings_OBD(label)))
-        QtCore.QObject.connect(self.ui.devRadio, QtCore.SIGNAL("clicked()"), (lambda label='dev' : self.settings_OBD(label)))
+        self.ui.btRadio.clicked.connect((lambda : self.settings_OBD('bt')))
+        self.ui.usbRadio.clicked.connect((lambda : self.settings_OBD('usb')))
+        self.ui.devRadio.clicked.connect((lambda : self.settings_OBD('dev')))
 
-        QtCore.QObject.connect(self.ui.units_metric_radio, QtCore.SIGNAL("clicked()"), (lambda label='metric' : self.settings_OBD(label)))
-        QtCore.QObject.connect(self.ui.units_US_radio, QtCore.SIGNAL("clicked()"), (lambda label='US' : self.settings_OBD(label))) 
+        self.ui.units_metric_radio.clicked.connect((lambda : self.settings_OBD('metric')))
+        self.ui.units_US_radio.clicked.connect((lambda : self.settings_OBD('US'))) 
 
         QtCore.QObject.connect(self.ui.obdClear, QtCore.SIGNAL("clicked()"), (lambda : pi2OBD.pi2diag().clearCodes())) 
 
         ## GPS  
-        QtCore.QObject.connect(self.ui.GPS_delLog, QtCore.SIGNAL("clicked()"), (lambda label='del' : self.settings_GPS(label)))
+        self.ui.GPS_delLog.clicked.connect((lambda : self.settings_GPS('del')))
 
         ## Maintenance
-        QtCore.QObject.connect(self.ui.care_delLog, QtCore.SIGNAL("clicked()"), (lambda label='del' : self.settings_care(label)))
+        self.ui.care_delLog.clicked.connect((lambda : self.settings_care('del')))
 
         ## Save
-        QtCore.QObject.connect(self.ui.saveButton, QtCore.SIGNAL("clicked()"), self.settings_save)
+        self.ui.saveButton.clicked.connect((lambda : config.config().newSave(self.default)))
+        #self.ui.saveButton.clicked.connect((lambda : config.config().loadDefault()))
+        #self.ui.saveButton.clicked.connect((lambda : self.settings_load()))
 
 #################################################################################################################
     def ODBII(self):
@@ -110,7 +115,7 @@ class pi2go(QtGui.QMainWindow):
     def updateGUI(self, OBDvalues):
         """Update LCD values in QT: receive [speed, rpm, intake, coolant, load]"""
         time_start = time.time()
-        time_end = (time_start + config.uiRefresh)
+        time_end = (time_start + self.default['uiRefresh'])
         
         while time_end > time.time():
             PyQt4.QtCore.QCoreApplication.processEvents()
@@ -179,29 +184,56 @@ class pi2go(QtGui.QMainWindow):
         return
 
 ####################################################################################################
+    def settings_load(self):
+        """Load last saved settings"""
+        self.ui.spinBox_ATSP.setValue(self.default['ATSP'])
+
+        if self.default['serialLabel'] == 'bt':
+            self.ui.btRadio.setChecked(True)
+            try:
+                os.system("blueman-manager")
+            except:
+                print "Please install 'blueman' package"
+        elif self.default['serialLabel'] == 'usb':
+            self.ui.usbRadio.setChecked(True)
+        else:
+            self.ui.devRadio.setChecked(True)
+
+        if self.default['units'] == 'metric':
+            self.ui.units_metric_radio.setChecked(True)
+        else:
+            self.ui.units_US_radio.setChecked(True)
+
+        return
+
     def settings_OBD(self, label):
-        """Function of the settings tab"""       
+        """Function of the settings tab"""
         if label == 'bt':
             try:
-                config.serialDevice = 'rfcomm0'
+                self.default['serialLabel'] = label
+                self.default['serialDevice'] = config.config().serialDevice[label]
                 os.system("blueman-manager")
             except:
                 print "Please install 'blueman' package"
         elif label == 'usb':
-            config.serialDevice = '/dev/ttyUSB0'
+            self.default['serialLabel'] = label
+            self.default['serialDevice'] = config.config().serialDevice[label]
         elif label == 'dev':
-            config.serialDevice = '/dev/pts/5'
+            self.default['serialLabel'] = label
+            self.default['serialDevice'] = config.config().serialDevice[label]
         elif label == 'metric':
-            config.units = 'metric'
-        elif label == 'us':
-            config.units = 'US'            
+            self.default['units'] = 'metric'
+            print 'made it'
+        elif label == 'US':
+            self.default['units'] = 'US'            
         else: #ATSP signal return int -> else
-            config.ATSP = self.ui.spinBox_ATSP.value()
+            self.default['ATSP'] = self.ui.spinBox_ATSP.value()
 
         return
 
     def settings_GPS(self, label):
-        """Function of the settings tab"""       
+        """Function of the settings tab"""
+        print label    
         if label == 'del':
             try:
                 os.remove('../logs/GPSLog.txt')
@@ -223,11 +255,6 @@ class pi2go(QtGui.QMainWindow):
             pass
 
         return
-
-    def settings_save(self):
-        """Function of the settings tab"""       
-        pass 
-
 
 class searchDialog(QtGui.QDialog):
 

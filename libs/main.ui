@@ -8,7 +8,7 @@
     <x>0</x>
     <y>0</y>
     <width>656</width>
-    <height>524</height>
+    <height>528</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -1010,8 +1010,8 @@
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>100</width>
-           <height>30</height>
+           <width>98</width>
+           <height>28</height>
           </rect>
          </property>
          <attribute name="label">
@@ -1036,8 +1036,8 @@
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>100</width>
-           <height>30</height>
+           <width>98</width>
+           <height>28</height>
           </rect>
          </property>
          <attribute name="label">
@@ -1062,8 +1062,8 @@
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>100</width>
-           <height>30</height>
+           <width>269</width>
+           <height>299</height>
           </rect>
          </property>
          <attribute name="label">
@@ -1071,18 +1071,34 @@
          </attribute>
          <widget class="QPushButton" name="saveButton">
           <property name="enabled">
-           <bool>false</bool>
+           <bool>true</bool>
           </property>
           <property name="geometry">
            <rect>
-            <x>50</x>
-            <y>240</y>
+            <x>20</x>
+            <y>250</y>
             <width>93</width>
             <height>27</height>
            </rect>
           </property>
           <property name="text">
            <string>save</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="defaultButton">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="geometry">
+           <rect>
+            <x>130</x>
+            <y>250</y>
+            <width>93</width>
+            <height>27</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>default</string>
           </property>
          </widget>
         </widget>

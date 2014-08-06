@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'libs/error.ui'
 #
-# Created: Sun Jul 20 23:15:15 2014
+# Created: Tue Aug  5 22:28:23 2014
 #      by: PyQt4 UI code generator 4.10.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -27,9 +27,9 @@ class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName(_fromUtf8("Dialog"))
         Dialog.resize(495, 160)
-        self.pushButton = QtGui.QPushButton(Dialog)
-        self.pushButton.setGeometry(QtCore.QRect(370, 20, 93, 27))
-        self.pushButton.setObjectName(_fromUtf8("pushButton"))
+        self.add2log = QtGui.QPushButton(Dialog)
+        self.add2log.setGeometry(QtCore.QRect(370, 20, 93, 27))
+        self.add2log.setObjectName(_fromUtf8("add2log"))
         self.pushButton_2 = QtGui.QPushButton(Dialog)
         self.pushButton_2.setGeometry(QtCore.QRect(370, 70, 93, 27))
         self.pushButton_2.setObjectName(_fromUtf8("pushButton_2"))
@@ -39,7 +39,7 @@ class Ui_Dialog(object):
 
     def retranslateUi(self, Dialog):
         Dialog.setWindowTitle(_translate("Dialog", "Suggested Maintenance Task", None))
-        self.pushButton.setText(_translate("Dialog", "Add to log", None))
+        self.add2log.setText(_translate("Dialog", "Add to log", None))
         self.pushButton_2.setText(_translate("Dialog", "Dont care", None))
 
 

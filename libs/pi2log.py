@@ -4,10 +4,9 @@
 #Daryl W. Bennett --kd8bny@gmail.com
 #Purpose is to have a DIY in car computer using RPi
 
-#V1 R0
+#R1
 
 import sys, os, xlwt, xlrd
-import config
 
 from tempfile import TemporaryFile
 from xlwt import Workbook

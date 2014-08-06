@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Suggested Maintenance Task</string>
   </property>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QPushButton" name="add2log">
    <property name="geometry">
     <rect>
      <x>370</x>

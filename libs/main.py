@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'libs/main.ui'
 #
-# Created: Sun Jul 20 23:15:15 2014
+# Created: Tue Aug  5 22:28:23 2014
 #      by: PyQt4 UI code generator 4.10.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -30,7 +30,7 @@ except AttributeError:
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName(_fromUtf8("MainWindow"))
-        MainWindow.resize(656, 524)
+        MainWindow.resize(656, 528)
         self.centralwidget = QtGui.QWidget(MainWindow)
         self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
         self.gridLayout_4 = QtGui.QGridLayout(self.centralwidget)
@@ -405,26 +405,30 @@ class Ui_MainWindow(object):
         self.obdClear.setObjectName(_fromUtf8("obdClear"))
         self.settingToolBox.addItem(self.OBDpage, _fromUtf8(""))
         self.GPSpage = QtGui.QWidget()
-        self.GPSpage.setGeometry(QtCore.QRect(0, 0, 100, 30))
+        self.GPSpage.setGeometry(QtCore.QRect(0, 0, 98, 28))
         self.GPSpage.setObjectName(_fromUtf8("GPSpage"))
         self.GPS_delLog = QtGui.QPushButton(self.GPSpage)
         self.GPS_delLog.setGeometry(QtCore.QRect(10, 10, 93, 27))
         self.GPS_delLog.setObjectName(_fromUtf8("GPS_delLog"))
         self.settingToolBox.addItem(self.GPSpage, _fromUtf8(""))
         self.carePage = QtGui.QWidget()
-        self.carePage.setGeometry(QtCore.QRect(0, 0, 100, 30))
+        self.carePage.setGeometry(QtCore.QRect(0, 0, 98, 28))
         self.carePage.setObjectName(_fromUtf8("carePage"))
         self.care_delLog = QtGui.QPushButton(self.carePage)
         self.care_delLog.setGeometry(QtCore.QRect(10, 10, 93, 27))
         self.care_delLog.setObjectName(_fromUtf8("care_delLog"))
         self.settingToolBox.addItem(self.carePage, _fromUtf8(""))
         self.page_3 = QtGui.QWidget()
-        self.page_3.setGeometry(QtCore.QRect(0, 0, 100, 30))
+        self.page_3.setGeometry(QtCore.QRect(0, 0, 269, 299))
         self.page_3.setObjectName(_fromUtf8("page_3"))
         self.saveButton = QtGui.QPushButton(self.page_3)
-        self.saveButton.setEnabled(False)
-        self.saveButton.setGeometry(QtCore.QRect(50, 240, 93, 27))
+        self.saveButton.setEnabled(True)
+        self.saveButton.setGeometry(QtCore.QRect(20, 250, 93, 27))
         self.saveButton.setObjectName(_fromUtf8("saveButton"))
+        self.defaultButton = QtGui.QPushButton(self.page_3)
+        self.defaultButton.setEnabled(False)
+        self.defaultButton.setGeometry(QtCore.QRect(130, 250, 93, 27))
+        self.defaultButton.setObjectName(_fromUtf8("defaultButton"))
         self.settingToolBox.addItem(self.page_3, _fromUtf8(""))
         self.layoutWidget8 = QtGui.QWidget(self.settingTab)
         self.layoutWidget8.setGeometry(QtCore.QRect(310, 20, 282, 141))
@@ -553,6 +557,7 @@ class Ui_MainWindow(object):
         self.care_delLog.setText(_translate("MainWindow", "Delete Log", None))
         self.settingToolBox.setItemText(self.settingToolBox.indexOf(self.carePage), _translate("MainWindow", "Maintenance", None))
         self.saveButton.setText(_translate("MainWindow", "save", None))
+        self.defaultButton.setText(_translate("MainWindow", "default", None))
         self.settingToolBox.setItemText(self.settingToolBox.indexOf(self.page_3), _translate("MainWindow", "Save Changes", None))
         self.label_19.setText(_translate("MainWindow", "pi2go", None))
         self.label_20.setText(_translate("MainWindow", "Daryl Bennett", None))

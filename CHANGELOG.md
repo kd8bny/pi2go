@@ -2,6 +2,15 @@ Changelog
 ==============================================
 V1 R*
 ---------------
+8-5-14
+Commit new save feature. Default values [WIP]
+
+7-23-14
+config - Made class. Moved variables to dict. Enable saving
+*go - enable save feature. Pythonic signal slots. Fix serialdevice bug
+*OBD - Support new config [WIP] temp fix
+main - default settings button ^^
+
 7-20-14
 error - Add
 *go - Add support for maintenance error dialog
