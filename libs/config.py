@@ -36,7 +36,7 @@ class config(object):
 		return self.piSave
 
 	def initSave(self):
-		"""dict cont
+		"""dict contains default values"""
 		self.piSave = {
 		'version' : 1,
 		'uiRefresh' : 1,							#Seconds
@@ -49,13 +49,13 @@ class config(object):
 		return self.piSave
 
 	def newSave(self, piSave):
-
+		"""Saves new values"""
 		pickle.dump(piSave, open('.piSave','w'))
 		
 		return
 
 	def loadDefault(self):
-
+		"""Reset to default values [WIP]"""
 		if os.path.isfile('.piSave'):
 			os.remove('.piSave')
 		self.newSave(self.initSave())
