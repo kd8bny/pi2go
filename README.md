@@ -10,9 +10,8 @@ Daryl W. Bennett ~kd8bny@gmail.com
 http://kd8bny.blogspot.com/
 
 
-Requirements
-==============================================
-Software
+# Requirements
+## Software
 - git
 - Python 2.7
 - python-serial
@@ -20,34 +19,32 @@ Software
 - python-numpy
 - python-qwt5-qt4 
 - python-xlwt & python-xlwt
-	xlutils : $ pip install xlutils @ http://www.python-excel.org/
+- xlutils : $ pip install xlutils @ http://www.python-excel.org/
 
-Optional
+## Optional
 - blueman (Only to use BT features)
 - pyqt4-dev-tools ~Optional for devs
 
-Hardware
+## Hardware
 - RPi :P
 - OBD2 Sensor (BT or USB)
 - GPS ~Optional
 
-Instructions
-==============================================
-To Setup
+# Instructions
+## To Setup
 	$ make prereq
 
-To Run
+## To Run
 	$ make run
 
-To Update
+## To Update
 	$ make update
 
-For Dev
+## For Dev
 	$ make clean        ~ Removes all temp files
 	$ make build        ~ Build UI and all dependencies 
 
-Ideas/TODO
-==============================================
+# Ideas/TODO
 - Better signals/sockets
 - Better version tracking
 - Data server
