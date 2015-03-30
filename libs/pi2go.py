@@ -11,7 +11,7 @@
 
 #V1 R5
 
-import sys, os, time, apscheduler.scheduler, pickle
+import sys, os, time, pickle #apscheduler.scheduler
 import PyQt4
 import PyQt4.Qwt5 as Qwt
 
@@ -24,7 +24,7 @@ import error as errorDialog_ui
 class pi2go(QtGui.QMainWindow):
 
     OBDsignal = QtCore.pyqtSignal([list], name='OBDsignal')
-    careCheck_sched = apscheduler.scheduler.Scheduler()
+    #careCheck_sched = apscheduler.scheduler.Scheduler()
 
     def __init__(self, parent=None):
         QtGui.QWidget.__init__(self, parent)
@@ -39,8 +39,8 @@ class pi2go(QtGui.QMainWindow):
         self.ui.careStatus.clicked.connect((lambda : errorDialog().display()))
         self.ui.careStatus.clicked.connect((lambda : careCheck()))
         ## Scheduler
-        self.careCheck_sched.add_cron_job(self.careCheck, day_of_week='0-6') # Will decrease after testing
-        self.careCheck_sched.start() 
+        #self.careCheck_sched.add_cron_job(self.careCheck, day_of_week='0-6') # Will decrease after testing
+        #self.careCheck_sched.start() 
 
         #Welcome Tab
         self.scene = QtGui.QGraphicsScene(self)

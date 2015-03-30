@@ -4,7 +4,7 @@
 #Daryl W. Bennett --kd8bny@gmail.com
 #Purpose is to have a DIY in car computer using RPi
 
-#R1
+#R2
 
 import sys, os, xlwt, xlrd
 
@@ -13,6 +13,7 @@ from xlwt import Workbook
 from xlrd import open_workbook
 from xlutils.copy import copy
 
+import dropbox
 
 class pi2log():
 
@@ -98,12 +99,35 @@ class pi2log():
 
         return taskList
 
+class pi2cloud(object):
+
+    def __init__(self):
+        pass
+
+    def setup(self):
+        # Get your app key and secret from the Dropbox developer website
+        app_key = 's57exialypbu0eo'
+        app_secret = 'bif2m6w2fu68h2ps'
+        flow = dropbox.client.DropboxOAuth2FlowNoRedirect(app_key, app_secret)
+        print flow
+        # Have the user sign in and authorize this token
+        authorize_url = flow.start()
+        print '1. Go to: ' + authorize_url
+        print '2. Click "Allow" (you might have to log in first)'
+        print '3. Copy the authorization code.'
+        code = raw_input("Enter the authorization code here: ").strip()
+
+        # This will fail if the user enters an invalid authorization code
+        access_token, user_id = flow.finish(code)
+
+        client = dropbox.client.DropboxClient(access_token)
+        print 'linked account: ', client.account_info()
+        return client
+
+    def sync(self):
+        client = self.setup()
+        response = client.put_file('../logs/MaintainanceLog.xls', f)
 
 if __name__ == "__main__":
-    test = pi2log()
-    #test.addData(['test','test','test','test'])
-    test.search('Air Filter')
-    #better (row0)
-    #row1 = self.logSheet.row(1)
-    #row1.write(0,'A2')
-    #row1.write(1,'B2')
+    test = pi2cloud()
+    test.sync()    

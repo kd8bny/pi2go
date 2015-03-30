@@ -28,7 +28,7 @@ prereq:
 		python-qt4 pyqt4-dev-tools python-qwt5-qt4\
 		blueman
 	@ wget https://pypi.python.org/packages/source/x/xlutils/xlutils-1.7.1.tar.gz
-	@ sudo pip install xlutils apscheduler
+	@ sudo pip install xlutils #apscheduler dropbox
 	@ echo "*** Cloning makeQWT ***"
 	@ git clone https://www.github.com/kd8bny/makeQWT.git
 	@ echo "*** Complete ***"
